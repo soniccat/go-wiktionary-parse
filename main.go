@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"database/sql"
 	"encoding/gob"
 	"encoding/xml"
@@ -14,28 +15,41 @@ import (
 	"sync"
 	"time"
 
+	"go-wikitionary-parse/lib/wikitemplates"
+
 	"github.com/macdub/go-colorlog"
 	_ "github.com/mattn/go-sqlite3"
-	"go-wikitionary-parse/lib/wikitemplates"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 var (
 	// regex pointers
-	wikiLang       *regexp.Regexp = regexp.MustCompile(`(\s==|^==)[\w\s]+==`)          // most languages are a single word; there are some that are multiple words
-	wikiLexM       *regexp.Regexp = regexp.MustCompile(`(\s====|^====)[\w\s]+====`)    // lexical category could be multi-word (e.g. "Proper Noun") match for multi-etymology
-	wikiLexS       *regexp.Regexp = regexp.MustCompile(`(\s===|^===)[\w\s]+===`)       // lexical category match for single etymology
-	wikiEtymologyS *regexp.Regexp = regexp.MustCompile(`(\s===|^===)Etymology===`)     // check for singular etymology
-	wikiEtymologyM *regexp.Regexp = regexp.MustCompile(`(\s===|^===)Etymology \d+===`) // these heading may or may not have a number designation
-	wikiNumListAny *regexp.Regexp = regexp.MustCompile(`\s##?[\*:]*? `)                // used to find all num list indices
-	wikiNumList    *regexp.Regexp = regexp.MustCompile(`\s#[^:\*] `)                   // used to find the num list entries that are of concern
-	wikiGenHeading *regexp.Regexp = regexp.MustCompile(`(\s=+|^=+)[\w\s]+`)            // generic heading search
-	wikiNewLine    *regexp.Regexp = regexp.MustCompile(`\n`)
-	wikiBracket    *regexp.Regexp = regexp.MustCompile(`[\[\]]+`)
-	wikiWordAlt    *regexp.Regexp = regexp.MustCompile(`\[\[([\w\s]+)\|[\w\s]+\]\]`)
-	wikiModifier   *regexp.Regexp = regexp.MustCompile(`\{\{m\|\w+\|([\w\s]+)\}\}`)
-	wikiLabel      *regexp.Regexp = regexp.MustCompile(`\{\{(la?b?e?l?)\|\w+\|([\w\s\|'",;\(\)_\[\]-]+)\}\}`)
-	wikiTplt       *regexp.Regexp = regexp.MustCompile(`\{\{|\}\}`) // open close template bounds "{{ ... }}"
-	wikiExample    *regexp.Regexp = regexp.MustCompile(`\{\{examples(.+)\}\}`)
+	wikiLang          *regexp.Regexp = regexp.MustCompile(`(\s==|^==)[\w\s]+==`)       // most languages are a single word; there are some that are multiple words
+	wikiLexM          *regexp.Regexp = regexp.MustCompile(`(\s====|^====)[\w\s]+====`) // lexical category could be multi-word (e.g. "Proper Noun") match for multi-etymology
+	wikiLexS          *regexp.Regexp = regexp.MustCompile(`(\s===|^===)[\w\s]+===`)    // lexical category match for single etymology
+	wikiPronunciation                = regexp.MustCompile(`(\s===|^===)Pronunciation===`)
+	wikiEtymologyS    *regexp.Regexp = regexp.MustCompile(`(\s===|^===)Etymology===`)     // check for singular etymology
+	wikiEtymologyM    *regexp.Regexp = regexp.MustCompile(`(\s===|^===)Etymology \d+===`) // these heading may or may not have a number designation
+	wikiNumListAny    *regexp.Regexp = regexp.MustCompile(`\s##?[\*sea:]*? `)             // used to find all num list indices
+	wikiNumList       *regexp.Regexp = regexp.MustCompile(`\s#[^:\*] `)                   // used to find the num list entries that are of concern
+	wikiGenHeading    *regexp.Regexp = regexp.MustCompile(`(\s=+|^=+)[\w\s]+`)            // generic heading search
+	wikiNewLine       *regexp.Regexp = regexp.MustCompile(`\n`)
+	wikiBracket       *regexp.Regexp = regexp.MustCompile(`[\[\]]+`)
+	wikiWordAlt       *regexp.Regexp = regexp.MustCompile(`\[\[([\w\s]+)\|[\w\s]+\]\]`)
+	wikiModifier      *regexp.Regexp = regexp.MustCompile(`\{\{m\|\w+\|([\w\s]+)\}\}`)
+	wikiLabel         *regexp.Regexp = regexp.MustCompile(`\{\{(la?b?e?l?)\|\w+\|([\w\s\|'",;\(\)_\[\]-]+)\}\}`)
+	wikiTplt          *regexp.Regexp = regexp.MustCompile(`\{\{|\}\}`) // open close template bounds "{{ ... }}"
+	wikiExample       *regexp.Regexp = regexp.MustCompile(`\{\{examples(.+)\}\}`)
+	wikiWordExample   *regexp.Regexp = regexp.MustCompile(`#: \{\{ux\|\w+\|([^}]+)\}\}`)
+	wikiWordSynonym   *regexp.Regexp = regexp.MustCompile(`#: \{\{syn\|\w+\|([^}]+)\}\}`)
+	wikiWordAntonym   *regexp.Regexp = regexp.MustCompile(`#: \{\{ant\|\w+\|([^}]+)\}\}`)
+	wikiWordIPA                      = regexp.MustCompile(`\{\{IPA\|\w+\|([^}]+)\}\}`)
+	wikiWordIPAValue                 = regexp.MustCompile(`IPA :`)
+	wikiWordQuote                    = regexp.MustCompile(`(?U)#\* \{\{quote-\w+\|(?: ?[^|]+?\n?\|?)+(?:passage|text)=([^}]+)\}\}`)
+	wikiSection                      = regexp.MustCompile(`(\s====|^====)\w+====`)
+	wikiSubSection                   = regexp.MustCompile(`(\s=====|^=====)\w+=====`) // lexical category could be multi-word (e.g. "Proper Noun") match for multi-etymology
+	wikiDefPrefix                    = regexp.MustCompile(`#+`)
 	//wikiRefs       *regexp.Regexp = regexp.MustCompile(`\<ref\>(.*?)\</ref\>`)
 	htmlBreak *regexp.Regexp = regexp.MustCompile(`\<br\>`)
 
@@ -69,13 +83,22 @@ type Revision struct {
 	Sha1    string `xml:"sha1"`
 }
 
+type CatDef struct {
+	Def      string   `bson:"def,omitempty"`
+	Examples []string `bson:"examples,omitempty"`
+	Synonyms []string `bson:"synonyms,omitempty"`
+	Antonyms []string `bson:"antonyms,omitempty"`
+}
+
 type Insert struct {
-	Word      string
-	Etymology int
-	CatDefs   map[string][]string
+	Word           string              `bson:"term,omitempty"`
+	Transcriptions []string            `bson:"transcriptions,omitempty"`
+	Etymology      int                 `bson:"etymology,omitempty"`
+	CatDefs        map[string][]CatDef `bson:"definitions,omitempty"`
 }
 
 func main() {
+	mongoURI := flag.String("mongo", "", "mongo uri")
 	iFile := flag.String("file", "", "XML file to parse")
 	db := flag.String("database", "database.db", "Database file to use")
 	lang := flag.String("lang", "English", "Language to target for parsing")
@@ -115,6 +138,27 @@ func main() {
 
 	logger.Debug("NOTE: input language should be provided as a proper noun. (e.g. English, French, West Frisian, etc.)\n")
 
+	// mongo
+	mongoContext := context.Background()
+	//var mongoClient *mongo.Client
+	var mongoCollection *mongo.Collection
+	if *mongoURI != "" {
+		opts := options.Client().ApplyURI(*mongoURI)
+		// if enableCredentials {
+		// 	co.Auth = &options.Credential{
+		// 		Username: os.Getenv(EnvMongoUsername),
+		// 		Password: os.Getenv(EnvMongoPassword),
+		// 	}
+		// }
+
+		c, err := mongo.Connect(mongoContext, opts)
+		if err != nil {
+			panic(err)
+		}
+		mongoCollection = c.Database("wiktionary").Collection("words")
+		//mongoClient = c
+	}
+
 	data := &WikiData{}
 	if *useCache {
 		d, err := decodeCache(*cacheFile)
@@ -144,10 +188,14 @@ func main() {
                              (
                                  id INTEGER PRIMARY KEY,
                                  word TEXT,
+                                 transcription TEXT,
                                  lexical_category TEXT,
                                  etymology_no INTEGER,
                                  definition_no INTEGER,
-                                 definition TEXT
+                                 definition TEXT,
+                                 examples TEXT,
+                                 synonyms TEXT,
+                                 antonyms TEXT
                              )`)
 	check(err)
 	sth.Exec()
@@ -157,6 +205,15 @@ func main() {
 
 	check(err)
 	sth.Exec()
+
+	// for i := range data.Pages {
+	// 	if data.Pages[i].Title == "break" {
+	// 		var wg2 sync.WaitGroup
+	// 		pageWorker(1, &wg2, data.Pages[i:i+1], dbh)
+	// 		wg2.Wait()
+	// 		break
+	// 	}
+	// }
 
 	filterPages(data)
 	logger.Info("Post filter page count: %d\n", len(data.Pages))
@@ -181,7 +238,7 @@ func main() {
 	var wg sync.WaitGroup
 	for i := 0; i < *threads; i++ {
 		wg.Add(1)
-		go pageWorker(i, &wg, chunks[i], dbh)
+		go pageWorker(i, &wg, chunks[i], dbh, mongoCollection)
 	}
 
 	wg.Wait()
@@ -190,7 +247,7 @@ func main() {
 	logger.Info("Completed in %s\n", end_time.Sub(start_time))
 }
 
-func pageWorker(id int, wg *sync.WaitGroup, pages []Page, dbh *sql.DB) {
+func pageWorker(id int, wg *sync.WaitGroup, pages []Page, dbh *sql.DB, mongo *mongo.Collection) {
 	defer wg.Done()
 	inserts := []*Insert{} // etymology : lexical category : [definitions...]
 	for _, page := range pages {
@@ -201,14 +258,34 @@ func pageWorker(id int, wg *sync.WaitGroup, pages []Page, dbh *sql.DB) {
 		text := []byte(page.Revisions[0].Text)
 		logger.Debug("Raw size: %d\n", len(text))
 
+		text = []byte(strings.ReplaceAll(string(text), "{{...}}", "…"))
+
 		text = wikiModifier.ReplaceAll(text, []byte("'$1'"))
 		logger.Debug("Modifier size: %d\n", len(text))
 
 		//text = wikiLabel.ReplaceAll(text, []byte("(${2})"))
 		//logger.Debug("Label size: %d\n", len(text))
 
+		// simplify tree definitions into a list
+		text = wikiDefPrefix.ReplaceAll(text, []byte("#"))
+
 		text = wikiExample.ReplaceAll(text, []byte(""))
 		logger.Debug("Example size: %d\n", len(text))
+
+		text = wikiWordExample.ReplaceAll(text, []byte("#e: $1"))
+		logger.Debug("Example size: %d\n", len(text))
+
+		text = wikiWordSynonym.ReplaceAll(text, []byte("#s: $1"))
+		logger.Debug("Example size: %d\n", len(text))
+
+		text = wikiWordAntonym.ReplaceAll(text, []byte("#a: $1"))
+		logger.Debug("Example size: %d\n", len(text))
+
+		text = wikiWordQuote.ReplaceAll(text, []byte("#e: $1"))
+		logger.Debug("Example size: %d\n", len(text))
+
+		//text = wikiWordIPA.ReplaceAll(text, []byte("IPA: $1"))
+		//logger.Debug("Example size: %d\n", len(text))
 
 		text = wikiWordAlt.ReplaceAll(text, []byte("$1"))
 		logger.Debug("WordAlt size: %d\n", len(text))
@@ -225,6 +302,20 @@ func pageWorker(id int, wg *sync.WaitGroup, pages []Page, dbh *sql.DB) {
 		// get language section of the page
 		text = getLanguageSection(text)
 		logger.Debug("Reduced corpus by %d bytes to %d\n", text_size-len(text), len(text))
+
+		pronunciation_idx := wikiPronunciation.FindAllIndex(text, -1)
+
+		wikiSection_idx := wikiSection.FindAllIndex(text, -1)
+		// parse synonyms and antonyms
+		for _, v := range wikiSection_idx {
+			startI := adjustIndexLW(v[0], text)
+			lexcat := string(text[startI+4 : v[1]-4])
+			if lexcat == "Synonyms" {
+
+			} else if lexcat == "Antonyms" {
+
+			}
+		}
 
 		// get all indices of the etymology headings
 		etymology_idx := wikiEtymologyM.FindAllIndex(text, -1)
@@ -243,20 +334,47 @@ func pageWorker(id int, wg *sync.WaitGroup, pages []Page, dbh *sql.DB) {
 			lexcat_idx := wikiLexS.FindAllIndex(text, -1)
 			inserts = append(inserts, parseByLexicalCategory(word, lexcat_idx, text)...)
 		} else {
+			// pronunciation could be above
+			var pronunciation string
+			if len(pronunciation_idx) != 0 && pronunciation_idx[0][0] < etymology_idx[0][0] {
+				subtext := text[pronunciation_idx[0][0]:etymology_idx[0][0]]
+				matches := wikiWordIPA.FindSubmatch(subtext)
+				if len(matches) > 0 {
+					pronunciation = string(matches[1])
+				}
+			}
+
 			logger.Debug("Parsing by etymologies\n")
-			inserts = append(inserts, parseByEtymologies(word, etymology_idx, text)...)
+
+			newInserts := parseByEtymologies(word, etymology_idx, text)
+			for i := range newInserts {
+				if len(newInserts[i].Transcriptions) == 0 {
+					newInserts[i].Transcriptions = strings.Split(pronunciation, "|")
+				}
+			}
+
+			inserts = append(inserts, newInserts...)
 		}
 	}
 
 	// perform inserts
 	inserted := performInserts(dbh, inserts)
+	if mongo != nil {
+		documents := make([]interface{}, len(inserts))
+		for i := range inserts {
+			documents[i] = inserts[i]
+		}
+		r, err := mongo.InsertMany(context.Background(), documents)
+		logger.Debug("%v %v", r, err)
+	}
+
 	logger.Info("[%2d] Inserted %6d records for %6d pages\n", id, inserted, len(pages))
 }
 
 func performInserts(dbh *sql.DB, inserts []*Insert) int {
 	ins_count := 0
-	query := `INSERT INTO dictionary (word, lexical_category, etymology_no, definition_no, definition)
-              VALUES (?, ?, ?, ?, ?)`
+	query := `INSERT INTO dictionary (word, transcription, lexical_category, etymology_no, definition_no, definition, examples, synonyms, antonyms)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
 
 	logger.Debug("performInserts> Preparing insert query...\n")
 	tx, err := dbh.Begin()
@@ -268,13 +386,45 @@ func performInserts(dbh *sql.DB, inserts []*Insert) int {
 	defer sth.Close()
 
 	for _, ins := range inserts {
+		transciptionBuilder := strings.Builder{}
+		for i := range ins.Transcriptions {
+			transciptionBuilder.WriteString(strings.ReplaceAll(ins.Transcriptions[i], "#", "\\#"))
+			if i != len(ins.Transcriptions)-1 {
+				transciptionBuilder.WriteString("#")
+			}
+		}
+
 		logger.Debug("performInserts> et_no=>'%d' defs=>'%+v'\n", ins.Etymology, ins.CatDefs)
 		for key, val := range ins.CatDefs {
 			category := key
 			for def_no, def := range val {
+				exampleBuilder := strings.Builder{}
+				for i := range def.Examples {
+					exampleBuilder.WriteString(strings.ReplaceAll(def.Examples[i], "#", "\\#"))
+					if i != len(def.Examples)-1 {
+						exampleBuilder.WriteString("#")
+					}
+				}
+
+				synonymBuilder := strings.Builder{}
+				for i := range def.Synonyms {
+					synonymBuilder.WriteString(strings.ReplaceAll(def.Synonyms[i], "#", "\\#"))
+					if i != len(def.Synonyms)-1 {
+						synonymBuilder.WriteString("#")
+					}
+				}
+
+				antonymBuilder := strings.Builder{}
+				for i := range def.Antonyms {
+					antonymBuilder.WriteString(strings.ReplaceAll(def.Antonyms[i], "#", "\\#"))
+					if i != len(def.Antonyms)-1 {
+						antonymBuilder.WriteString("#")
+					}
+				}
+
 				logger.Debug("performInserts> Inserting values: word=>'%s', lexical category=>'%s', et_no=>'%d', def_no=>'%d', def=>'%s'\n",
 					ins.Word, category, ins.Etymology, def_no, def)
-				_, err := sth.Exec(ins.Word, category, ins.Etymology, def_no, def)
+				_, err := sth.Exec(ins.Word, transciptionBuilder.String(), category, ins.Etymology, def_no, def.Def, exampleBuilder.String(), synonymBuilder.String(), antonymBuilder.String())
 				check(err)
 				ins_count++
 			}
@@ -291,7 +441,7 @@ func parseByEtymologies(word string, et_list [][]int, text []byte) []*Insert {
 	inserts := []*Insert{}
 	et_size := len(et_list)
 	for i := 0; i < et_size; i++ {
-		ins := &Insert{Word: word, Etymology: i, CatDefs: make(map[string][]string)}
+		ins := &Insert{Word: word, Etymology: i, CatDefs: make(map[string][]CatDef)}
 		section := []byte{}
 		if i+1 >= et_size {
 			section = getSection(et_list[i][1], -1, text)
@@ -304,13 +454,22 @@ func parseByEtymologies(word string, et_list [][]int, text []byte) []*Insert {
 		lexcat_idx := wikiLexM.FindAllIndex(section, -1)
 		lexcat_idx_size := len(lexcat_idx)
 
-		definitions := []string{}
+		var pronunciation string
+		definitions := []CatDef{}
 		for j := 0; j < lexcat_idx_size; j++ {
 			jth_idx := adjustIndexLW(lexcat_idx[j][0], section)
 			lexcat := string(section[jth_idx+4 : lexcat_idx[j][1]-4])
 			logger.Debug("parseByEtymologies> [%2d] lexcat: %s\n", j, lexcat)
 
-			if !stringInSlice(lexcat, lexicalCategory) {
+			if lexcat == "Pronunciation" {
+				s := section[lexcat_idx[j][1]:]
+				matches := wikiWordIPA.FindSubmatch(s)
+				if len(matches) > 0 {
+					pronunciation = string(matches[1])
+				}
+				ins.Transcriptions = strings.Split(pronunciation, "|")
+				continue
+			} else if !stringInSlice(lexcat, lexicalCategory) {
 				logger.Debug("parseByLemmas> Lexical category '%s' not in list. Skipping...\n", lexcat)
 				continue
 			}
@@ -327,34 +486,56 @@ func parseByEtymologies(word string, et_list [][]int, text []byte) []*Insert {
 				jth_1_idx := adjustIndexLW(lexcat_idx[j+1][0], section)
 				definitions = getDefinitions(lexcat_idx[j][1], jth_1_idx, section)
 			}
-			logger.Debug("parseByEtymologies> Definitions: " + strings.Join(definitions, ", ") + "\n")
+			//logger.Debug("parseByEtymologies> Definitions: " + strings.Join(definitions, ", ") + "\n")
 			ins.CatDefs[lexcat] = definitions
 		}
+
+		wikiSubSection_idx := wikiSubSection.FindAllIndex(section, -1)
+		wikiSubSection_idx_size := len(wikiSubSection_idx)
+		for j := 0; j < wikiSubSection_idx_size; j++ {
+			jth_idx := adjustIndexLW(wikiSubSection_idx[j][0], section)
+			lexcat := string(section[jth_idx+5 : wikiSubSection_idx[j][1]-5])
+
+			if lexcat == "Synonyms" {
+
+			} else if lexcat == "Antonyms" {
+
+			}
+		}
+
 		inserts = append(inserts, ins)
 	}
 
 	return inserts
 }
 
-//parseByLemmas
+// parseByLemmas
 func parseByLexicalCategory(word string, lex_list [][]int, text []byte) []*Insert {
 	inserts := []*Insert{}
 	lex_size := len(lex_list)
 	logger.Debug("parseByLexicalCategory> Found %d lexcats\n", lex_size)
 
+	var pronunciation string
 	for i := 0; i < lex_size; i++ {
-		ins := &Insert{Word: word, Etymology: 0, CatDefs: make(map[string][]string)}
+		ins := &Insert{Word: word, Etymology: 0, CatDefs: make(map[string][]CatDef)}
 		ith_idx := adjustIndexLW(lex_list[i][0], text)
 		lexcat := string(text[ith_idx+3 : lex_list[i][1]-3])
 
 		logger.Debug("parseByLexicalCategory> [%2d] working on lexcat '%s'\n", i, lexcat)
 
-		if !stringInSlice(lexcat, lexicalCategory) {
+		if lexcat == "Pronunciation" {
+			s := text[lex_list[i][1]:]
+			matches := wikiWordIPA.FindSubmatch(s)
+			if len(matches) > 0 {
+				pronunciation = string(matches[1])
+			}
+			continue
+		} else if !stringInSlice(lexcat, lexicalCategory) {
 			logger.Debug("parseByLexicalCategory> Lemma '%s' not in list. Skipping...\n", lexcat)
 			continue
 		}
 
-		definitions := []string{}
+		definitions := []CatDef{}
 		if i+1 >= lex_size {
 			definitions = getDefinitions(lex_list[i][1], -1, text)
 		} else {
@@ -365,6 +546,7 @@ func parseByLexicalCategory(word string, lex_list [][]int, text []byte) []*Inser
 
 		logger.Debug("parseByLexicalCategory> Found %d definitions\n", len(definitions))
 		ins.CatDefs[lexcat] = definitions
+		ins.Transcriptions = strings.Split(pronunciation, "|")
 
 		inserts = append(inserts, ins)
 	}
@@ -372,9 +554,9 @@ func parseByLexicalCategory(word string, lex_list [][]int, text []byte) []*Inser
 	return inserts
 }
 
-func getDefinitions(start int, end int, text []byte) []string {
+func getDefinitions(start int, end int, text []byte) []CatDef {
 	category := []byte{}
-	defs := []string{}
+	defs := []CatDef{}
 
 	if end < 0 {
 		category = text[start:]
@@ -395,22 +577,35 @@ func getDefinitions(start int, end int, text []byte) []string {
 	nl_indices_size := len(nl_indices)
 	for i := 0; i < nl_indices_size; i++ {
 		ith_idx := adjustIndexLW(nl_indices[i][0], category)
-		if string(category[ith_idx:nl_indices[i][1]]) != "# " {
+		marker := string(category[ith_idx:nl_indices[i][1]])
+		if marker != "# " && marker != "#: " && marker != "#e: " && marker != "#s: " && marker != "#a: " {
 			logger.Debug("getDefinitions> Got quotation or annotation bullet. Skipping...\n")
 			continue
 		}
 
-		if i+1 >= nl_indices_size && string(category[ith_idx:nl_indices[i][1]]) == "# " {
-			def := parseDefinition(nl_indices[i][1], len(category), category)
-			logger.Debug("getDefinitions> [%0d] Appending %s to the definition list\n", i, string(def))
-			defs = append(defs, string(def))
+		var parsedValue string
+		if i+1 >= nl_indices_size {
+			parsedValue = string(parseDefinition(nl_indices[i][1], len(category), category))
+			logger.Debug("getDefinitions> [%0d] Appending %s to the definition list\n", i, parsedValue)
 		}
 
-		if i+1 < nl_indices_size && string(category[ith_idx:nl_indices[i][1]]) == "# " {
+		if i+1 < nl_indices_size {
 			ith_1_idx := adjustIndexLW(nl_indices[i+1][0], category)
-			def := parseDefinition(nl_indices[i][1], ith_1_idx, category)
-			logger.Debug("getDefinitions> [%0d] Appending %s to the definition list\n", i, string(def))
-			defs = append(defs, string(def))
+			parsedValue = string(parseDefinition(nl_indices[i][1], ith_1_idx, category))
+			logger.Debug("getDefinitions> [%0d] Appending %s to the definition list\n", i, parsedValue)
+		}
+
+		if marker == "# " {
+			defs = append(defs, CatDef{Def: parsedValue, Examples: []string{}, Synonyms: []string{}})
+		} else if len(defs) != 0 {
+			lastDef := &defs[len(defs)-1]
+			if marker == "#e: " || marker == "#: " {
+				lastDef.Examples = append(lastDef.Examples, parsedValue)
+			} else if marker == "#s: " {
+				lastDef.Synonyms = append(lastDef.Synonyms, strings.Split(parsedValue, "|")...)
+			} else if marker == "#a: " {
+				lastDef.Antonyms = append(lastDef.Antonyms, strings.Split(parsedValue, "|")...)
+			}
 		}
 	}
 
