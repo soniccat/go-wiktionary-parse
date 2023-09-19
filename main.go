@@ -91,6 +91,7 @@ type CatDef struct {
 }
 
 type Insert struct {
+	Order          int                 `bson:"order"`
 	Word           string              `bson:"term,omitempty"`
 	Transcriptions []string            `bson:"transcriptions,omitempty"`
 	Etymology      int                 `bson:"etymology,omitempty"`
@@ -441,7 +442,7 @@ func parseByEtymologies(word string, et_list [][]int, text []byte) []*Insert {
 	inserts := []*Insert{}
 	et_size := len(et_list)
 	for i := 0; i < et_size; i++ {
-		ins := &Insert{Word: word, Etymology: i, CatDefs: make(map[string][]CatDef)}
+		ins := &Insert{Order: i, Word: word, Etymology: i, CatDefs: make(map[string][]CatDef)}
 		section := []byte{}
 		if i+1 >= et_size {
 			section = getSection(et_list[i][1], -1, text)
@@ -517,7 +518,7 @@ func parseByLexicalCategory(word string, lex_list [][]int, text []byte) []*Inser
 
 	var pronunciation string
 	for i := 0; i < lex_size; i++ {
-		ins := &Insert{Word: word, Etymology: 0, CatDefs: make(map[string][]CatDef)}
+		ins := &Insert{Order: i, Word: word, Etymology: 0, CatDefs: make(map[string][]CatDef)}
 		ith_idx := adjustIndexLW(lex_list[i][0], text)
 		lexcat := string(text[ith_idx+3 : lex_list[i][1]-3])
 
