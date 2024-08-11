@@ -156,7 +156,7 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		mongoCollection = c.Database("wiktionary").Collection("words")
+		mongoCollection = c.Database("wiktionary").Collection("words2")
 		//mongoClient = c
 	}
 
@@ -207,14 +207,16 @@ func main() {
 	check(err)
 	sth.Exec()
 
-	// for i := range data.Pages {
-	// 	if data.Pages[i].Title == "break" {
-	// 		var wg2 sync.WaitGroup
-	// 		pageWorker(1, &wg2, data.Pages[i:i+1], dbh)
-	// 		wg2.Wait()
-	// 		break
-	// 	}
-	// }
+	for i := range data.Pages {
+		if data.Pages[i].Title == "break" {
+			var wg2 sync.WaitGroup
+			pageWorker(1, &wg2, data.Pages[i:i+1], dbh, mongoCollection)
+			wg2.Wait()
+			break
+		}
+	}
+
+	return
 
 	filterPages(data)
 	logger.Info("Post filter page count: %d\n", len(data.Pages))
@@ -258,6 +260,10 @@ func pageWorker(id int, wg *sync.WaitGroup, pages []Page, dbh *sql.DB, mongo *mo
 		// convert the text to a byte string
 		text := []byte(page.Revisions[0].Text)
 		logger.Debug("Raw size: %d\n", len(text))
+
+		resultStr := string(text)
+		print(resultStr)
+		print("\nend of string\n")
 
 		text = []byte(strings.ReplaceAll(string(text), "{{...}}", "…"))
 
@@ -303,6 +309,10 @@ func pageWorker(id int, wg *sync.WaitGroup, pages []Page, dbh *sql.DB, mongo *mo
 		// get language section of the page
 		text = getLanguageSection(text)
 		logger.Debug("Reduced corpus by %d bytes to %d\n", text_size-len(text), len(text))
+
+		resultStr = string(text)
+		print(resultStr)
+		print("\nend of string\n")
 
 		pronunciation_idx := wikiPronunciation.FindAllIndex(text, -1)
 
