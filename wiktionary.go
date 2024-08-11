@@ -112,11 +112,11 @@ type WikiTemplateProp struct {
 }
 
 func (e *WikiTemplateProp) isStringValue() bool {
-	return len(e.value.props) == 1 && len(e.value.props[0].value.props) == 0
+	return len(e.value.props) == 0
 }
 
 func (e *WikiTemplateProp) stringValue() string {
-	return e.value.props[0].name
+	return e.name
 }
 
 func parseTemplateElement(reader *bufio.Reader) (WikiTemplateElement, error) {
@@ -327,78 +327,83 @@ func parseWikiTextString(str string) (WikitextString, error) {
 	var parsedElement2 WikitextElement
 
 	for {
+		r = rune(0)
 		isProcessed := false
 		b, _ := reader.Peek(2)
-		if len(b) > 0 {
-			substr := string(b)
+		canRead := len(b) > 0
+		// if len(b) > 0 {
+		substr := string(b)
 
-			if isFirst && strings.HasPrefix(substr, "=") {
-				el, e := parseSectionElement(reader)
-				parsedElement2 = Ptr(el)
-				err = e
-				isProcessed = true
-			} else if strings.HasPrefix(substr, "{{") {
-				el, e := parseTemplateElement(reader)
-				parsedElement2 = Ptr(el)
-				err = e
-				isProcessed = true
-			}
+		if isFirst && strings.HasPrefix(substr, "=") {
+			el, e := parseSectionElement(reader)
+			parsedElement2 = Ptr(el)
+			err = e
+			isProcessed = true
+		} else if strings.HasPrefix(substr, "{{") {
+			el, e := parseTemplateElement(reader)
+			parsedElement2 = Ptr(el)
+			err = e
+			isProcessed = true
+		}
 
-			isMarkup := false
-			if !isProcessed {
-				r, _, err = reader.ReadRune()
-				isMarkup = r == '*' || r == '#' || r == ':'
-			}
+		isMarkup := false
+		if !isProcessed && canRead {
+			r, _, err = reader.ReadRune()
+			isMarkup = r == '*' || r == '#' || r == ':'
+		}
 
-			if isProcessed && readingText || isMarkup && readingText {
-				textElement := WikiTextElement{}
-				textElement.value = strings.Trim(textBuilder.String(), " ")
-				textBuilder.Reset()
-				parsedElement1 = Ptr(textElement)
-				readingText = false
-			}
+		if readingText && (isProcessed || isMarkup || !canRead) {
+			textElement := WikiTextElement{}
+			textElement.value = strings.Trim(textBuilder.String(), " ")
+			textBuilder.Reset()
+			parsedElement1 = Ptr(textElement)
+			readingText = false
+		}
 
-			if isProcessed && readingMarkup || !isMarkup && readingMarkup {
-				markupElement := WikiMarkupElement{}
-				markupElement.value = strings.Trim(markupBuilder.String(), " ")
-				markupBuilder.Reset()
-				parsedElement1 = Ptr(markupElement)
-				readingMarkup = false
-			}
+		if readingMarkup && (isProcessed || !isMarkup || !canRead) {
+			markupElement := WikiMarkupElement{}
+			markupElement.value = strings.Trim(markupBuilder.String(), " ")
+			markupBuilder.Reset()
+			parsedElement1 = Ptr(markupElement)
+			readingMarkup = false
+		}
 
-			if !isProcessed && isMarkup && err == nil {
-				readingMarkup = true
-				markupBuilder.WriteRune(r)
-			}
+		if !isProcessed && isMarkup && err == nil && canRead {
+			readingMarkup = true
+			markupBuilder.WriteRune(r)
+		}
 
-			if !isProcessed && !isMarkup && err == nil {
-				if r == '\n' {
-					break
-				} else if r == ' ' {
-					continue
-				}
-				readingText = true
-				textBuilder.WriteRune(r)
-			}
-
-			if err != nil {
-				err = fmt.Errorf("error while parsing \""+str+"\": %w", err.Error())
+		if !isProcessed && !isMarkup && err == nil && canRead {
+			/*if r == '\n' {
 				break
-			} else {
-				if parsedElement1 != nil {
-					wikiTextString.addElement(parsedElement1)
-					parsedElement1 = nil
-				}
-				if parsedElement2 != nil {
-					wikiTextString.addElement(parsedElement2)
-					parsedElement2 = nil
-				}
+			} else*/if r == ' ' && !readingText {
+				continue
 			}
+			readingText = true
+			textBuilder.WriteRune(r)
+		}
 
-			isFirst = false
+		if err != nil {
+			err = fmt.Errorf("error while parsing \""+str+"\": %w", err.Error())
+			break
 		} else {
+			if parsedElement1 != nil {
+				wikiTextString.addElement(parsedElement1)
+				parsedElement1 = nil
+			}
+			if parsedElement2 != nil {
+				wikiTextString.addElement(parsedElement2)
+				parsedElement2 = nil
+			}
+		}
+
+		isFirst = false
+		if !canRead {
 			break
 		}
+		// } else {
+		// 	break
+		// }
 	}
 
 	return wikiTextString, err

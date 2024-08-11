@@ -136,6 +136,22 @@ func TestParsingWikiString2(t *testing.T) {
 	assert.Equal(t, "ux", template.name)
 }
 
+func TestParsingWikiString3(t *testing.T) {
+	str := "# {{lb|en|transitive|intransitive}} To [[separate]] into two or more [[piece]]s, to [[fracture]] or [[crack]], by a process that cannot easily be [[reverse]]d for [[reassembly]]."
+
+	s, err := parseWikiTextString(str)
+
+	assert.Nil(t, err)
+	assert.NotNil(t, s)
+	assert.Equal(t, WikitextElementTypeMarkup, s.elements[0].elementType())
+	assert.Equal(t, WikitextElementTypeTemplate, s.elements[1].elementType())
+	assert.Equal(t, WikitextElementTypeText, s.elements[2].elementType())
+
+	text, ok := s.elements[2].(*WikiTextElement)
+	assert.True(t, ok)
+	assert.Equal(t, "inh", text.value)
+}
+
 func TestParsingWikitext1(t *testing.T) {
 	str := `===Etymology 1===
 {{root|en|ine-pro|*bʰreg-}}

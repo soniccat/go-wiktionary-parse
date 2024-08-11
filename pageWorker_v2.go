@@ -114,7 +114,7 @@ func processWikitext(word string, wikitext Wikitext) []Insert {
 				}
 			}
 
-			if inPartOfSpeech {
+			if inPartOfSpeech && len(textElements) > 0 {
 				d := strings.Join(textElements, " ")
 				cb.AddDefinition(d, labels)
 			}
