@@ -210,7 +210,7 @@ func main() {
 	for i := range data.Pages {
 		if data.Pages[i].Title == "break" {
 			var wg2 sync.WaitGroup
-			pageWorker(1, &wg2, data.Pages[i:i+1], dbh, mongoCollection)
+			pageWorkerV2(1, &wg2, data.Pages[i:i+1], dbh, mongoCollection)
 			wg2.Wait()
 			break
 		}
