@@ -102,13 +102,21 @@ func (wt *WikiTemplateElement) addProp(p WikiTemplateProp) {
 	wt.props = append(wt.props, p)
 }
 
+func (e *WikiTemplateElement) elementType() int {
+	return WikitextElementTypeTemplate
+}
+
 type WikiTemplateProp struct {
 	name  string
 	value WikiTemplateElement
 }
 
-func (e *WikiTemplateElement) elementType() int {
-	return WikitextElementTypeTemplate
+func (e *WikiTemplateProp) isStringValue() bool {
+	return len(e.value.props) == 1 && len(e.value.props[0].value.props) == 0
+}
+
+func (e *WikiTemplateProp) stringValue() string {
+	return e.value.props[0].name
 }
 
 func parseTemplateElement(reader *bufio.Reader) (WikiTemplateElement, error) {
