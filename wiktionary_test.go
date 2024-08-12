@@ -149,7 +149,11 @@ func TestParsingWikiString3(t *testing.T) {
 
 	text, ok := s.elements[2].(*WikiTextElement)
 	assert.True(t, ok)
-	assert.Equal(t, "inh", text.value)
+	assert.Equal(
+		t,
+		"To [[separate]] into two or more [[piece]]s, to [[fracture]] or [[crack]], by a process that cannot easily be [[reverse]]d for [[reassembly]].",
+		text.value,
+	)
 }
 
 func TestParsingWikitext1(t *testing.T) {
