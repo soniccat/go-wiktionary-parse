@@ -29,7 +29,6 @@ func pageWorkerV2(
 
 		w = FilterWikitextString(
 			w,
-			FilterWikitextEmptyElements,
 			FilterWikitextMarkup,
 		)
 
@@ -55,68 +54,82 @@ func processWikitext(word string, wikitext Wikitext) []Insert {
 	cb := CardBuilder{}
 	cb.SetWord(word)
 
-	scanUntiEnglish := true
+	// scanUntiEnglish := true
 	// scanUntiEtymology := false
 	inPartOfSpeech := false
 	languageSectionLevel := -1
 
-	for _, s := range wikitext.strings {
-		if scanUntiEnglish {
-			section, ok := s.elements[0].(*WikitextSectionElement)
-			if ok && section.name == "English" {
-				languageSectionLevel = section.level
-				scanUntiEnglish = false
-				// scanUntiEtymology = true
+	// read elements until English language section
+	var elementIndex int
+	for i, e := range wikitext.elements {
+		elementIndex = i
+		section, ok := e.(*WikitextSectionElement)
+		if ok && section.name == "English" {
+			languageSectionLevel = section.level
+			break
+		}
+	}
+
+	var textElements []string
+	var labels []string
+
+	for _, e := range wikitext.elements[elementIndex+1:] {
+		switch re := e.(type) {
+		case *WikitextSectionElement:
+			if re.level < languageSectionLevel {
+				break
+			} else if strings.HasPrefix(re.name, "Etymology") {
+				// scanUntiEtymology = false
+				cb.StartEtymology()
+			} else {
+				inPartOfSpeech = false
 			}
-		} else {
+		case *WikiTemplateElement:
+			switch re.name {
+			case "enPR", "IPA":
+				offset := 0
+				if re.name == "IPA" {
+					offset = 1
+				}
 
-			var textElements []string
-			var labels []string
+				for _, v := range re.props[offset:] {
+					if v.isStringValue() {
+						cb.AddTranscription(v.stringValue())
+					}
+				}
 
-			for _, e := range s.elements {
-				switch re := e.(type) {
-				case *WikitextSectionElement:
-					if re.level <= languageSectionLevel {
-						break
-					} else if strings.HasPrefix(re.name, "Etymology") {
-						// scanUntiEtymology = false
-						cb.StartEtymology()
-					} else {
-						inPartOfSpeech = false
+			case "en-verb":
+				inPartOfSpeech = true
+				cb.SetPartOfSpeech("verb")
+
+			case "en-noun":
+				inPartOfSpeech = true
+				cb.SetPartOfSpeech("noun")
+
+			case "lb":
+				for i, v := range re.props {
+					if i > 0 && v.isStringValue() {
+						labels = append(labels, v.stringValue())
 					}
-				case *WikiTemplateElement:
-					switch re.name {
-					case "enPR", "IPA":
-						for _, v := range re.props {
-							if v.isStringValue() {
-								cb.AddTranscription(v.stringValue())
-							}
-						}
-					case "en-verb":
-						inPartOfSpeech = true
-						cb.SetPartOfSpeech("verb")
-					case "en-noun":
-						inPartOfSpeech = true
-						cb.SetPartOfSpeech("noun")
-					case "lb":
-						for i, v := range re.props {
-							if i > 0 && v.isStringValue() {
-								labels = append(labels, v.stringValue())
-							}
-						}
-					case "ux":
-						if len(re.props) > 1 && re.props[1].isStringValue() {
-							cb.AddExample(re.props[1].stringValue())
-						}
+				}
+
+			case "ux":
+				if inPartOfSpeech && len(textElements) > 0 {
+					d := strings.Join(textElements, " ")
+					cb.AddDefinition(d, labels)
+					textElements = nil
+					labels = nil
+				}
+
+				if re.name == "ux" {
+					if len(re.props) > 1 && re.props[1].isStringValue() {
+						cb.AddExample(re.props[1].stringValue())
 					}
-				case *WikiTextElement:
-					textElements = append(textElements, re.value)
 				}
 			}
-
-			if inPartOfSpeech && len(textElements) > 0 {
-				d := strings.Join(textElements, " ")
-				cb.AddDefinition(d, labels)
+		case *WikiTextElement:
+			if inPartOfSpeech {
+				textElements = append(textElements, re.value)
 			}
 		}
 	}
@@ -151,7 +164,7 @@ func (cb *CardBuilder) StartEtymology() {
 }
 
 func (cb *CardBuilder) SetPartOfSpeech(s string) {
-	cb.save()
+	//cb.save()
 	cb.currentPartOfSpeech = s
 }
 

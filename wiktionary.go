@@ -19,18 +19,10 @@ const (
 var WiktionaryErrorLogger *colorlog.ColorLog
 
 type Wikitext struct {
-	strings []WikitextString
-}
-
-func (wt *Wikitext) addString(w WikitextString) {
-	wt.strings = append(wt.strings, w)
-}
-
-type WikitextString struct {
 	elements []WikitextElement
 }
 
-func (ws *WikitextString) addElement(e WikitextElement) {
+func (ws *Wikitext) addElement(e WikitextElement) {
 	ws.elements = append(ws.elements, e)
 }
 
@@ -54,8 +46,11 @@ func parseSectionElement(reader *bufio.Reader) (WikitextSectionElement, error) {
 	readingText := false
 	nameBuilder := strings.Builder{}
 
+	var r rune
+	var err error
+
 	for {
-		r, _, err := reader.ReadRune()
+		r, _, err = reader.ReadRune()
 		if err != nil {
 			if err == io.EOF {
 				err = nil
@@ -72,7 +67,8 @@ func parseSectionElement(reader *bufio.Reader) (WikitextSectionElement, error) {
 					readingText = false
 				} // else - just skip the rune
 			}
-
+		} else if r == rune('\n') {
+			break
 		} else {
 			if readingFirstPart || readingText {
 				if readingFirstPart {
@@ -90,7 +86,7 @@ func parseSectionElement(reader *bufio.Reader) (WikitextSectionElement, error) {
 
 	element.name = strings.Trim(nameBuilder.String(), " ")
 
-	return element, nil
+	return element, err
 }
 
 type WikiTemplateElement struct {
@@ -160,7 +156,8 @@ func parseTemplateElement(reader *bufio.Reader) (WikiTemplateElement, error) {
 			if readingName || readingProp {
 				readingName = false
 				readingProp = true
-				prop, err := parseTemplateProp(reader)
+				var prop WikiTemplateProp
+				prop, err = parseTemplateProp(reader)
 				if err != nil {
 					isInvalidState = true
 					break
@@ -183,6 +180,8 @@ func parseTemplateElement(reader *bufio.Reader) (WikiTemplateElement, error) {
 		} else {
 			if readingName {
 				nameBuilder.WriteRune(r)
+			} else if r == '\n' {
+				// skip
 			} else {
 				isInvalidState = true
 				break
@@ -234,8 +233,12 @@ func parseTemplateProp(reader *bufio.Reader) (WikiTemplateProp, error) {
 					readingStringValue = true
 				}
 			} else {
-				isInvalidState = true
-				break
+				if readingStringValue {
+					valueStringBuilder.WriteRune(r)
+				} else {
+					isInvalidState = true
+					break
+				}
 			}
 
 		} else if r == '|' || r == '}' {
@@ -268,34 +271,6 @@ func parseTemplateProp(reader *bufio.Reader) (WikiTemplateProp, error) {
 	return element, nil
 }
 
-func parseWikitext(text string) (Wikitext, error) {
-	wikiText := Wikitext{}
-	reader := bufio.NewReader(strings.NewReader(text))
-
-	var str string
-	var err error
-
-	for {
-		// read line by line
-		str, err = reader.ReadString('\n')
-		if len(str) > 0 {
-			wikiString, err := parseWikiTextString(str)
-			if err == nil {
-				wikiText.addString(wikiString)
-			}
-		}
-
-		if err != nil {
-			if err == io.EOF {
-				err = nil
-			}
-			break
-		}
-	}
-
-	return wikiText, err
-}
-
 type WikiTextElement struct {
 	value string
 }
@@ -312,12 +287,13 @@ func (e *WikiMarkupElement) elementType() int {
 	return WikitextElementTypeMarkup
 }
 
-func parseWikiTextString(str string) (WikitextString, error) {
-	wikiTextString := WikitextString{}
+func parseWikitext(str string) (Wikitext, error) {
+	wikitext := Wikitext{}
 	reader := bufio.NewReader(strings.NewReader(str))
 	markupBuilder := strings.Builder{}
 	textBuilder := strings.Builder{}
-	isFirst := true
+
+	isNewLine := true
 	readingMarkup := false
 	readingText := false
 
@@ -331,10 +307,10 @@ func parseWikiTextString(str string) (WikitextString, error) {
 		isProcessed := false
 		b, _ := reader.Peek(2)
 		canRead := len(b) > 0
-		// if len(b) > 0 {
 		substr := string(b)
 
-		if isFirst && strings.HasPrefix(substr, "=") {
+		// handle special cases
+		if isNewLine && strings.HasPrefix(substr, "=") {
 			el, e := parseSectionElement(reader)
 			parsedElement2 = Ptr(el)
 			err = e
@@ -346,12 +322,14 @@ func parseWikiTextString(str string) (WikitextString, error) {
 			isProcessed = true
 		}
 
+		// read next character
 		isMarkup := false
 		if !isProcessed && canRead {
 			r, _, err = reader.ReadRune()
 			isMarkup = r == '*' || r == '#' || r == ':'
 		}
 
+		// save read text in an element if needed
 		if readingText && (isProcessed || isMarkup || !canRead) {
 			textElement := WikiTextElement{}
 			textElement.value = strings.Trim(textBuilder.String(), " ")
@@ -368,45 +346,47 @@ func parseWikiTextString(str string) (WikitextString, error) {
 			readingMarkup = false
 		}
 
+		// append read character in a buffer
 		if !isProcessed && isMarkup && err == nil && canRead {
 			readingMarkup = true
 			markupBuilder.WriteRune(r)
 		}
 
+		isNewLine = false
 		if !isProcessed && !isMarkup && err == nil && canRead {
-			/*if r == '\n' {
-				break
-			} else*/if r == ' ' && !readingText {
-				continue
+			if r == '\n' {
+				// skip
+				isNewLine = true
+			} else if r == ' ' && !readingText {
+				// skip
+			} else {
+				readingText = true
+				textBuilder.WriteRune(r)
 			}
-			readingText = true
-			textBuilder.WriteRune(r)
 		}
 
+		// handle results
 		if err != nil {
-			err = fmt.Errorf("error while parsing \""+str+"\": %w", err.Error())
+			l, _, _ := reader.ReadLine()
+			err = fmt.Errorf("error while parsing at \""+string(l)+"\": %w", err)
 			break
 		} else {
 			if parsedElement1 != nil {
-				wikiTextString.addElement(parsedElement1)
+				wikitext.addElement(parsedElement1)
 				parsedElement1 = nil
 			}
 			if parsedElement2 != nil {
-				wikiTextString.addElement(parsedElement2)
+				wikitext.addElement(parsedElement2)
 				parsedElement2 = nil
 			}
 		}
 
-		isFirst = false
 		if !canRead {
 			break
 		}
-		// } else {
-		// 	break
-		// }
 	}
 
-	return wikiTextString, err
+	return wikitext, err
 }
 
 // Tools

@@ -2,30 +2,14 @@ package main
 
 func FilterWikitextString(
 	wikitext Wikitext,
-	stringVisitor func(WikitextString) bool,
 	elementVisitor func(WikitextElement) bool,
 ) Wikitext {
 	newWikitext := Wikitext{}
 
-	for _, s := range wikitext.strings {
-		if !stringVisitor(s) {
-			continue
+	for _, e := range wikitext.elements { // TODO: if necessary need to call visitor for inner elements in template element
+		if elementVisitor(e) {
+			newWikitext.addElement(e)
 		}
-
-		var newElements []WikitextElement
-		for _, e := range s.elements { // TODO: if necessary need to call visitor for inner elements in template element
-			if elementVisitor(e) {
-				newElements = append(newElements, e)
-			}
-		}
-
-		newWikitextString := WikitextString{}
-		newWikitextString.elements = newElements
-		if !stringVisitor(newWikitextString) {
-			continue
-		}
-
-		newWikitext.addString(newWikitextString)
 	}
 
 	return newWikitext
@@ -34,10 +18,6 @@ func FilterWikitextString(
 func FilterWikitextMarkup(e WikitextElement) bool {
 	_, ok := e.(*WikiMarkupElement)
 	return !ok
-}
-
-func FilterWikitextEmptyElements(s WikitextString) bool {
-	return len(s.elements) > 0
 }
 
 func FilterWikitextOrGroup(filters []func(WikitextElement) bool) func(WikitextElement) bool {

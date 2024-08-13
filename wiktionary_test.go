@@ -95,10 +95,22 @@ func TestParsingTemplate3(t *testing.T) {
 	assert.Equal(t, "boom", e.props[0].value.name)
 }
 
-func TestParsingWikiString1(t *testing.T) {
+func TestParsingTemplate4(t *testing.T) {
+	str := `{{quote-text|en|year=2002|author=w:John Fusco|title={{w|Spirit: Stallion of the Cimarron}}
+|passage=Colonel: See, gentlemen? Any horse could be '''broken'''.}}`
+	e, err := parseTemplateElement(bufio.NewReader(strings.NewReader(str)))
+
+	assert.Nil(t, err)
+	assert.Equal(t, "quote-text", e.name)
+	assert.Equal(t, 5, len(e.props))
+	assert.Equal(t, "passage", e.props[4].name)
+	assert.Equal(t, "Colonel: See, gentlemen? Any horse could be '''broken'''.", e.props[4].value.name)
+}
+
+func TestParsingWikitext1(t *testing.T) {
 	str := "From {{inh|en|enm|breken}}, from {{inh|en|ang|brecan||to break}}"
 
-	s, err := parseWikiTextString(str)
+	s, err := parseWikitext(str)
 
 	assert.Nil(t, err)
 	assert.NotNil(t, s)
@@ -116,10 +128,10 @@ func TestParsingWikiString1(t *testing.T) {
 	assert.Equal(t, "inh", template.name)
 }
 
-func TestParsingWikiString2(t *testing.T) {
+func TestParsingWikitext2(t *testing.T) {
 	str := "#: {{ux|en|If the vase falls to the floor, it might '''break'''.}}"
 
-	s, err := parseWikiTextString(str)
+	s, err := parseWikitext(str)
 
 	assert.Nil(t, err)
 	assert.NotNil(t, s)
@@ -136,10 +148,10 @@ func TestParsingWikiString2(t *testing.T) {
 	assert.Equal(t, "ux", template.name)
 }
 
-func TestParsingWikiString3(t *testing.T) {
+func TestParsingWikitext3(t *testing.T) {
 	str := "# {{lb|en|transitive|intransitive}} To [[separate]] into two or more [[piece]]s, to [[fracture]] or [[crack]], by a process that cannot easily be [[reverse]]d for [[reassembly]]."
 
-	s, err := parseWikiTextString(str)
+	s, err := parseWikitext(str)
 
 	assert.Nil(t, err)
 	assert.NotNil(t, s)
@@ -156,24 +168,36 @@ func TestParsingWikiString3(t *testing.T) {
 	)
 }
 
-func TestParsingWikitext1(t *testing.T) {
+func TestParsingWikitext4(t *testing.T) {
 	str := `===Etymology 1===
 {{root|en|ine-pro|*bʰreg-}}
 From {{inh|en|enm|breken}}, from {{inh|en|ang|brecan||to break}}, from {{inh|en|gmw-pro|*brekan}}, from {{inh|en|gem-pro|*brekaną||to break}}, from {{inh|en|ine-pro|*bʰreg-||to break}}. The word is a {{doublet|en|bray|nocap=1}}.`
 	text, err := parseWikitext(str)
 
 	assert.Nil(t, err)
-	assert.Equal(t, 3, len(text.strings))
-	assert.Equal(t, 1, len(text.strings[0].elements))
-	assert.Equal(t, WikitextElementTypeSection, text.strings[0].elements[0].elementType())
-	assert.Equal(t, 1, len(text.strings[1].elements))
-	assert.Equal(t, WikitextElementTypeTemplate, text.strings[1].elements[0].elementType())
+	assert.Equal(t, 15, len(text.elements))
+	assert.Equal(t, WikitextElementTypeSection, text.elements[0].elementType())
+	assert.Equal(t, WikitextElementTypeTemplate, text.elements[1].elementType())
 }
 
-func TestParsingWikitext2(t *testing.T) {
+func TestParsingWikitext5(t *testing.T) {
 	str := TestWikiPage
 	text, err := parseWikitext(str)
 
 	assert.Nil(t, err)
-	assert.True(t, len(text.strings) > 0)
+	assert.True(t, len(text.elements) > 0)
+}
+
+func TestParsingWikitext6(t *testing.T) {
+	str := `#: {{ux|en|If the vase falls to the floor, it might '''break'''.}}
+#: {{ux|en|In order to tend to the accident victim, he will '''break''' the window of the car.}}`
+	text, err := parseWikitext(str)
+
+	assert.Nil(t, err)
+	assert.Equal(t, 4, len(text.elements))
+	assert.Equal(t, WikitextElementTypeMarkup, text.elements[0].elementType())
+	assert.Equal(t, WikitextElementTypeTemplate, text.elements[1].elementType())
+	assert.Equal(t, WikitextElementTypeMarkup, text.elements[2].elementType())
+	assert.Equal(t, WikitextElementTypeTemplate, text.elements[3].elementType())
+
 }
