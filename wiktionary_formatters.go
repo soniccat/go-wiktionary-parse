@@ -16,7 +16,7 @@ func FilterWikitextString(
 }
 
 func FilterWikitextMarkup(e WikitextElement) bool {
-	_, ok := e.(*WikiMarkupElement)
+	_, ok := e.(*WikitextMarkupElement)
 	return !ok
 }
 

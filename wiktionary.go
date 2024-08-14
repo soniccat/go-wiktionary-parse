@@ -14,6 +14,7 @@ const (
 	WikitextElementTypeMarkup   = 2
 	WikitextElementTypeSection  = 3
 	WikitextElementTypeTemplate = 4
+	WikitextElementTypeNewline  = 5
 )
 
 var WiktionaryErrorLogger *colorlog.ColorLog
@@ -68,6 +69,7 @@ func parseSectionElement(reader *bufio.Reader) (WikitextSectionElement, error) {
 				} // else - just skip the rune
 			}
 		} else if r == rune('\n') {
+			// skip and don't create WikitextNewlineElement here
 			break
 		} else {
 			if readingFirstPart || readingText {
@@ -89,35 +91,42 @@ func parseSectionElement(reader *bufio.Reader) (WikitextSectionElement, error) {
 	return element, err
 }
 
-type WikiTemplateElement struct {
+type WikitextTemplateElement struct {
 	name  string
-	props []WikiTemplateProp
+	props []WikitextTemplateProp
 }
 
-func (wt *WikiTemplateElement) addProp(p WikiTemplateProp) {
+func (wt *WikitextTemplateElement) addProp(p WikitextTemplateProp) {
 	wt.props = append(wt.props, p)
 }
 
-func (e *WikiTemplateElement) elementType() int {
+func (e *WikitextTemplateElement) elementType() int {
 	return WikitextElementTypeTemplate
 }
 
-type WikiTemplateProp struct {
+type WikitextTemplateProp struct {
 	name  string
-	value WikiTemplateElement
+	value WikitextTemplateElement
 }
 
-func (e *WikiTemplateProp) isStringValue() bool {
+func (e *WikitextTemplateProp) isStringValue() bool {
 	return len(e.value.props) == 0
 }
 
-func (e *WikiTemplateProp) stringValue() string {
+func (e *WikitextTemplateProp) stringValue() string {
 	return e.name
 }
 
-func parseTemplateElement(reader *bufio.Reader) (WikiTemplateElement, error) {
+type WikitextNewlineElement struct {
+}
+
+func (e *WikitextNewlineElement) elementType() int {
+	return WikitextElementTypeNewline
+}
+
+func parseTemplateElement(reader *bufio.Reader) (WikitextTemplateElement, error) {
 	// parse {{quote-text|en|year=2002|author=w:John Fusco|title={{w|Spirit: Stallion of the Cimarron}}|passage=Colonel: See, gentlemen? Any horse could be '''broken'''.}}
-	element := WikiTemplateElement{}
+	element := WikitextTemplateElement{}
 	nameBuilder := strings.Builder{}
 
 	var r rune
@@ -156,7 +165,7 @@ func parseTemplateElement(reader *bufio.Reader) (WikiTemplateElement, error) {
 			if readingName || readingProp {
 				readingName = false
 				readingProp = true
-				var prop WikiTemplateProp
+				var prop WikitextTemplateProp
 				prop, err = parseTemplateProp(reader)
 				if err != nil {
 					isInvalidState = true
@@ -181,7 +190,7 @@ func parseTemplateElement(reader *bufio.Reader) (WikiTemplateElement, error) {
 			if readingName {
 				nameBuilder.WriteRune(r)
 			} else if r == '\n' {
-				// skip
+				// skip and don't create WikitextNewlineElement here
 			} else {
 				isInvalidState = true
 				break
@@ -198,11 +207,11 @@ func parseTemplateElement(reader *bufio.Reader) (WikiTemplateElement, error) {
 	return element, nil
 }
 
-func parseTemplateProp(reader *bufio.Reader) (WikiTemplateProp, error) {
+func parseTemplateProp(reader *bufio.Reader) (WikitextTemplateProp, error) {
 	// parse title={{w|Spirit: Stallion of the Cimarron}}
-	element := WikiTemplateProp{}
+	element := WikitextTemplateProp{}
 	nameBuilder := strings.Builder{}
-	valueTemplateElement := WikiTemplateElement{}
+	valueTemplateElement := WikitextTemplateElement{}
 	valueStringBuilder := strings.Builder{}
 
 	var r rune
@@ -271,19 +280,19 @@ func parseTemplateProp(reader *bufio.Reader) (WikiTemplateProp, error) {
 	return element, nil
 }
 
-type WikiTextElement struct {
+type WikitextTextElement struct {
 	value string
 }
 
-func (e *WikiTextElement) elementType() int {
+func (e *WikitextTextElement) elementType() int {
 	return WikitextElementTypeText
 }
 
-type WikiMarkupElement struct {
+type WikitextMarkupElement struct {
 	value string
 }
 
-func (e *WikiMarkupElement) elementType() int {
+func (e *WikitextMarkupElement) elementType() int {
 	return WikitextElementTypeMarkup
 }
 
@@ -324,22 +333,24 @@ func parseWikitext(str string) (Wikitext, error) {
 
 		// read next character
 		isMarkup := false
+		isNewLine = false
 		if !isProcessed && canRead {
 			r, _, err = reader.ReadRune()
 			isMarkup = r == '*' || r == '#' || r == ':'
+			isNewLine = r == '\n'
 		}
 
 		// save read text in an element if needed
-		if readingText && (isProcessed || isMarkup || !canRead) {
-			textElement := WikiTextElement{}
+		if readingText && (isProcessed || isMarkup || !canRead || isNewLine) {
+			textElement := WikitextTextElement{}
 			textElement.value = strings.Trim(textBuilder.String(), " ")
 			textBuilder.Reset()
 			parsedElement1 = Ptr(textElement)
 			readingText = false
 		}
 
-		if readingMarkup && (isProcessed || !isMarkup || !canRead) {
-			markupElement := WikiMarkupElement{}
+		if readingMarkup && (isProcessed || !isMarkup || !canRead || isNewLine) {
+			markupElement := WikitextMarkupElement{}
 			markupElement.value = strings.Trim(markupBuilder.String(), " ")
 			markupBuilder.Reset()
 			parsedElement1 = Ptr(markupElement)
@@ -352,12 +363,8 @@ func parseWikitext(str string) (Wikitext, error) {
 			markupBuilder.WriteRune(r)
 		}
 
-		isNewLine = false
-		if !isProcessed && !isMarkup && err == nil && canRead {
-			if r == '\n' {
-				// skip
-				isNewLine = true
-			} else if r == ' ' && !readingText {
+		if !isProcessed && !isMarkup && err == nil && canRead && !isNewLine {
+			if r == ' ' && !readingText {
 				// skip
 			} else {
 				readingText = true
@@ -365,7 +372,7 @@ func parseWikitext(str string) (Wikitext, error) {
 			}
 		}
 
-		// handle results
+		// handle results, add created elements in the right order
 		if err != nil {
 			l, _, _ := reader.ReadLine()
 			err = fmt.Errorf("error while parsing at \""+string(l)+"\": %w", err)
@@ -378,6 +385,9 @@ func parseWikitext(str string) (Wikitext, error) {
 			if parsedElement2 != nil {
 				wikitext.addElement(parsedElement2)
 				parsedElement2 = nil
+			}
+			if isNewLine {
+				wikitext.addElement(&WikitextNewlineElement{})
 			}
 		}
 

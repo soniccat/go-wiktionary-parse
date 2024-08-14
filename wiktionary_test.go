@@ -119,11 +119,11 @@ func TestParsingWikitext1(t *testing.T) {
 	assert.Equal(t, WikitextElementTypeText, s.elements[2].elementType())
 	assert.Equal(t, WikitextElementTypeTemplate, s.elements[3].elementType())
 
-	text, ok := s.elements[0].(*WikiTextElement)
+	text, ok := s.elements[0].(*WikitextTextElement)
 	assert.True(t, ok)
 	assert.Equal(t, "From", text.value)
 
-	template, ok := s.elements[3].(*WikiTemplateElement)
+	template, ok := s.elements[3].(*WikitextTemplateElement)
 	assert.True(t, ok)
 	assert.Equal(t, "inh", template.name)
 }
@@ -139,11 +139,11 @@ func TestParsingWikitext2(t *testing.T) {
 	assert.Equal(t, WikitextElementTypeMarkup, s.elements[0].elementType())
 	assert.Equal(t, WikitextElementTypeTemplate, s.elements[1].elementType())
 
-	text, ok := s.elements[0].(*WikiMarkupElement)
+	text, ok := s.elements[0].(*WikitextMarkupElement)
 	assert.True(t, ok)
 	assert.Equal(t, "#:", text.value)
 
-	template, ok := s.elements[1].(*WikiTemplateElement)
+	template, ok := s.elements[1].(*WikitextTemplateElement)
 	assert.True(t, ok)
 	assert.Equal(t, "ux", template.name)
 }
@@ -159,7 +159,7 @@ func TestParsingWikitext3(t *testing.T) {
 	assert.Equal(t, WikitextElementTypeTemplate, s.elements[1].elementType())
 	assert.Equal(t, WikitextElementTypeText, s.elements[2].elementType())
 
-	text, ok := s.elements[2].(*WikiTextElement)
+	text, ok := s.elements[2].(*WikitextTextElement)
 	assert.True(t, ok)
 	assert.Equal(
 		t,
@@ -175,7 +175,7 @@ From {{inh|en|enm|breken}}, from {{inh|en|ang|brecan||to break}}, from {{inh|en|
 	text, err := parseWikitext(str)
 
 	assert.Nil(t, err)
-	assert.Equal(t, 15, len(text.elements))
+	assert.Equal(t, 16, len(text.elements))
 	assert.Equal(t, WikitextElementTypeSection, text.elements[0].elementType())
 	assert.Equal(t, WikitextElementTypeTemplate, text.elements[1].elementType())
 }
@@ -194,10 +194,25 @@ func TestParsingWikitext6(t *testing.T) {
 	text, err := parseWikitext(str)
 
 	assert.Nil(t, err)
-	assert.Equal(t, 4, len(text.elements))
+	assert.Equal(t, 5, len(text.elements))
 	assert.Equal(t, WikitextElementTypeMarkup, text.elements[0].elementType())
 	assert.Equal(t, WikitextElementTypeTemplate, text.elements[1].elementType())
-	assert.Equal(t, WikitextElementTypeMarkup, text.elements[2].elementType())
-	assert.Equal(t, WikitextElementTypeTemplate, text.elements[3].elementType())
+	assert.Equal(t, WikitextElementTypeNewline, text.elements[2].elementType())
+	assert.Equal(t, WikitextElementTypeMarkup, text.elements[3].elementType())
+	assert.Equal(t, WikitextElementTypeTemplate, text.elements[4].elementType())
+}
 
+func TestParsingWikitext7(t *testing.T) {
+	str := `# {{lb|en|transitive|intransitive}} To [[separate]] into two or more [[piece]]s, to [[fracture]] or [[crack]], by a process that cannot easily be [[reverse]]d for [[reassembly]].
+#: {{ux|en|If the vase falls to the floor, it might '''break'''.}}`
+	text, err := parseWikitext(str)
+
+	assert.Nil(t, err)
+	assert.Equal(t, 6, len(text.elements))
+	assert.Equal(t, WikitextElementTypeMarkup, text.elements[0].elementType())
+	assert.Equal(t, WikitextElementTypeTemplate, text.elements[1].elementType())
+	assert.Equal(t, WikitextElementTypeText, text.elements[2].elementType())
+	assert.Equal(t, WikitextElementTypeNewline, text.elements[3].elementType())
+	assert.Equal(t, WikitextElementTypeMarkup, text.elements[4].elementType())
+	assert.Equal(t, WikitextElementTypeTemplate, text.elements[5].elementType())
 }

@@ -84,7 +84,7 @@ func processWikitext(word string, wikitext Wikitext) []Insert {
 			} else {
 				inPartOfSpeech = false
 			}
-		case *WikiTemplateElement:
+		case *WikitextTemplateElement:
 			switch re.name {
 			case "enPR", "IPA":
 				offset := 0
@@ -114,12 +114,12 @@ func processWikitext(word string, wikitext Wikitext) []Insert {
 				}
 
 			case "ux":
-				if inPartOfSpeech && len(textElements) > 0 {
-					d := strings.Join(textElements, " ")
-					cb.AddDefinition(d, labels)
-					textElements = nil
-					labels = nil
-				}
+				// if inPartOfSpeech && len(textElements) > 0 {
+				// 	d := strings.Join(textElements, " ")
+				// 	cb.AddDefinition(d, labels)
+				// 	textElements = nil
+				// 	labels = nil
+				// }
 
 				if re.name == "ux" {
 					if len(re.props) > 1 && re.props[1].isStringValue() {
@@ -127,9 +127,16 @@ func processWikitext(word string, wikitext Wikitext) []Insert {
 					}
 				}
 			}
-		case *WikiTextElement:
+		case *WikitextTextElement:
 			if inPartOfSpeech {
 				textElements = append(textElements, re.value)
+			}
+		case *WikitextNewlineElement:
+			if inPartOfSpeech && len(textElements) > 0 {
+				d := strings.Join(textElements, " ")
+				cb.AddDefinition(d, labels)
+				textElements = nil
+				labels = nil
 			}
 		}
 	}

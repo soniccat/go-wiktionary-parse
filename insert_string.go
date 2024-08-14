@@ -14,6 +14,7 @@ func InsertsToString(inserts []Insert) string {
 		for _, t := range insert.Transcriptions {
 			strBuilder.WriteString(t + ", ")
 		}
+		strBuilder.WriteString("\n")
 
 		for k, t := range insert.CatDefs {
 			strBuilder.WriteString(k + "\n")
