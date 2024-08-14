@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func InsertsToString(inserts []Insert) string {
+func InsertsToString(inserts []WordEntry) string {
 	strBuilder := strings.Builder{}
 
 	for _, insert := range inserts {
@@ -16,11 +16,11 @@ func InsertsToString(inserts []Insert) string {
 		}
 		strBuilder.WriteString("\n")
 
-		for k, t := range insert.CatDefs {
+		for k, t := range insert.WordDefs {
 			strBuilder.WriteString(k + "\n")
 
 			for _, d := range t {
-				strBuilder.WriteString("d: " + d.Def + "\n")
+				strBuilder.WriteString("d: " + d.WordDef.Def + "\n")
 
 				for _, e := range d.Examples {
 					strBuilder.WriteString("\te: " + e + "\n")

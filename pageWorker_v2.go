@@ -8,15 +8,35 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
+type WordEntry struct {
+	Order          int                       `bson:"order"`
+	Word           string                    `bson:"term,omitempty"`
+	Transcriptions []string                  `bson:"transcriptions,omitempty"`
+	Etymology      int                       `bson:"etymology,omitempty"`
+	WordDefs       map[string][]WordDefEntry `bson:"defs,omitempty"`
+}
+
+type WordDefEntry struct {
+	WordDef  WordDef  `bson:"def,omitempty"`
+	Examples []string `bson:"examples,omitempty"`
+	Synonyms []string `bson:"synonyms,omitempty"`
+	Antonyms []string `bson:"antonyms,omitempty"`
+}
+
+type WordDef struct {
+	Def    string   `bson:"def,omitempty"`
+	Labels []string `bson:"labels,omitempty"`
+}
+
 func pageWorkerV2(
 	id int,
 	wg *sync.WaitGroup,
 	pages []Page,
 	dbh *sql.DB,
 	mongo *mongo.Collection,
-) []Insert {
+) []WordEntry {
 	defer wg.Done()
-	inserts := []Insert{} // etymology : lexical category : [definitions...]
+	inserts := []WordEntry{}
 	for _, page := range pages {
 		word := page.Title
 		logger.Debug("Processing page: %s\n", word)
@@ -50,14 +70,14 @@ func pageWorkerV2(
 	// logger.Info("[%2d] Inserted %6d records for %6d pages\n", id, inserted, len(pages))
 }
 
-func processWikitext(word string, wikitext Wikitext) []Insert {
+func processWikitext(word string, wikitext Wikitext) []WordEntry {
 	cb := CardBuilder{}
 	cb.SetWord(word)
 
-	// scanUntiEnglish := true
-	// scanUntiEtymology := false
 	inPartOfSpeech := false
 	languageSectionLevel := -1
+	areSynonyms := false
+	areAntonyms := false
 
 	// read elements until English language section
 	var elementIndex int
@@ -76,14 +96,19 @@ func processWikitext(word string, wikitext Wikitext) []Insert {
 	for _, e := range wikitext.elements[elementIndex+1:] {
 		switch re := e.(type) {
 		case *WikitextSectionElement:
+			areSynonyms = false
+			areAntonyms = false
+			inPartOfSpeech = false
 			if re.level < languageSectionLevel {
 				break
 			} else if strings.HasPrefix(re.name, "Etymology") {
-				// scanUntiEtymology = false
 				cb.StartEtymology()
-			} else {
-				inPartOfSpeech = false
+			} else if strings.HasPrefix(re.name, "Synonyms") {
+				areSynonyms = true
+			} else if strings.HasPrefix(re.name, "Antonyms") {
+				areAntonyms = true
 			}
+
 		case *WikitextTemplateElement:
 			switch re.name {
 			case "enPR", "IPA":
@@ -91,46 +116,52 @@ func processWikitext(word string, wikitext Wikitext) []Insert {
 				if re.name == "IPA" {
 					offset = 1
 				}
-
 				for _, v := range re.props[offset:] {
 					if v.isStringValue() {
 						cb.AddTranscription(v.stringValue())
 					}
 				}
-
 			case "en-verb":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("verb")
-
 			case "en-noun":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("noun")
-
 			case "lb":
 				for i, v := range re.props {
 					if i > 0 && v.isStringValue() {
 						labels = append(labels, v.stringValue())
 					}
 				}
-
+			case "syn":
+				for i, v := range re.props {
+					if i > 0 && v.isStringValue() {
+						cb.AddSynonym(v.stringValue())
+					}
+				}
 			case "ux":
-				// if inPartOfSpeech && len(textElements) > 0 {
-				// 	d := strings.Join(textElements, " ")
-				// 	cb.AddDefinition(d, labels)
-				// 	textElements = nil
-				// 	labels = nil
-				// }
-
-				if re.name == "ux" {
-					if len(re.props) > 1 && re.props[1].isStringValue() {
-						cb.AddExample(re.props[1].stringValue())
+				if len(re.props) > 1 && re.props[1].isStringValue() {
+					cb.AddExample(re.props[1].stringValue())
+				}
+			case "sense":
+				if (areSynonyms || areAntonyms) && len(re.props) > 0 && re.props[0].isStringValue() {
+					cb.AddDefinition(re.props[0].stringValue(), nil)
+				}
+			case "l":
+				if (areSynonyms || areAntonyms) && len(re.props) > 1 && re.props[1].isStringValue() {
+					if areSynonyms {
+						cb.AddSynonym(re.props[1].stringValue())
+					} else if areAntonyms {
+						cb.AddAntonym(re.props[1].stringValue())
 					}
 				}
 			}
+
 		case *WikitextTextElement:
 			if inPartOfSpeech {
 				textElements = append(textElements, re.value)
 			}
+
 		case *WikitextNewlineElement:
 			if inPartOfSpeech && len(textElements) > 0 {
 				d := strings.Join(textElements, " ")
@@ -147,10 +178,10 @@ func processWikitext(word string, wikitext Wikitext) []Insert {
 type CardBuilder struct {
 	isEtymologyStarted   bool
 	globalTranscriptions []string
-	currentInsert        Insert
+	currentInsert        WordEntry
 	currentPartOfSpeech  string
-	currentDef           CatDef
-	inserts              []Insert
+	currentDef           WordDefEntry
+	inserts              []WordEntry
 }
 
 func (cb *CardBuilder) SetWord(w string) {
@@ -175,27 +206,30 @@ func (cb *CardBuilder) SetPartOfSpeech(s string) {
 	cb.currentPartOfSpeech = s
 }
 
-func (cb *CardBuilder) AddDefinition(d string, labels []string) { // TODO: store labels
+func (cb *CardBuilder) AddDefinition(d string, labels []string) {
 	cb.saveDefinition()
-	cb.currentDef.Def = d
+	cb.currentDef.WordDef = WordDef{
+		Def:    d,
+		Labels: labels,
+	}
 }
 
 func (cb *CardBuilder) AddExample(e string) {
 	cb.currentDef.Examples = append(cb.currentDef.Examples, e)
 }
 
-func (cb *CardBuilder) AddSynonym(s string, labels []string) { // TODO: store labels
+func (cb *CardBuilder) AddSynonym(s string) {
 	cb.currentDef.Synonyms = append(cb.currentDef.Synonyms, s)
 }
 
-func (cb *CardBuilder) AddAntonym(a string, labels []string) { // TODO: store labels
+func (cb *CardBuilder) AddAntonym(a string) {
 	cb.currentDef.Antonyms = append(cb.currentDef.Antonyms, a)
 }
 
 // TODO: support hyponym / Derived terms
 
 func (cb *CardBuilder) save() {
-	if len(cb.currentInsert.CatDefs) > 0 {
+	if len(cb.currentInsert.WordDefs) > 0 {
 		if len(cb.currentInsert.Transcriptions) == 0 {
 			cb.currentInsert.Transcriptions = append(cb.currentInsert.Transcriptions, cb.globalTranscriptions...)
 		}
@@ -203,23 +237,23 @@ func (cb *CardBuilder) save() {
 		cb.inserts = append(cb.inserts, cb.currentInsert)
 	}
 
-	cb.currentInsert = Insert{
+	cb.currentInsert = WordEntry{
 		Word:      cb.currentInsert.Word,
 		Etymology: len(cb.inserts),
-		CatDefs:   make(map[string][]CatDef),
+		WordDefs:  make(map[string][]WordDefEntry),
 	}
 }
 
 func (cb *CardBuilder) saveDefinition() {
-	if len(cb.currentDef.Def) > 0 {
-		defs := cb.currentInsert.CatDefs[cb.currentPartOfSpeech]
-		cb.currentInsert.CatDefs[cb.currentPartOfSpeech] = append(defs, cb.currentDef)
+	if len(cb.currentDef.WordDef.Def) > 0 {
+		defs := cb.currentInsert.WordDefs[cb.currentPartOfSpeech]
+		cb.currentInsert.WordDefs[cb.currentPartOfSpeech] = append(defs, cb.currentDef)
 	}
 
-	cb.currentDef = CatDef{}
+	cb.currentDef = WordDefEntry{}
 }
 
-func (cb *CardBuilder) Build() []Insert {
+func (cb *CardBuilder) Build() []WordEntry {
 	cb.save()
 	return cb.inserts
 }
