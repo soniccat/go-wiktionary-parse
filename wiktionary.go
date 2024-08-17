@@ -28,7 +28,7 @@ func (ws *Wikitext) addElement(e WikitextElement) {
 }
 
 type WikitextElement interface {
-	elementType() int
+	ElementType() int
 }
 
 type WikitextSectionElement struct {
@@ -36,7 +36,7 @@ type WikitextSectionElement struct {
 	name  string
 }
 
-func (e *WikitextSectionElement) elementType() int {
+func (e *WikitextSectionElement) ElementType() int {
 	return WikitextElementTypeSection
 }
 
@@ -100,8 +100,18 @@ func (wt *WikitextTemplateElement) addProp(p WikitextTemplateProp) {
 	wt.props = append(wt.props, p)
 }
 
-func (e *WikitextTemplateElement) elementType() int {
+func (e *WikitextTemplateElement) ElementType() int {
 	return WikitextElementTypeTemplate
+}
+
+func (e *WikitextTemplateElement) PropByName(name string) *WikitextTemplateProp {
+	for _, v := range e.props {
+		if v.name == name {
+			return &v
+		}
+	}
+
+	return nil
 }
 
 type WikitextTemplateProp struct {
@@ -120,7 +130,7 @@ func (e *WikitextTemplateProp) stringValue() string {
 type WikitextNewlineElement struct {
 }
 
-func (e *WikitextNewlineElement) elementType() int {
+func (e *WikitextNewlineElement) ElementType() int {
 	return WikitextElementTypeNewline
 }
 
@@ -284,7 +294,7 @@ type WikitextTextElement struct {
 	value string
 }
 
-func (e *WikitextTextElement) elementType() int {
+func (e *WikitextTextElement) ElementType() int {
 	return WikitextElementTypeText
 }
 
@@ -292,7 +302,7 @@ type WikitextMarkupElement struct {
 	value string
 }
 
-func (e *WikitextMarkupElement) elementType() int {
+func (e *WikitextMarkupElement) ElementType() int {
 	return WikitextElementTypeMarkup
 }
 

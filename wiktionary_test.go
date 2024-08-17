@@ -114,10 +114,10 @@ func TestParsingWikitext1(t *testing.T) {
 
 	assert.Nil(t, err)
 	assert.NotNil(t, s)
-	assert.Equal(t, WikitextElementTypeText, s.elements[0].elementType())
-	assert.Equal(t, WikitextElementTypeTemplate, s.elements[1].elementType())
-	assert.Equal(t, WikitextElementTypeText, s.elements[2].elementType())
-	assert.Equal(t, WikitextElementTypeTemplate, s.elements[3].elementType())
+	assert.Equal(t, WikitextElementTypeText, s.elements[0].ElementType())
+	assert.Equal(t, WikitextElementTypeTemplate, s.elements[1].ElementType())
+	assert.Equal(t, WikitextElementTypeText, s.elements[2].ElementType())
+	assert.Equal(t, WikitextElementTypeTemplate, s.elements[3].ElementType())
 
 	text, ok := s.elements[0].(*WikitextTextElement)
 	assert.True(t, ok)
@@ -136,8 +136,8 @@ func TestParsingWikitext2(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, s)
 	assert.Equal(t, 2, len(s.elements))
-	assert.Equal(t, WikitextElementTypeMarkup, s.elements[0].elementType())
-	assert.Equal(t, WikitextElementTypeTemplate, s.elements[1].elementType())
+	assert.Equal(t, WikitextElementTypeMarkup, s.elements[0].ElementType())
+	assert.Equal(t, WikitextElementTypeTemplate, s.elements[1].ElementType())
 
 	text, ok := s.elements[0].(*WikitextMarkupElement)
 	assert.True(t, ok)
@@ -155,9 +155,9 @@ func TestParsingWikitext3(t *testing.T) {
 
 	assert.Nil(t, err)
 	assert.NotNil(t, s)
-	assert.Equal(t, WikitextElementTypeMarkup, s.elements[0].elementType())
-	assert.Equal(t, WikitextElementTypeTemplate, s.elements[1].elementType())
-	assert.Equal(t, WikitextElementTypeText, s.elements[2].elementType())
+	assert.Equal(t, WikitextElementTypeMarkup, s.elements[0].ElementType())
+	assert.Equal(t, WikitextElementTypeTemplate, s.elements[1].ElementType())
+	assert.Equal(t, WikitextElementTypeText, s.elements[2].ElementType())
 
 	text, ok := s.elements[2].(*WikitextTextElement)
 	assert.True(t, ok)
@@ -176,8 +176,8 @@ From {{inh|en|enm|breken}}, from {{inh|en|ang|brecan||to break}}, from {{inh|en|
 
 	assert.Nil(t, err)
 	assert.Equal(t, 16, len(text.elements))
-	assert.Equal(t, WikitextElementTypeSection, text.elements[0].elementType())
-	assert.Equal(t, WikitextElementTypeTemplate, text.elements[1].elementType())
+	assert.Equal(t, WikitextElementTypeSection, text.elements[0].ElementType())
+	assert.Equal(t, WikitextElementTypeTemplate, text.elements[1].ElementType())
 }
 
 func TestParsingWikitext5(t *testing.T) {
@@ -195,11 +195,11 @@ func TestParsingWikitext6(t *testing.T) {
 
 	assert.Nil(t, err)
 	assert.Equal(t, 5, len(text.elements))
-	assert.Equal(t, WikitextElementTypeMarkup, text.elements[0].elementType())
-	assert.Equal(t, WikitextElementTypeTemplate, text.elements[1].elementType())
-	assert.Equal(t, WikitextElementTypeNewline, text.elements[2].elementType())
-	assert.Equal(t, WikitextElementTypeMarkup, text.elements[3].elementType())
-	assert.Equal(t, WikitextElementTypeTemplate, text.elements[4].elementType())
+	assert.Equal(t, WikitextElementTypeMarkup, text.elements[0].ElementType())
+	assert.Equal(t, WikitextElementTypeTemplate, text.elements[1].ElementType())
+	assert.Equal(t, WikitextElementTypeNewline, text.elements[2].ElementType())
+	assert.Equal(t, WikitextElementTypeMarkup, text.elements[3].ElementType())
+	assert.Equal(t, WikitextElementTypeTemplate, text.elements[4].ElementType())
 }
 
 func TestParsingWikitext7(t *testing.T) {
@@ -209,10 +209,10 @@ func TestParsingWikitext7(t *testing.T) {
 
 	assert.Nil(t, err)
 	assert.Equal(t, 6, len(text.elements))
-	assert.Equal(t, WikitextElementTypeMarkup, text.elements[0].elementType())
-	assert.Equal(t, WikitextElementTypeTemplate, text.elements[1].elementType())
-	assert.Equal(t, WikitextElementTypeText, text.elements[2].elementType())
-	assert.Equal(t, WikitextElementTypeNewline, text.elements[3].elementType())
-	assert.Equal(t, WikitextElementTypeMarkup, text.elements[4].elementType())
-	assert.Equal(t, WikitextElementTypeTemplate, text.elements[5].elementType())
+	assert.Equal(t, WikitextElementTypeMarkup, text.elements[0].ElementType())
+	assert.Equal(t, WikitextElementTypeTemplate, text.elements[1].ElementType())
+	assert.Equal(t, WikitextElementTypeText, text.elements[2].ElementType())
+	assert.Equal(t, WikitextElementTypeNewline, text.elements[3].ElementType())
+	assert.Equal(t, WikitextElementTypeMarkup, text.elements[4].ElementType())
+	assert.Equal(t, WikitextElementTypeTemplate, text.elements[5].ElementType())
 }
