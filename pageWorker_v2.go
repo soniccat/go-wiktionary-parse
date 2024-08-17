@@ -143,17 +143,17 @@ func processWikitext(word string, wikitext Wikitext) []WordEntry {
 				if len(re.props) > 1 && re.props[1].isStringValue() {
 					cb.AddExample(re.props[1].stringValue())
 				}
-			case "quote-book":
+			case "quote-book", "quote-text":
 				if inPartOfSpeech {
 					textProp := re.PropByName("text")
 					if textProp == nil {
 						textProp = re.PropByName("passage")
 					}
-					if textProp == nil && len(re.props) > 6 {
+					if re.name == "quote-book" && textProp == nil && len(re.props) > 6 {
 						textProp = &re.props[6]
 					}
-					if textProp != nil && !textProp.isStringValue() {
-						cb.AddExample(textProp.value.name)
+					if textProp != nil && textProp.isInnerStringValue() {
+						cb.AddExample(textProp.innerStringValue())
 					}
 				}
 			case "sense":

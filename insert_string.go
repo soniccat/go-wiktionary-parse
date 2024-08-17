@@ -22,6 +22,14 @@ func InsertsToString(inserts []WordEntry) string {
 			for _, d := range t {
 				strBuilder.WriteString("d: " + d.WordDef.Def + "\n")
 
+				if len(d.WordDef.Labels) > 0 {
+					strBuilder.WriteString("l: ")
+					for _, l := range d.WordDef.Labels {
+						strBuilder.WriteString(l + ", ")
+					}
+					strBuilder.WriteString("\n")
+				}
+
 				for _, e := range d.Examples {
 					strBuilder.WriteString("\te: " + e + "\n")
 				}

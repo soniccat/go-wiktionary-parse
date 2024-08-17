@@ -116,15 +116,23 @@ func (e *WikitextTemplateElement) PropByName(name string) *WikitextTemplateProp 
 
 type WikitextTemplateProp struct {
 	name  string
-	value WikitextTemplateElement
+	value *WikitextTemplateElement
 }
 
 func (e *WikitextTemplateProp) isStringValue() bool {
-	return len(e.value.props) == 0
+	return e.value == nil
 }
 
 func (e *WikitextTemplateProp) stringValue() string {
 	return e.name
+}
+
+func (e *WikitextTemplateProp) isInnerStringValue() bool {
+	return !e.isStringValue() && len(e.value.props) == 0
+}
+
+func (e *WikitextTemplateProp) innerStringValue() string {
+	return e.value.name
 }
 
 type WikitextNewlineElement struct {
@@ -261,8 +269,28 @@ func parseTemplateProp(reader *bufio.Reader) (WikitextTemplateProp, error) {
 			}
 
 		} else if r == '|' || r == '}' {
-			reader.UnreadRune()
-			break
+			isSeparatorProcessed := false
+			if r == '|' {
+				var b []byte
+				b, err = reader.Peek(4)
+				bstr := string(b)
+				if strings.HasPrefix(bstr, "_|") {
+					nameBuilder.WriteString(" ")
+					bb := make([]byte, 2)
+					_, err = io.ReadAtLeast(reader, bb, 2)
+					if err == nil {
+						isSeparatorProcessed = true
+					}
+				}
+			}
+
+			if err != nil {
+				isInvalidState = true
+				break
+			} else if !isSeparatorProcessed {
+				reader.UnreadRune()
+				break
+			}
 
 		} else {
 			if readingName {
@@ -281,7 +309,10 @@ func parseTemplateProp(reader *bufio.Reader) (WikitextTemplateProp, error) {
 	if readingStringValue {
 		valueTemplateElement.name = valueStringBuilder.String()
 	}
-	element.value = valueTemplateElement
+
+	if len(valueTemplateElement.name) > 0 {
+		element.value = &valueTemplateElement
+	}
 
 	if err != nil || isInvalidState {
 		return element, fmt.Errorf("parseTemplateProp: unexpected '%v' (%w)", string(r), err)

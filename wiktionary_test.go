@@ -26,6 +26,15 @@ func TestParsingSection2(t *testing.T) {
 	assert.Equal(t, 2, e.level)
 }
 
+func TestParsingTemplateProp0(t *testing.T) {
+	str := "a"
+	e, err := parseTemplateProp(bufio.NewReader(strings.NewReader(str)))
+
+	assert.Nil(t, err)
+	assert.Equal(t, "a", e.name)
+	assert.Nil(t, e.value)
+}
+
 func TestParsingTemplateProp1(t *testing.T) {
 	str := "a=d"
 	e, err := parseTemplateProp(bufio.NewReader(strings.NewReader(str)))
@@ -105,6 +114,47 @@ func TestParsingTemplate4(t *testing.T) {
 	assert.Equal(t, 5, len(e.props))
 	assert.Equal(t, "passage", e.props[4].name)
 	assert.Equal(t, "Colonel: See, gentlemen? Any horse could be '''broken'''.", e.props[4].value.name)
+}
+
+func TestParsingTemplate5(t *testing.T) {
+	str := "{{abc|def|_|puf|duf}}"
+	e, err := parseTemplateElement(bufio.NewReader(strings.NewReader(str)))
+
+	assert.Nil(t, err)
+	assert.Equal(t, "abc", e.name)
+	assert.Equal(t, 1, len(e.props))
+	assert.Equal(t, "def puf", e.props[0].name)
+	assert.Equal(t, "duf", e.props[1].name)
+}
+
+func TestParsingTemplate6(t *testing.T) {
+	str := "{{abc|def|or|puf}}"
+	e, err := parseTemplateElement(bufio.NewReader(strings.NewReader(str)))
+
+	assert.Nil(t, err)
+	assert.Equal(t, "abc", e.name)
+	assert.Equal(t, 1, len(e.props))
+	assert.Equal(t, "def or puf", e.props[0].name)
+}
+
+func TestParsingTemplate7(t *testing.T) {
+	str := "{{abc|def|and|puf}}"
+	e, err := parseTemplateElement(bufio.NewReader(strings.NewReader(str)))
+
+	assert.Nil(t, err)
+	assert.Equal(t, "abc", e.name)
+	assert.Equal(t, 1, len(e.props))
+	assert.Equal(t, "def and puf", e.props[0].name)
+}
+
+func TestParsingTemplate8(t *testing.T) {
+	str := "{{abc|def|;|puf}}"
+	e, err := parseTemplateElement(bufio.NewReader(strings.NewReader(str)))
+
+	assert.Nil(t, err)
+	assert.Equal(t, "abc", e.name)
+	assert.Equal(t, 1, len(e.props))
+	assert.Equal(t, "def; puf", e.props[0].name)
 }
 
 func TestParsingWikitext1(t *testing.T) {
