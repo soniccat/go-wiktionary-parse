@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"io"
 	"strings"
@@ -40,7 +39,7 @@ func (e *WikitextSectionElement) ElementType() int {
 	return WikitextElementTypeSection
 }
 
-func parseSectionElement(reader *bufio.Reader) (WikitextSectionElement, error) {
+func parseSectionElement(reader *strings.Reader) (WikitextSectionElement, error) {
 	// parse ==English==
 	element := WikitextSectionElement{}
 	readingFirstPart := true
@@ -142,7 +141,7 @@ func (e *WikitextNewlineElement) ElementType() int {
 	return WikitextElementTypeNewline
 }
 
-func parseTemplateElement(reader *bufio.Reader) (WikitextTemplateElement, error) {
+func parseTemplateElement(reader *strings.Reader) (WikitextTemplateElement, error) {
 	// parse {{quote-text|en|year=2002|author=w:John Fusco|title={{w|Spirit: Stallion of the Cimarron}}|passage=Colonel: See, gentlemen? Any horse could be '''broken'''.}}
 	element := WikitextTemplateElement{}
 	nameBuilder := strings.Builder{}
@@ -225,7 +224,7 @@ func parseTemplateElement(reader *bufio.Reader) (WikitextTemplateElement, error)
 	return element, nil
 }
 
-func parseTemplateProp(reader *bufio.Reader) (WikitextTemplateProp, error) {
+func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 	// parse title={{w|Spirit: Stallion of the Cimarron}}
 	element := WikitextTemplateProp{}
 	nameBuilder := strings.Builder{}
@@ -252,8 +251,8 @@ func parseTemplateProp(reader *bufio.Reader) (WikitextTemplateProp, error) {
 			if readingName {
 				readingName = false
 
-				b, _ := reader.Peek(2)
-				if len(b) > 1 && strings.HasPrefix(string(b), "{{") {
+				str, _ := Peek(reader, 2)
+				if strings.HasPrefix(str, "{{") {
 					valueTemplateElement, err = parseTemplateElement(reader)
 					break
 				} else {
@@ -271,13 +270,28 @@ func parseTemplateProp(reader *bufio.Reader) (WikitextTemplateProp, error) {
 		} else if r == '|' || r == '}' {
 			isSeparatorProcessed := false
 			if r == '|' {
-				var b []byte
-				b, err = reader.Peek(4)
-				bstr := string(b)
+				bstr, _ := Peek(reader, 4)
 				if strings.HasPrefix(bstr, "_|") {
 					nameBuilder.WriteString(" ")
-					bb := make([]byte, 2)
-					_, err = io.ReadAtLeast(reader, bb, 2)
+					_, err = reader.Seek(2, io.SeekCurrent)
+					if err == nil {
+						isSeparatorProcessed = true
+					}
+				} else if strings.HasPrefix(bstr, "or|") {
+					nameBuilder.WriteString(" or ")
+					_, err = reader.Seek(3, io.SeekCurrent)
+					if err == nil {
+						isSeparatorProcessed = true
+					}
+				} else if strings.HasPrefix(bstr, "and|") {
+					nameBuilder.WriteString(" and ")
+					_, err = reader.Seek(4, io.SeekCurrent)
+					if err == nil {
+						isSeparatorProcessed = true
+					}
+				} else if strings.HasPrefix(bstr, ";|") {
+					nameBuilder.WriteString("; ")
+					_, err = reader.Seek(2, io.SeekCurrent)
 					if err == nil {
 						isSeparatorProcessed = true
 					}
@@ -288,7 +302,7 @@ func parseTemplateProp(reader *bufio.Reader) (WikitextTemplateProp, error) {
 				isInvalidState = true
 				break
 			} else if !isSeparatorProcessed {
-				reader.UnreadRune()
+				reader.UnreadByte()
 				break
 			}
 
@@ -339,7 +353,7 @@ func (e *WikitextMarkupElement) ElementType() int {
 
 func parseWikitext(str string) (Wikitext, error) {
 	wikitext := Wikitext{}
-	reader := bufio.NewReader(strings.NewReader(str))
+	reader := strings.NewReader(str)
 	markupBuilder := strings.Builder{}
 	textBuilder := strings.Builder{}
 
@@ -355,17 +369,16 @@ func parseWikitext(str string) (Wikitext, error) {
 	for {
 		r = rune(0)
 		isProcessed := false
-		b, _ := reader.Peek(2)
-		canRead := len(b) > 0
-		substr := string(b)
+		bstr, _ := Peek(reader, 2)
+		canRead := len(bstr) > 0
 
 		// handle special cases
-		if isNewLine && strings.HasPrefix(substr, "=") {
+		if isNewLine && strings.HasPrefix(bstr, "=") {
 			el, e := parseSectionElement(reader)
 			parsedElement2 = Ptr(el)
 			err = e
 			isProcessed = true
-		} else if strings.HasPrefix(substr, "{{") {
+		} else if strings.HasPrefix(bstr, "{{") {
 			el, e := parseTemplateElement(reader)
 			parsedElement2 = Ptr(el)
 			err = e
@@ -415,7 +428,7 @@ func parseWikitext(str string) (Wikitext, error) {
 
 		// handle results, add created elements in the right order
 		if err != nil {
-			l, _, _ := reader.ReadLine()
+			l, _ := ReadLine(reader)
 			err = fmt.Errorf("error while parsing at \""+string(l)+"\": %w", err)
 			break
 		} else {
@@ -444,4 +457,34 @@ func parseWikitext(str string) (Wikitext, error) {
 
 func Ptr[T any](x T) *T {
 	return &x
+}
+
+func Peek(reader *strings.Reader, l int) (string, error) {
+	b := make([]byte, l)
+	c, err := reader.Read(b)
+	if err != nil {
+		return "", err
+	}
+
+	bstr := string(b)
+	_, err = reader.Seek(int64(-c), io.SeekCurrent)
+	if err != nil {
+		return bstr, err
+	}
+
+	return bstr, nil
+}
+
+func ReadLine(reader *strings.Reader) (string, error) {
+	b := strings.Builder{}
+	for {
+		r, _, err := reader.ReadRune()
+		if err != nil {
+			break
+		} else {
+			b.WriteRune(r)
+		}
+	}
+
+	return b.String(), nil
 }
