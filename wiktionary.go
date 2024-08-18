@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"io"
 	"strings"
@@ -242,6 +243,7 @@ func parseTemplateElement(reader *strings.Reader) (WikitextTemplateElement, erro
 
 func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 	// parse title={{w|Spirit: Stallion of the Cimarron}}
+	// important: name link will be converted to link name ([[Rail (magazine)|Rail]] -> Rail), so wiktionary link text will be lost here
 	element := WikitextTemplateProp{}
 	nameBuilder := strings.Builder{}
 	valueTemplateElement := WikitextTemplateElement{}
@@ -321,15 +323,30 @@ func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 				reader.UnreadByte()
 				break
 			}
-
 		} else {
-			if readingName {
-				nameBuilder.WriteRune(r)
-			} else if readingStringValue {
-				valueStringBuilder.WriteRune(r)
-			} else {
-				isInvalidState = true
-				break
+			var isLinkProcessed = false
+			if readingName && r == '[' {
+				nextR, _ := Peek(reader, 1)
+				if nextR == "[" {
+					l, err := parseWikitextLink(reader)
+					if err != nil {
+						break
+					}
+
+					nameBuilder.WriteString(l.name)
+					isLinkProcessed = true
+				}
+			}
+
+			if !isLinkProcessed {
+				if readingName {
+					nameBuilder.WriteRune(r)
+				} else if readingStringValue {
+					valueStringBuilder.WriteRune(r)
+				} else {
+					isInvalidState = true
+					break
+				}
 			}
 		}
 	}
@@ -349,6 +366,70 @@ func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 	}
 
 	return element, nil
+}
+
+type WikitextLink struct {
+	text string
+	name string
+}
+
+func parseWikitextLink(reader *strings.Reader) (link WikitextLink, err error) {
+	linkTextBuilder := strings.Builder{}
+	linkNameBuilder := strings.Builder{}
+
+	var r rune
+	var isReadingLinkText = true
+	var isReadingLinkName = false
+	var isInvalidState bool
+
+	r, _, err = reader.ReadRune()
+	if err != nil {
+		return
+	}
+
+	if r != '[' {
+		err = errors.New("parseWikitextLink: first rune isn't '['")
+		return
+	}
+
+	for {
+		r, _, err = reader.ReadRune()
+		if err != nil {
+			break
+		}
+
+		if r == ']' {
+			nextR, _ := Peek(reader, 1)
+			if nextR == "]" {
+				reader.Seek(1, io.SeekCurrent)
+				break
+			} else {
+				isInvalidState = true
+			}
+		} else if r == '|' && isReadingLinkText {
+			isReadingLinkText = false
+			isReadingLinkName = true
+		} else {
+			if isReadingLinkText {
+				linkTextBuilder.WriteRune(r)
+			} else if isReadingLinkName {
+				linkNameBuilder.WriteRune(r)
+			}
+		}
+	}
+
+	link.text = linkTextBuilder.String()
+	link.name = linkNameBuilder.String()
+
+	if len(link.name) == 0 {
+		link.name = link.text
+	}
+
+	if err != nil || isInvalidState {
+		return link, fmt.Errorf("parseWikitextLink: unexpected '%v' (%w)", string(r), err)
+	}
+
+	return
 }
 
 type WikitextTextElement struct {

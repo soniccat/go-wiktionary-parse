@@ -73,6 +73,23 @@ func TestParsingTemplateProp4(t *testing.T) {
 	assert.Equal(t, "doom", e.value.props[0].value.name)
 }
 
+func TestParsingTemplateProp5(t *testing.T) {
+	str := "w:[[Rail (magazine)|Rail]]"
+	e, err := parseTemplateProp(strings.NewReader(str))
+
+	assert.Nil(t, err)
+	assert.Equal(t, "w:Rail", e.name)
+	assert.Nil(t, e.value)
+}
+func TestParsingTemplateProp6(t *testing.T) {
+	str := "w:[[Rail (magazine)]]"
+	e, err := parseTemplateProp(strings.NewReader(str))
+
+	assert.Nil(t, err)
+	assert.Equal(t, "w:Rail (magazine)", e.name)
+	assert.Nil(t, e.value)
+}
+
 func TestParsingTemplate1(t *testing.T) {
 	str := "{{abc}}"
 	e, err := parseTemplateElement(strings.NewReader(str))
