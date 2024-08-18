@@ -79,6 +79,8 @@ func processWikitext(word string, wikitext Wikitext) []WordEntry {
 	languageSectionLevel := -1
 	areSynonyms := false
 	areAntonyms := false
+	isDefinition := false
+	isExample := false
 
 	// read elements until English language section
 	var elementIndex int
@@ -186,24 +188,31 @@ func processWikitext(word string, wikitext Wikitext) []WordEntry {
 				}
 			}
 
+		case *WikitextMarkupElement:
+			if inPartOfSpeech && strings.HasSuffix(re.value, "#") {
+				isDefinition = true
+			} else if inPartOfSpeech && strings.HasSuffix(re.value, ":") {
+				isExample = true
+			}
+
 		case *WikitextTextElement:
 			if inPartOfSpeech {
 				textElements = append(textElements, re.value)
 			}
 
 		case *WikitextNewlineElement:
-			if inPartOfSpeech && len(textElements) > 0 {
+			if isDefinition && len(textElements) > 0 {
 				d := strings.Join(textElements, " ")
-
-				// filter quote info like `#* '''2007''' July 12, The Guardian, ''A welcome invasion''.<!--Article about the success of Scandinavian companies in the British market.-->`
-				isQuoteInfo := strings.HasPrefix(d, "'''") && len(labels) == 0
-				if !isQuoteInfo {
-					cb.AddDefinition(d, labels)
-				}
-
-				textElements = nil
-				labels = nil
+				cb.AddDefinition(d, labels)
+			} else if isExample && len(textElements) > 0 {
+				ex := strings.Join(textElements, " ")
+				cb.AddExample(ex)
 			}
+
+			textElements = nil
+			labels = nil
+			isDefinition = false
+			isExample = false
 		}
 	}
 
