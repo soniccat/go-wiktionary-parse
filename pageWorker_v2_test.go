@@ -15,3 +15,13 @@ func TestPageWorkerV2_1(t *testing.T) {
 	print(InsertsToString(inserts))
 	assert.True(t, len(inserts) > 0)
 }
+
+func TestPageWorkerV2_2(t *testing.T) {
+	wikitext, err := parseWikitext(TestWikiPage2)
+	assert.Nil(t, err)
+
+	inserts := processWikitext("w", wikitext)
+
+	print(InsertsToString(inserts))
+	assert.True(t, len(inserts) > 0)
+}

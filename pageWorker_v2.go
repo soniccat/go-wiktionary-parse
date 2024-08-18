@@ -40,6 +40,7 @@ func pageWorkerV2(
 	for _, page := range pages {
 		word := page.Title
 		logger.Debug("Processing page: %s\n", word)
+		logger.Info("text: %s\n", page.Revisions[0].Text)
 
 		w, err := parseWikitext(page.Revisions[0].Text)
 		if err != nil {
@@ -143,17 +144,32 @@ func processWikitext(word string, wikitext Wikitext) []WordEntry {
 				if len(re.props) > 1 && re.props[1].isStringValue() {
 					cb.AddExample(re.props[1].stringValue())
 				}
-			case "quote-book", "quote-text":
+			case "quote-book", "quote-text", "quote-av", "quote-hansard", "quote-journal", "quote-mailing list", "quote-newsgroup", "quote-song", "quote-us-patent", "quote-video game", "quote-web", "quote-wikipedia":
 				if inPartOfSpeech {
 					textProp := re.PropByName("text")
 					if textProp == nil {
 						textProp = re.PropByName("passage")
 					}
-					if re.name == "quote-book" && textProp == nil && len(re.props) > 6 {
-						textProp = &re.props[6]
-					}
+
+					var ex string
 					if textProp != nil && textProp.isInnerStringValue() {
-						cb.AddExample(textProp.innerStringValue())
+						ex = textProp.innerStringValue()
+					} else {
+						if re.name == "quote-book" && textProp == nil {
+							seventhProp := re.PropStringPropByIndex(6)
+							if seventhProp != nil && seventhProp.isStringValue() {
+								ex = seventhProp.stringValue()
+							}
+						} else if re.name == "quote-journal" && textProp == nil {
+							eigthProp := re.PropStringPropByIndex(7)
+							if eigthProp != nil && eigthProp.isStringValue() {
+								ex = eigthProp.stringValue()
+							}
+						}
+					}
+
+					if len(ex) > 0 {
+						cb.AddExample(ex)
 					}
 				}
 			case "sense":
@@ -199,6 +215,7 @@ type CardBuilder struct {
 
 func (cb *CardBuilder) SetWord(w string) {
 	cb.currentInsert.Word = w
+	cb.currentInsert.WordDefs = make(map[string][]WordDefEntry)
 }
 
 func (cb *CardBuilder) AddTranscription(t string) {

@@ -103,7 +103,7 @@ func main() {
 	iFile := flag.String("file", "", "XML file to parse")
 	db := flag.String("database", "database.db", "Database file to use")
 	lang := flag.String("lang", "English", "Language to target for parsing")
-	cacheFile := flag.String("cache_file", "xmlCache.gob", "Use this as the cache file")
+	cacheFile := flag.String("cache_file", "xmlCache2.gob", "Use this as the cache file")
 	logFile := flag.String("log_file", "", "Log to this file")
 	threads := flag.Int("threads", 5, "Number of threads to use for parsing")
 	useCache := flag.Bool("use_cache", false, "Use a 'gob' of the parsed XML file")
@@ -179,6 +179,10 @@ func main() {
 		check(err)
 	}
 
+	if *makeCache {
+		return
+	}
+
 	logger.Debug("Number of Pages: %d\n", len(data.Pages))
 	logger.Info("Opening database\n")
 	dbh, err := sql.Open("sqlite3", fmt.Sprintf("file:%s?cache=shared&mode=rwc&_mutex=full&_busy_timeout=500", *db))
@@ -208,7 +212,7 @@ func main() {
 	sth.Exec()
 
 	for i := range data.Pages {
-		if data.Pages[i].Title == "break" {
+		if data.Pages[i].Title == "take off" {
 			var wg2 sync.WaitGroup
 			pageWorkerV2(1, &wg2, data.Pages[i:i+1], dbh, mongoCollection)
 			wg2.Wait()

@@ -113,6 +113,22 @@ func (e *WikitextTemplateElement) PropByName(name string) *WikitextTemplateProp 
 	return nil
 }
 
+// to get these |1= |2= |3=, anI starts with 0 which means "|1="
+func (e *WikitextTemplateElement) PropStringPropByIndex(anI int) *WikitextTemplateProp {
+	i := 0
+	for _, v := range e.props {
+		if v.isStringValue() {
+			if i == anI {
+				return &v
+			}
+
+			i += 1
+		}
+	}
+
+	return nil
+}
+
 type WikitextTemplateProp struct {
 	name  string
 	value *WikitextTemplateElement

@@ -1295,3 +1295,207 @@ From earlier {{m|fr|[[break]] de [[chasse]]}}, from {{der|fr|en|shooting brake}}
 
 ===Further reading===
 * {{R:es:DRAE}}`
+
+var TestWikiPage2 = `{{also|takeoff|take-off}}
+==English==
+
+===Pronunciation===
+* {{audio|en|En-au-take off.ogg|a=AU}}
+
+===Verb===
+{{en-verb|take<,,took,taken> off}}
+
+# {{lb|en|transitive}} To [[remove]].
+#: {{ux|en|He '''took off''' his shoes.}}
+#: {{ux|en|The test grader '''takes off''' a point for every misspelled word.}}
+#: {{ux|en|Tomorrow the doctor will '''take''' the cast '''off''' her arm.}}
+#* {{quote-av|en|year=1980|title=w:Charlie's Angels|season=4|number=23|text=Sounds nice. Has a certain ring to it. '''Take''' your shirt '''off.'''|network=[[w:American Broadcasting Company|ABC]]|episode=Three for the Money|director=w:George McCowan|writer=w:[[Lee Sheldon (writer)|Lee Sheldon]]}}
+#* {{quote-book|en|1995|w:Richard Rhodes|quotee=w:Curtis LeMay|pageurl=https://books.google.com/books?id=rSgfbK0hi2UC&pg=PP1&pg=PA574|chapter=Scorpions in a Bottle|Dark Sun: The Making of the Hydrogen Bomb|location=w:New York||publisher=w:Simon & Schuster|574|isbn=9780684804002|The Russian bear has always been eager to stick his paw in Latin American waters.  Now we've got him in a trap, let's '''take''' his leg '''off''' right up to his testicles.  On second thought, let's '''take off''' his testicles, too.}}
+#* {{quote-journal|en||date=2024/1/10|Chris Gilson|RAIL's famous five...|w:[[Rail (magazine)|Rail]]|issue=1000||27|By March 1994, it had moved to Cardiff Canton, and was still allocated there when its nameplates were '''taken off''' in March 1997.}}
+# {{lb|en|transitive}} To [[imitate]] somebody, often in a [[satirical]] manner.
+#* {{quote-journal|en|date=1978/4/22||w:Robert Chesley|The Return Of The Peaches|w:[[Gay Community News (Boston)|Gay Community News]]||12|Yes, the Peaches, on a nearly non-existent budget, lack professionalism. The basic format of this show — '''taking off''' on television, with a soap opera, a quiz show , news, a cooking class and commercials for KY and grass, etc. — resembles kids getting up a skit.}}
+#* {{quote-book|en|year=1986|author=w:John Le Carré|title=A Perfect Spy|publisher=Sceptre|year_published=2011|page=365
+|passage=Pym would '''take''' him '''off''' perfectly, thought Brotherhood. Pym would catch that accent to a tee.}}
+# {{senseid|en|ascend}}{{lb|en|intransitive|of an aircraft or spacecraft}} To [[leave]] the [[ground]] and begin [[flight]]; to [[ascend]] into the [[air]].
+#: {{ux|en|The plane has been cleared to '''take off''' from runway 3.}}
+# {{lb|en|intransitive}} To become [[successful]], to [[flourish]].
+#: {{ux|en|The business has really '''taken off''' this year and has made quite a profit.}}
+#* '''2007''' July 12, The Guardian, ''A welcome invasion''.<!--Article about the success of Scandinavian companies in the British market.-->
+#*: The message is now the medium – that is powerful and means products can '''take off''' practically all by themselves.
+#* {{quote-journal|en|date=2023 November 1|author=Nick Brodrick talks to Jason Cocker|title=A station that "oozes" customer service...|journal=RAIL|issue=995|pages=52-53|text=As well as the boom in off-peak leisure numbers, "there has been a big spike in passenger assistance - that's really '''taken off''' as well", he continues. "We're probably victims of our own success because we promote this more than we ever used to. We promote how accessible the railways are. I think that this area has more than doubled from pre-COVID levels.}}
+# {{lb|en|intransitive}} To [[depart]].
+#: {{ux|en|I'm going to '''take off''' now.}}
+#: {{ux|en|'''Take off''', loser!}}
+#* {{quote-text|en|year=2020|author=Armando Lazzari|title=Dinner with the Mafia
+|passage=Ben threw twenty bucks on the table, grabbed the map and '''took off''' after the thief, following Susan who had run off before him.}}
+# {{lb|en|transitive}} To [[quantify]].
+#: {{ux|en|I'll '''take off''' the concrete and steel for this construction project.}}
+# {{lb|en|ambitransitive}} To absent oneself from (work or other responsibility), especially with permission.
+#: {{ux|en|If you '''take off''' for Thanksgiving you must work Christmas and vice versa.}}
+#: {{ux|en|He decided to let his mother '''take''' a night '''off''' from cooking, so he took her and his siblings out to dinner.}}
+# {{lb|en|intransitive|slang|dated}} To [[take]] [[drug]]s; to [[inject]] drugs.
+# {{lb|en|transitive|slang|dated}} To [[steal]] (something) or [[rob]] (someone).
+# {{lb|en|transitive|archaic}} To [[swallow]].
+#: {{ux|en|to '''take off''' a glass of wine}}
+
+====Synonyms====
+* {{sense|remove clothing}} {{l|en|doff}}
+* {{sense|imitate}} {{l|en|ape}}, {{l|en|imitate}}, {{l|en|impersonate}}, {{l|en|mimic}}
+* {{sense|become successful}} {{l|en|bloom}}, {{l|en|blossom}}, {{l|en|flourish}}, {{l|en|grow}}, {{l|en|thrive}}
+* {{sense|depart}} ''See'' [[depart]]
+
+====Antonyms====
+* {{antsense|remove}} {{l|en|don}} (''applies to clothing only''), [[put on]]
+* {{antsense|ascend}} {{l|en|land}} (''also applies to spacecraft and some other vessels'')
+* {{antsense|begin flight}} {{l|en|land}}, {{l|en|touch down}}
+
+====Derived terms====
+{{col3|en
+|{{l|en|take-off|pos=n}}
+|{{l|en|takeoff|pos=n}}|take off one's gloves
+|take one's hat off to
+}}
+
+====Translations====
+{{trans-top|to remove}}
+* Arabic: {{t|ar|خَلَعَ}} {{qualifier|clothing}}
+* Armenian: {{t+|hy|հանել|sc=Armn}}
+* Azerbaijani: {{t+|az|çıxarmaq}}
+* Belarusian: {{t|be|здыма́ць|impf|sc=Cyrl}}, {{t|be|зняць|pf|sc=Cyrl}} {{qualifier|clothing}}
+* Catalan: {{t+|ca|treure}}
+* Cherokee: {{q|pants}} {{t|chr|ᎠᏑᎳᎩᎠ}}, {{q|shoes}} {{t|chr|ᏓᎳᏑᎳᎩᎠ}}, {{q|mask or veil}} {{t|chr|ᎠᎵᎬᏚᎴᎠ}}
+* Chinese:
+*: Mandarin: {{qualifier|clothing}} {{t+|cmn|脫|tr=tuō}}
+* Czech: {{t|cs|svléci|pf}}, {{t+|cs|sundat|pf}}
+* Danish: {{t|da|fjerne}}, {{t+|da|aftage}}
+* Dutch: {{t+|nl|uittrekken}} {{qualifier|clothing}}, {{t+|nl|afzetten}} {{qualifier|hat}}
+* Finnish: {{t|fi|[[ottaa]] [[pois]]}}
+* French: {{t+|fr|enlever}}, {{t+|fr|ôter}}
+* Georgian: {{t-needed|ka}}
+* German: {{t+|de|ausziehen}} {{gloss|clothing}}, {{t+|de|loslösen}}, {{t+|de|abziehen}}, {{t+|de|ablegen}}, {{t+|de|abnehmen}}
+* Greek: {{t+|el|βγάζω}}
+* Hawaiian: {{t|haw|wehe}}
+* Hindi: {{t+|hi|उतारना}}
+* Hungarian: {{t+|hu|levesz}}, {{t+|hu|levet}}
+* Icelandic: {{t|is|taka af}}, {{t|is|fjarlægja}}, {{t|is|fara úr}} {{qualifier|referring to clothing that closes around the body or parts of it}}
+* Ingrian: {{t|izh|hylätä}}
+* Irish: {{t|ga|bain de}}
+* Italian: {{t+|it|togliere}}
+* Japanese: {{qualifier|clothing}} {{t+|ja|脱ぐ|tr=ぬぐ, nugu}}
+* Khmer: {{t+|km|ដោះ}}
+* Korean: {{t+|ko|벗다}} {{qualifier|clothing}}
+* Kurdish:
+*: Central Kurdish: {{t|ckb|داکەنە}}
+* Latin: {{t|la|exuō}}
+* Macedonian: {{t|mk|си́мнува}}, {{t|mk|тр́гнува}}, (''clothing'') {{t|mk|сле́кува}}, {{t|mk|собле́кува}}
+* Maltese: {{t|mt|neħħa}}
+* Maori: {{t|mi|marere}}
+* Ngazidja Comorian: {{t|zdj|tsua|alt=utsua}} {{gloss|clothing}}
+* Norwegian: {{t|no|ta av}}
+*: Bokmål: {{t+|nb|fjerne}}
+* Old English: {{t|ang|dōn of}}
+* Polish: {{t+|pl|zdejmować|impf}}, {{t+|pl|zdjąć|pf}}
+* Portuguese: {{t+|pt|tirar}}
+* Romanian: {{t|ro|da jos}}
+* Russian: {{t+|ru|снима́ть|impf}} {{qualifier|usually of clothing}}, {{t+|ru|снять|pf}}; {{t+|ru|убира́ть|impf}}, {{t+|ru|убра́ть|pf}}
+* Spanish: {{t+|es|quitarse}}
+* Swedish: {{t+|sv|ta av}}
+* Thai: {{t+|th|ถอด}}
+* Tibetan: {{t|bo|ཕུད}}
+* Tocharian B: {{t|txb|rutk-}}
+* Ukrainian: {{t|uk|зніма́ти|impf|sc=Cyrl}}, {{t|uk|зня́ти|pf|sc=Cyrl}} {{qualifier|clothing}}
+* Urdu: {{t+|ur|اتارنا|tr=utārnā|sc=ur-Arab}}
+* Vietnamese: {{t+|vi|bỏ}}
+{{trans-bottom}}
+
+{{trans-see|to imitate|imitate}}
+
+{{trans-top|to begin flight}}
+* Albanian: {{t-needed|sq}}
+* Arabic: {{t|ar|أَقْلَعَ}}
+* Armenian: {{t+|hy|թռչել}}, {{t+|hy|պոկվել}}
+* Basque: {{t|eu|aireratu}}
+* Belarusian: {{t|be|узлята́ць|impf}}, {{t|be|узляце́ць|pf}}
+* Bulgarian: {{t+|bg|отлитам}}, {{t+|bg|излитам}}
+* Burmese: {{t-needed|my}}
+* Catalan: {{t+|ca|enlairar-se}}
+* Chinese:
+*: Mandarin: {{t+|cmn|起飛|tr=qǐfēi}}
+* Czech: {{t|cs|vzl��tnout}}
+* Danish: {{t|da|afgå}}
+* Esperanto: {{t|eo|ekflugi}}
+* Estonian: {{t-needed|et}}
+* Finnish: {{t+|fi|nousta}}, {{t|fi|lähteä lentoon}}
+* French: {{t+|fr|décoller}}, {{t+|fr|prendre son vol}}, {{t+|fr|prendre son essor}}
+* Galician: {{t+|gl|engalar}}
+* Georgian: {{t-needed|ka}}
+* German: {{t+|de|starten}}, {{t+|de|abheben}}
+* Greek: {{t+|el|απογειώνομαι}}
+* Hebrew: {{t+|he|הִמְרִיא|tr=himrí}}
+* Hindi: {{t-needed|hi}}
+* Hungarian: {{t+|hu|felszáll}}
+* Icelandic: {{t|is|hefja sig á loft}}, {{t|is|hefja sig á flug}}, {{t|is|takast á loft}}, {{t|is|takast á flug}}
+* Interlingua: {{t|ia|elevar|alt=elevar se}}
+* Italian: {{t+|it|decollare}}
+* Japanese: {{t+|ja|飛び立つ|tr=とびたつ, tobitatsu|sc=Jpan}}
+* Khmer: {{t|km|ហោះ​ឡើង}}
+* Korean: {{t+|ko|이륙하다}}
+* Latvian: {{t-needed|lv}}
+* Lithuanian: {{t-needed|lt}}
+* Macedonian: {{t|mk|поле́тува}}
+* Maori: {{t|mi|hārewa}}
+* Mongolian: {{t-needed|mn}}
+* Norwegian: {{t-needed|no}}
+*: Bokmål: {{t|nb|ta av}}, {{t+|nb|lette}}
+* Ottoman Turkish: {{t|ota|هوالانمق|tr=havalanmak}}
+* Portuguese: {{t+|pt|decolar}} {{q|Brazil}}, {{t+|pt|descolar}} {{q|Portugal}}, {{t|pt|levantar voo}}
+* Romanian: {{t+|ro|decola}}
+* Russian: {{t+|ru|взлета́ть|impf}}, {{t+|ru|взлете́ть|pf}}
+* Spanish: {{t+|es|despegar}}
+* Swedish: {{t+|sv|lyfta}}
+* Thai: {{t|th|ออกตัว}}
+* Turkish: {{t+|tr|havalanmak}}
+* Ukrainian: {{t|uk|зліта́ти|impf}}, {{t|uk|злеті́ти|pf}}
+* Vietnamese: {{t+|vi|cất cánh}}
+{{trans-bottom}}
+
+{{trans-top|to become successful}}
+* Arabic: {{t|ar|اِزْدَهَرَ}}
+* Chinese:
+*: Mandarin: {{t+|cmn|騰飛|tr=téngfēi}}
+* Dutch: {{t|nl|een vlucht nemen}}
+* Finnish: {{t|fi|lähteä lentoon}}
+* German: {{t+|de|durchstarten}}, {{t|de|in Schwung kommen}}
+* Portuguese: {{t+|pt|deslanchar}}
+* Russian: {{t+|ru|подняться|pf}}, {{t+|ru|подниматься|impf}}
+* Swedish: {{t|sv|ta fart}}
+{{trans-bottom}}
+
+{{trans-top|to depart}}
+* Finnish: {{t+|fi|lähteä}}, {{t+|fi|häipyä}}
+* French: {{t+|fr|décoller}}, {{t+|fr|s'arracher}}
+* German: {{t+|de|abhauen}} {{qualifier|slang}}, {{t|de|sich verziehen}} {{qualifier|slang}}, {{t|de|weg sein}} {{qualifier|coll.}}, {{t+|de|den Abflug machen}} {{qualifier|coll. / idiomatic}}, {{t+|de|fortgehen}}
+{{trans-bottom}}
+
+{{trans-see|to quantify|quantify}}
+
+{{trans-top|to absent oneself from work or other responsibility}}
+* Finnish: {{t|fi|[[pitää]] [[vapaa]]ta}}
+* German: {{t+|de|freinehmen}}
+* Portuguese: {{t+|pt|folgar}}
+{{trans-bottom}}
+
+====See also====
+* to [[lift off]]
+
+===Noun===
+{{en-noun}}
+
+# {{nonstandard spelling of|en|takeoff}}
+#* {{quote-book|en|year=1986 |title=Working-class Formation|author=Ira Katznelson; Aristide R. Zolberg |page=45 |ISBN=|passage=France never experienced a "'''take off'''" of the sort hypothesized by W. W. Rostow — a sudden spurt of output that begins sustained industrial growth.}}
+#* {{quote-book|en|year=2003|title=Estimating Building Costs |author=Calin M. Popescu; Kan Phaobunjong; Nuntapong Ovararin |page=354 |ISBN=|passage=Therefore, the only sure way to estimate the quantity of lumber required for any particular job is to do a '''take off''' of each piece of lumber needed for the work.}}
+#* {{quote-book|en|year=2003 |title=Jet Propulsion|author=N. A. Cumpsty |page= |ISBN=|passage=This is virtually equal to the minimum value shown above to be necessary in the case of a total loss in thrust from one of the four engines at '''take off'''.}}
+
+===Anagrams===
+* {{anagrams|en|a=aeffkot|offtake}}
+`
