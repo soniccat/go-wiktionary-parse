@@ -48,10 +48,10 @@ func pageWorkerV2(
 			continue
 		}
 
-		w = FilterWikitextString(
-			w,
-			FilterWikitextMarkup,
-		)
+		// w = FilterWikitextString(
+		// 	w,
+		// 	FilterWikitextMarkup,
+		// )
 
 		inserts = append(inserts, processWikitext(word, w)...)
 	}
@@ -194,7 +194,13 @@ func processWikitext(word string, wikitext Wikitext) []WordEntry {
 		case *WikitextNewlineElement:
 			if inPartOfSpeech && len(textElements) > 0 {
 				d := strings.Join(textElements, " ")
-				cb.AddDefinition(d, labels)
+
+				// filter quote info like `#* '''2007''' July 12, The Guardian, ''A welcome invasion''.<!--Article about the success of Scandinavian companies in the British market.-->`
+				isQuoteInfo := strings.HasPrefix(d, "'''") && len(labels) == 0
+				if !isQuoteInfo {
+					cb.AddDefinition(d, labels)
+				}
+
 				textElements = nil
 				labels = nil
 			}
