@@ -1,5 +1,29 @@
 package main
 
+var TestWikiPage6 = `
+==English==
+
+===Etymology===
+From {{suffix|en|emblematic|ize}}.
+
+===Verb===
+{{en-verb}}
+
+# {{lb|en|transitive}} To [[render#Verb|render]] (someone or something) [[emblematic]].
+#: {{ux|en|to '''emblematicize''' a picture}}
+#* {{RQ:Walpole Painting in England|volume=IV|chapter=Painters in the Reign of King [[w:George II of Great Britain|George II]]|page=60|passage=He &#91;{{w|Jacopo Amigoni}}&#93; drevv the queen &#91;{{w|Caroline of Ansbach}}, consort of George II&#93; and the three eldeſt princeſſes, and prints were taken from his pictures, vvhich he generally endeavoured to '''emblematicize''' by genii and Cupids.}}
+
+====Related terms====
+* {{l|en|emblematize}}
+
+===Further reading===
+* {{#if:
+  | {{PAGENAME}} under [https://www.websters1913.com/words/{{urlencode:{{ucfirst:{{{2}}}}}|PATH}} {{{2}}}]
+  | [https://www.websters1913.com/words/Emblematiccize]
+}} in ''[[Wiktionary:Webster's Dictionary, 1913|Webster’s Revised Unabridged Dictionary]]'', G. & C. Merriam, 1913
+
+`
+
 var TestWikiPage5 = `
 ==English==
 {{wikipedia}}

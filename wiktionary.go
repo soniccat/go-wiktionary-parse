@@ -190,6 +190,50 @@ func parseTemplateElement(reader *strings.Reader) (WikitextTemplateElement, erro
 					isInvalidState = true
 					break
 				}
+			} else if readingName {
+				bstr, _ := Peek(reader, 1)
+				if strings.HasPrefix(bstr, "{") {
+					reader.UnreadByte()
+
+					// important: inner templates would be converted to text
+					innerElement := WikitextTemplateElement{}
+					innerElement, err = parseTemplateElement(reader)
+					if err != nil {
+						break
+					}
+
+					var addStr string
+					if len(innerElement.props) == 0 {
+						addStr = innerElement.name
+					} else {
+						p0 := innerElement.props[0]
+						if p0.isStringValue() {
+							addStr = p0.stringValue()
+						} else if p0.isInnerStringValue() {
+							addStr = p0.innerStringValue()
+						}
+					}
+					nameBuilder.WriteString(addStr)
+
+				} else {
+					// read sth like {2}
+					nameBuilder.WriteRune(r)
+					for {
+						var r2 rune
+						r2, _, err = reader.ReadRune()
+						if err != nil {
+							break
+						}
+						nameBuilder.WriteRune(r2)
+						if r2 == '}' {
+							break
+						}
+					}
+
+					if err != nil {
+						break
+					}
+				}
 			} else {
 				isInvalidState = true
 				break
