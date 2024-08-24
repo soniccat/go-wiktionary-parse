@@ -1,5 +1,54 @@
 package main
 
+var TestWikiPage5 = `
+==English==
+{{wikipedia}}
+
+===Etymology===
+{{compound|en|photon|sphere}}.
+
+===Noun===
+{{en-noun}}
+
+# {{lb|en|of a black hole}} A spherical limit around a [[black hole]] at such distance that any photon meeting it tangentially is constrained to travel in a circular [[orbit]]; {{lb|en|more loosely}} the region between this limit and the [[event horizon]].
+#: {{synonyms|en|photon circle|last photon orbit}}
+#: {{usex|en|The radius of the '''photon sphere''' is also the lower bound for any stable orbit.}}
+#: {{usex|en|For a [[Schwarzschild black hole|Schwarzschild]] (non-spinning) black hole, the radius of the '''photon sphere''' is 1.5 times the [[Schwarzschild radius]].}}
+#* {{quote-book|en|year=2000|author=Edward Harrison|title=Cosmology|edition=2nd|pageurl=https://books.google.com.au/books?id=kNxeHD2cbLYC&pg=PA250&dq=%22photon+sphere%22%7C%22photon+spheres%22&hl=en&newbks=1&newbks_redir=0&sa=X&ved=2ahUKEwiZ_pzt3K39AhX7EkQIHbHVAasQ6AF6BAgIEAI#v=onepage&q=%22photon%20sphere%22%7C%22photon%20spheres%22&f=false|page=250|publisher=w:Cambridge University Press
+|passage=The redshift of light leaking outward from the '''photon sphere''' is <math>\sqrt{3} - 1 = 0.732</math>. All light rays approaching a black hole closer than <math>\sqrt{3}</math> times the radius of the '''photon sphere''' spiral inwards and are captured (see Figure 13.5).}}
+#* {{quote-book|en|year=2015|author=Katherine Blundell|title=Black Holes: A Very Short Introduction|pageurl=https://books.google.com.au/books?id=72nLCgAAQBAJ&pg=PA44&dq=%22photon+sphere%22%7C%22photon+spheres%22&hl=en&newbks=1&newbks_redir=0&sa=X&ved=2ahUKEwiZ_pzt3K39AhX7EkQIHbHVAasQ6AF6BAhXEAI#v=onepage&q=%22photon%20sphere%22%7C%22photon%20spheres%22&f=false|page=44|publisher=w:Oxford University Press
+|passage=For a Kerr black hole though, one that has spin, the situation is different for the orbits near the black hole. In particular, there are two '''photon spheres''', in contrast with the one photon sphere around a stationary Schwarzschild black hole. The outermost sphere is for photons that are orbiting oppositely to the direction of rotation of the black hole (the ones we say are on ''retrograde'' orbits). Inside this is the '''photon sphere''' for photons travelling in the same sense around the black hole as it is rotating (on ''prograde'' orbits). For a very slowly rotating black hole that isn't so very different from a Schwarzschild black hole, these two '''photon spheres''' are very nearly co-spatial. For black holes of increasing spin, these surfaces are increasingly further apart.}}
+#* '''2017''', Lori Gardi, ''The Mandelbrot Set as a Quasi-Black Hole'', David de Hilster (editor), ''John Chappell Natural Philosophy Society: 2017 Proceedings'', John Chappell Natural Philosophy Society, [https://books.google.com.au/books?id=WNBdDwAAQBAJ&pg=PA65&dq=%22photon+sphere%22%7C%22photon+spheres%22&hl=en&newbks=1&newbks_redir=0&sa=X&ved=2ahUKEwiZ_pzt3K39AhX7EkQIHbHVAasQ6AF6BAhQEAI#v=onepage&q=%22photon%20sphere%22%7C%22photon%20spheres%22&f=false page 65],
+#*: The lesser known region just outside the black hole is referred to as the photon sphere (outer grey region in Figure 9). The photon sphere is a region of space just outside the black hole where photons are forced to travel in complex orbits due to the extreme curvature of space within this region [2].{{...}}Finally, the boundary that exactly separates the black hole from the '''photon sphere''' is referred to as the event horizon (white circle surrounding the black region in Figure 9).
+#* {{quote-book|en|year=2022|author=Wouter Schmitz|title=Understanding Relativity|pageurl=https://books.google.com.au/books?id=9bKiEAAAQBAJ&pg=PA277&dq=%22photon+sphere%22%7C%22photon+spheres%22&hl=en&newbks=1&newbks_redir=0&sa=X&ved=2ahUKEwiZ_pzt3K39AhX7EkQIHbHVAasQ6AF6BAheEAI#v=onepage&q=%22photon%20sphere%22%7C%22photon%20spheres%22&f=false|page=277|publisher=Springer
+|passage=The region inside the '''photon sphere''' has a diameter of 1.5× Schwarzschild diameter D(s), but due to the curvature, this region gets magnified to 2.6× D(s).}}
+
+====Usage notes====
+* The photon sphere is distinct from the [[event horizon]]. An object in ''[[free fall]]'' that crosses the photon sphere from above thence follows an unstable orbit and spirals into the black hole. However—in theory—it can still escape, by receiving a sufficiently large acceleration boost. In contrast, once an object passes through the event horizon it cannot escape, since it would need to be accelerated beyond the [[speed of light]].
+
+====Translations====
+{{trans-top|spherical boundary surrounding a black hole in which photons travel in circular orbits}}
+* French: {{t|fr|sphère de photons|f}}, {{t|fr|sphère photonique|f}}
+* German: {{t-needed|de}}
+* Italian: {{t|it|sfera di fotoni|f}}, {{t|it|sfera fotonica|f}}
+{{trans-bottom}}
+
+===See also===
+{{top3}}
+* {{l|en|accretion disc}}
+* {{l|en|black hole}}
+* {{l|en|black hole jet}}
+* {{l|en|ergosphere}}
+* {{l|en|event horizon}}
+* {{l|en|innermost stable circular orbit}}
+* {{l|en|photosphere}} {{gloss|visible surface of a star}}
+* {{l|en|Roche limit}}
+* {{l|en|singularity}}
+{{bottom}}
+
+{{C|en|Black holes|Light|Orbits}}
+`
+
 var TestWikiPage4 = `
 ==English==
 {{was wotd|2019|December|21}}

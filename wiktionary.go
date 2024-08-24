@@ -254,6 +254,14 @@ func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 	readingStringValue := false
 	isInvalidState := false
 
+	var writeF func(str string) = func(str string) {
+		if readingName {
+			nameBuilder.WriteString(str)
+		} else if readingStringValue {
+			valueStringBuilder.WriteString(str)
+		}
+	}
+
 	for {
 		r, _, err = reader.ReadRune()
 		if err != nil {
@@ -269,12 +277,7 @@ func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 				readingName = false
 				readingStringValue = true
 			} else {
-				if readingStringValue {
-					valueStringBuilder.WriteRune(r)
-				} else {
-					isInvalidState = true
-					break
-				}
+				valueStringBuilder.WriteRune(r)
 			}
 
 		} else if r == '|' || r == '}' {
@@ -282,25 +285,25 @@ func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 			if r == '|' {
 				bstr, _ := Peek(reader, 4)
 				if strings.HasPrefix(bstr, "_|") {
-					nameBuilder.WriteString(" ")
+					writeF(" ")
 					_, err = reader.Seek(2, io.SeekCurrent)
 					if err == nil {
 						isSeparatorProcessed = true
 					}
 				} else if strings.HasPrefix(bstr, "or|") {
-					nameBuilder.WriteString(" or ")
+					writeF(" or ")
 					_, err = reader.Seek(3, io.SeekCurrent)
 					if err == nil {
 						isSeparatorProcessed = true
 					}
 				} else if strings.HasPrefix(bstr, "and|") {
-					nameBuilder.WriteString(" and ")
+					writeF(" and ")
 					_, err = reader.Seek(4, io.SeekCurrent)
 					if err == nil {
 						isSeparatorProcessed = true
 					}
 				} else if strings.HasPrefix(bstr, ";|") {
-					nameBuilder.WriteString("; ")
+					writeF("; ")
 					_, err = reader.Seek(2, io.SeekCurrent)
 					if err == nil {
 						isSeparatorProcessed = true
@@ -308,9 +311,17 @@ func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 				}
 			}
 
+			bstr, _ := Peek(reader, 1)
 			if err != nil {
 				isInvalidState = true
 				break
+			} else if !isSeparatorProcessed && r == '}' {
+				if strings.HasPrefix(bstr, "}") {
+					reader.UnreadByte()
+					break
+				} else {
+					writeF(string(r))
+				}
 			} else if !isSeparatorProcessed {
 				reader.UnreadByte()
 				break
@@ -353,24 +364,10 @@ func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 
 			if isProcessed {
 				if len(addStr) > 0 {
-					if readingName {
-						nameBuilder.WriteString(addStr)
-					} else if readingStringValue {
-						valueStringBuilder.WriteString(addStr)
-					} else {
-						isInvalidState = true
-						break
-					}
+					writeF(addStr)
 				}
 			} else {
-				if readingName {
-					nameBuilder.WriteRune(r)
-				} else if readingStringValue {
-					valueStringBuilder.WriteRune(r)
-				} else {
-					isInvalidState = true
-					break
-				}
+				writeF(string(r))
 			}
 		}
 	}

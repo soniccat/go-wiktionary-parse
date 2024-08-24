@@ -108,6 +108,15 @@ func TestParsingTemplateProp8(t *testing.T) {
 	assert.Equal(t, "Taming of the Shrew, I, ii", e.innerStringValue())
 }
 
+func TestParsingTemplateProp9(t *testing.T) {
+	str := "passage=The redshift of light leaking outward from the '''photon sphere''' is <math>\\sqrt{3} - 1 = 0.732</math>. All light rays approaching a black hole closer than <math>\\sqrt{3}</math> times the radius of the '''photon sphere''' spiral inwards and are captured (see Figure 13.5)."
+	e, err := parseTemplateProp(strings.NewReader(str))
+
+	assert.Nil(t, err)
+	assert.Equal(t, "passage", e.name)
+	assert.Equal(t, "The redshift of light leaking outward from the '''photon sphere''' is <math>\\sqrt{3} - 1 = 0.732</math>. All light rays approaching a black hole closer than <math>\\sqrt{3}</math> times the radius of the '''photon sphere''' spiral inwards and are captured (see Figure 13.5).", e.innerStringValue())
+}
+
 func TestParsingTemplate1(t *testing.T) {
 	str := "{{abc}}"
 	e, err := parseTemplateElement(strings.NewReader(str))
