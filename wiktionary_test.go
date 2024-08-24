@@ -90,6 +90,15 @@ func TestParsingTemplateProp6(t *testing.T) {
 	assert.Nil(t, e.value)
 }
 
+func TestParsingTemplateProp7(t *testing.T) {
+	str := "passage={{...}} the '''hypermasculinized''' image of rappers such as Puff Daddy (Sean Combs) {{...}}"
+	e, err := parseTemplateProp(strings.NewReader(str))
+
+	assert.Nil(t, err)
+	assert.Equal(t, "passage", e.name)
+	assert.Equal(t, "... the '''hypermasculinized''' image of rappers such as Puff Daddy (Sean Combs) ...", e.innerStringValue())
+}
+
 func TestParsingTemplate1(t *testing.T) {
 	str := "{{abc}}"
 	e, err := parseTemplateElement(strings.NewReader(str))
@@ -281,4 +290,21 @@ func TestParsingWikitext7(t *testing.T) {
 	assert.Equal(t, WikitextElementTypeNewline, text.elements[3].ElementType())
 	assert.Equal(t, WikitextElementTypeMarkup, text.elements[4].ElementType())
 	assert.Equal(t, WikitextElementTypeTemplate, text.elements[5].ElementType())
+}
+
+func TestParsingWikitext8(t *testing.T) {
+	str := `==English==
+
+===Etymology===
+{{prefix|en|hyper|masculinized}}
+
+===Adjective===
+{{en-adj}}
+
+# Extremely [[masculinize]]d.
+#* {{quote-text|en|year=2006|author=Robert C. Smith|title=Mexican New York: transnational lives of new immigrants|page=132|passage={{...}} the '''hypermasculinized''' image of rappers such as Puff Daddy (Sean Combs) {{...}}}}`
+	text, err := parseWikitext(str)
+
+	assert.Nil(t, err)
+	assert.Equal(t, 15, len(text.elements))
 }

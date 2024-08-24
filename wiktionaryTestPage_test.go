@@ -1,5 +1,987 @@
 package main
 
+var TestWikiPage3 = `[2024-08-24T13:27:37+03:00] <ERROR> text {{also|-free}}
+==English==
+
+===Etymology===
+{{root|en|ine-pro|*preyH-}}
+From {{inh|en|enm|free}}, {{m|enm|fre}}, {{m|enm|freo}}, from {{inh|en|ang|frēo||free}}, from {{inh|en|gmw-pro|*frī}}, from {{inh|en|gem-pro|*frijaz||beloved, not in bondage}}, from {{inh|en|ine-pro|*priHós||dear, beloved}}, from {{m|ine-pro|*preyH-||to love, please}}. Related to {{m|en|friend}}.
+{{box-top|cognates, etc}}
+Germanic cognates include {{cog|fy|frij||free}}, {{cog|nl|vrij||free}}, {{cog|nds|free||free}}, {{cog|de|frei||free}}, {{cog|da|-}}, {{cog|sv|-}} and {{cog|no|fri||free}}.
+
+Other cognates include {{cog|ru|приятель||friend}} and {{cog|sa|प्रिय|tr=priyá-||beloved}}.
+
+Germanic and Celtic are the only Indo-European language branches in which the PIE word with the meaning of "dear, beloved" acquired the additional meaning of "free" in the sense of "not in bondage". This was an extension of the idea of "characteristic of those who are dear and beloved", in other words friends and tribe members (in contrast to unfree inhabitants from other tribes and prisoners of war, many of which were among the slaves – compare the Latin use of [[liberi]] to mean both "free persons" and "children of a family").<ref>{{R:Etymonline}}</ref><ref>[https://www.dwds.de/wb/frei "frei"] in Digitales Wörterbuch der deutschen Sprache</ref>
+{{box-bottom}}
+The verb comes from {{inh|en|enm|freen}}, {{m|enm|freoȝen}}, from {{inh|en|ang|frēon}}, {{m|ang|frēoġan||to free; make free}}, from {{inh|en|gmw-pro|*frijōn}}, from {{inh|en|gem-pro|*frijōną}}, from {{der|en|ine-pro|*preyH-}}.
+
+===Pronunciation===
+* {{enPR|frē}}, {{IPA|en|/fɹiː/|[fɹɪi̯]}}
+* {{audio|en|En-uk-free.ogg|a=UK}}
+* {{audio|en|en-us-free.ogg|a=US}}
+* {{rhymes|en|iː|s=1}}
+* {{homophones|en|three|aa=th-fronting}}
+
+[[File:Free Beer.jpg|thumb|A sign advertising '''free''' beer (obtainable without payment). It is a joke: every day the sign is read, the free beer will be available "tomorrow" ([[therefore]] never).]]
+[[File:Buy one, get one free ^ - geograph.org.uk - 153952.jpg|thumb|A "buy one get one '''free'''" sign at a flower stand (obtainable without additional payment).]]
+[[File:Berkeley Farms Fat-Free Half & Half.jpg|thumb|This food product ([[half and half]]) is labelled "fat '''free'''", meaning it contains no detectable fat.]]
+
+===Adjective===
+{{en-adj|er|more}}
+
+# {{lb|en|social}} [[unconstrained|Unconstrained]].
+#: {{ux|en|He was given '''free''' rein to do whatever he wanted.}}
+#* {{RQ:Shakespeare Tempest|5|1|passage=Quickly, spirit! / Thou shalt [[ere]] long be '''free'''.}}
+#* {{quote-book|en|year=1899|author=w:Stephen Crane
+|title=s:Twelve O'Clock|chapter=1
+|passage=There was some laughter, and Roddle was left '''free''' to expand his ideas on the periodic visits of cowboys to the town. “Mason Rickets, he had ten big punkins a-sittin' in front of his store, an' them fellers from the Upside-down-F ranch shot 'em up {{...}}.”}}
+#* {{quote-journal|en|date=2013-08-10|volume=408|issue=8848|magazine=w:The Economist|author=Schumpeter
+|title=[http://www.economist.com/news/business/21583242-businesspeople-have-become-too-influential-government-cronies-and-capitols Cronies and capitols]
+|passage=Policing the relationship between government and business in a '''free''' society is difficult. Businesspeople have every right to lobby governments, and civil servants to take jobs in the private sector.}}
+#: {{syn|en|unconstrained|unfettered|unhindered}}
+#: {{ant|en|constrained|restricted}}
+## Not [[imprisoned]] or [[enslaved]].
+##: {{ux|en|a '''free''' man}}
+##: {{ant|en|bound|enslaved|imprisoned}}
+## [[generous|Generous]]; [[liberal]].
+##: {{ux|en|He's very '''free''' with his money.}}
+## {{lb|en|obsolete}} Clear of offence or crime; guiltless; innocent.
+##* {{quote-book|en|author=w:John Dryden|title=[[w:Oedipus (Dryden play)|Oedipus: A Tragedy]]| year=1679| page=59| passage=My hands are guilty, but my heart is '''free'''.}}
+## Without [[obligation]]s.
+##: {{ux|en|'''free''' time}}
+## To be enjoyed by anyone freely.
+##: {{ux|en|a '''free''' school}}
+##* {{quote-book|en|author=w:William Shakespeare| title={{w|Taming of the Shrew}}, I, ii| year=1590-2| passage=Why, sir, I pray, are not the streets as '''free''' / For me as for you?}}
+## {{lb|en|of a government, country}} Upholding individual rights.
+##: {{ux|en|This is a '''free''' country.}}
+## {{lb|en|software}} With no or only freedom-preserving [[limitation]]s on distribution or modification.
+##: {{ux|en|OpenOffice is [[free software|'''free''' software]].}}
+##: {{syn|en|libre}}
+##: {{ant|en|proprietary|nonfree}}
+## {{lb|en|software}} Intended for [[release]], as opposed to a [[checked]] version.
+# {{senseid|en|free of charge}} Obtainable without any [[payment]].
+#* {{quote-journal|en|date=2013-07-20|volume=408|issue=8845|magazine=w:The Economist
+|title=[http://www.economist.com/news/http://www.economist.com/news/business/21582001-army-new-online-courses-scaring-wits-out-traditional-universities-can-they The attack of the MOOCs]
+|passage=Since the launch early last year of&nbsp;[&hellip;] two Silicon Valley start-ups offering '''free''' education through MOOCs, massive open online courses, the ivory towers of academia have been shaken to their foundations. University brands built in some cases over centuries have been forced to contemplate the possibility that information technology will rapidly make their existing business model obsolete.}}
+#: {{ux|en|The government provides '''free''' health care.}}
+#: {{ux|en|It's '''free''' real estate.}}
+#: {{syn|en|free of charge|gratis}}
+## {{lb|en|by extension|chiefly|used in advertising}} {{cap|complimentary}}.
+##: {{ux|en|Buy a TV to get a '''free''' DVD player!}}
+# {{lb|en|abstract}} [[unconstrained|Unconstrained]].
+## {{lb|en|algebra|of an [[algebraic structure]]}} {{non-gloss|In any of various technical senses}} [[generic]], [[universal]].
+### {{lb|en|most generally|category theory|of an object <math>F</math> in a [[concrete]] category, with respect to a set <math>X</math> and a map <math>i</math> from <math>X</math> to the underlying set of <math>F</math>}} Such that any map <math>f</math> from <math>X</math> to the underlying set of an object <math>A</math> in the same category as <math>F</math> induces a map <math>\bar f</math> from <math>F</math> to <math>A</math> which is compatible with <math>f</math> (i.e. such that <math>f = \bar f \circ i</math>).
+### {{lb|en|group theory|of a group}} Having a set of [[generators]] which satisfy no [[non-trivial]] [[relation]]s; equivalently, being the group of [[reduced word]]s on a set of generators.
+###: {{ux|en|The [[fundamental group]] of the [[figure eight]] is '''free''' of rank 2.}}
+### {{lb|en|[[commutative algebra]]|of a [[module]]}} Having a [[linearly independent]] set of generators (called a [[basis]]).
+## {{lb|en|logic|of a [[variable]]}} Unconstrained by [[quantifier]]s.
+##: {{ux|en|<math>z</math> is the '''free''' variable in <math>\forall x\exists y:xy=z</math>.}}
+##: {{ant|en|bound}}
+## {{lb|en|programming}} Unconstrained of [[identifier]]s, not [[bound]].
+##: {{syn|en|unbound}}
+##: {{ant|en|bound}}
+## {{lb|en|linguistics}} {{q|of a morpheme}} That can be used by itself, [[unattached]] to another [[morpheme]].
+# {{lb|en|physical}} [[unconstrained|Unconstrained]].
+## Unobstructed, without [[blockage]]s.
+##: {{ux|en|the drain was '''free'''}}
+##: {{syn|en|clear|unobstructed}}
+##: {{ant|en|blocked|obstructed}}
+## Unattached or uncombined.
+##: {{ux|en|a '''free''' radical}}
+##: {{syn|en|loose|unfastened|Thesaurus:loose}}
+## Not currently in use; not taken; unoccupied.
+##: {{ux|en|You can sit on this chair; it's '''free'''.}}
+## {{lb|en|botany|mycology}} Not [[attached]]; [[loose]].
+##: {{ux|en|In this group of mushrooms, the gills are '''free'''.}}
+##* {{RQ:Schuster Hepaticae|volume=V|page=7|text=Furthermore, the '''free''' anterior margin of the lobule is arched toward the lobe and is often involute{{...}}}}
+## {{lb|en|military}} Of a [[rocket]] or [[missile]]: not under the control of a [[guidance]] [[system]] after being launched.
+# Without; not containing (what is specified); exempt; clear; liberated.
+#: {{syn|en|without}}
+#: {{ux|en|We had a wholesome, filling meal, '''free''' of meat.&emsp; I would like to live '''free''' from care in the mountains.}}
+#* {{quote-book|en|author=w:Gilbert Burnet| title=The History of the Reformation of the Church of England| year=1679-1715| passage=princes declaring themselves '''free''' from the obligations of their treaties}}
+#* {{RQ:Churchill Celebrity|chapter=4|passage=One morning I had been driven to the precarious refuge afforded by the steps of the inn, after rejecting offers from the Celebrity to join him in a variety of amusements. But even here I was not '''free''' from interruption, for he was seated on a horse-block below me, playing with a fox terrier.}}
+# {{lb|en|dated}} Ready; eager; acting without spurring or whipping; spirited.
+#: {{ux|en|a '''free''' horse}}
+# {{lb|en|dated}} Invested with a particular freedom or franchise; enjoying certain immunities or privileges; admitted to special rights; followed by ''of''.
+#* {{quote-book|en|author=w:John Dryden| title=w:The Hind and the Panther| year=1697| chapter=Part 3, line 1245| passage=He therefore makes all birds, of every sect, / '''Free''' of his farm.}}
+# {{lb|en|UK|legal|obsolete}} Certain or honourable; the opposite of ''[[base]]''.
+#: {{ux|en|'''free''' service;&emsp; '''free''' socage}}
+# {{lb|en|legal}} Privileged or individual; the opposite of ''[[common]]''.
+#: {{ux|en|a '''free''' fishery;&emsp; a '''free''' warren}}
+
+====Usage notes====
+* The comparatives {{m|en|free-er}} and {{m|en|freeër}} and superlatives {{m|en|free-est}} and {{m|en|freeëst}} are also attested but rare.
+
+====Antonyms====
+{{checksense|en}}
+* {{l|en|unfree}}
+
+====Hyponyms====
+{{checksense|en}}
+* {{l|en|-free}}
+
+====Derived terms====
+{{col3|en|Free City of Tri-Insula|Free Soviets
+|freeness|free as the wind|free school movement|free university|free-floating planet
+|freedom
+|freehood|Wee Free
+|freely
+|Freetown
+|break free
+|double free
+|feel free
+|first bite free
+|footloose and fancy free
+|[[free Abelian group]]<!--UK spelling-->, {{nowrap|[[free abelian group]]}}<!--US spelling-->
+|free agency
+|free agent
+|free algebra
+|free alongside ship
+|free and clear
+|[[free and easy]], [[free-and-easy]]
+|free as a bird
+|free as in beer
+|free as in speech
+|free association
+|[[free ball]], [[freeball]]
+|free base
+|free bench
+|free-blown
+|free board
+|free-boob
+|free Boolean algebra
+|freebooter
+|free cash flow
+|free category
+|free cell formation
+|Free China
+|free city
+|[[free climber]], [[free climbing]], [[free-climbing]]
+|free clothes association
+|free coinage
+|[[free communism]], {{nowrap|[[free communist]]}}
+|free companion
+|free convection
+|free-cooling
+|free country
+|free day
+|[[free diver]], [[free-diver]]
+|[[free diving]], [[free-diving]]
+|[[freedom ain't free]], [[freedom is not free]], [[freedom isn't free]], [[freedom's not free]]
+|free edge
+|free electron
+|free energy
+|free enterprise
+|free-exercise clause
+|[[free fall]], [[free-fall]]
+|free fatty acid
+|free-feed
+|free-fire
+|[[free float]], [[free-floating]]
+|free-flowing
+|free-for-all
+|[[free form]], [[free-form]]
+|Free France
+|free-from
+|free grace
+|free group
+|[[free hand]], [[free-hand]], [[free-handed]], [[free-handedly]], [[free-handedness]]
+|free-hanging
+|[[free-hearted]], [[free-heartedly]], [[free-heartedness]]
+|free-heel skiing
+|free helicopter ride
+|free house
+|free imperial city
+|free indirect speech
+|free jazz
+|Free Kirk
+|freelance
+|free library
+|free list
+|[[free-liver]], [[free-living]]
+|freeloader
+|[[free love]], [[free lover]]
+|free lunch
+|[[free market]], [[free-market]], [[free marketeer]], [[free-marketeer]], [[free marketeering]], [[free-market fundamentalism|{{nowrap|free-market}} fundamentalism]], {{nowrap|[[free-marketism]]}}
+|Freemason
+|free-milling
+|free-mix
+|free module
+|free monoid
+|free morpheme
+|free neutron
+|free object
+|free of charge
+|free of the city
+|free on board
+|free pass
+|free period
+|free port
+|free press
+|free product
+|free radical
+|[[free range]], [[free-range]], {{nowrap|[[free-ranging]]}}
+|free reed
+|[[free rein]] (''or'' [[free reign]])
+|[[free ride]], [[free-ride]], [[free rider]], [[free-rider problem]]
+|[[free roam]], [[free-roam]], {{nowrap|[[free-roaming]]}}
+|[[free runner]], [[free-running]], [[free running]], [[freerunning]]
+|free semigroup
+|[[free sheet]], [[free-sheet]]
+|free silver
+|[[free solo]], [[free-solo]], {{nowrap|[[free soloist]]}}
+|free space
+|free-speaking
+|[[free speech]], [[free-speecher]], [[free speech zone]]
+|free spin
+|[[free spirit]], [[free-spirited]]
+|free-spoken
+|free-standing
+|free state
+|free-stone
+|free-style
+|free substitution
+|free sugar
+|free-swimming
+|[[free-thinker]], [[free-thinking]]
+|free thought
+|[[free throw]], [[free-throw lane]], [[free-throw line]], [[free throw percentage]]
+|free time
+|[[free to air]], [[free-to-air]]
+|free-tongued
+|[[free to play]], [[free-to-play]]
+|[[free trade]], [[free trade area]], [[free-trade area]], [[free trader]]
+|free trial
+|free-turbine engine
+|free ultrafilter
+|free up
+|free variable
+|free variation
+|free verse
+|free vote
+|freeware
+|free warren
+|free water
+|freeway
+|free weight
+|[[freewheel]], [[free-wheeling]]
+|[[free will]], [[free-willer]], [[free will theorem]]
+|free world
+|free zone
+|[[get out of jail free card]], [[get-out-of-jail-free card]]
+|Gibbs free energy
+|half-free
+|home free
+|it's a free country
+|land of the free
+|leader of the free world
+|[[live rent-free in someone's head]], [[live rent free in someone's head]]
+|make free of
+|make free with
+|mean free path
+|no free lunch theorem
+|olly olly oxen free
+|region free
+|set free
+|the best things in life are free
+|[[there ain't no such thing as a free lunch]], [[there's no such thing as a free lunch]]
+|uncoated free sheet
+|walk free
+|weapons free
+|why buy the cow when you can get the milk for free
+|free body|free body diagram|free church|free corps|free indirect discourse|free indirect style|free lance|free liver|free run|free silverite|free tekno|free termineme|free thinker|free use|free-body diagram|free-climb|free-loader|free-will|there is no free lunch|there is no such thing as a free lunch}}
+
+====Related terms====
+* {{l|en|friend}}
+
+====Translations====
+{{trans-top|not imprisoned}}
+* Afrikaans: {{t+|af|vrye}}
+* Albanian: {{t+|sq|lirë}} (i/e)
+* Amharic: {{t|am|ነፃ|sc=Ethi}}
+* Arabic: {{t+|ar|حُرّ}}
+*: Egyptian Arabic: {{t|arz|حر|tr=ḥurr}}
+*: Moroccan Arabic: {{t|ary|حر|m|tr=ḥurr}}
+* Armenian: {{t+|hy|արձակ}}, {{t+|hy|ազատ}}
+* Aromanian: {{t|rup|lefter}}
+* Assamese: {{t|as|মুকলি}}
+* Asturian: {{t|ast|llibre}}
+* Azerbaijani: {{t+|az|azad}}
+* Bambara: {{t|bm|hɔrɔn}}
+* Bashkir: {{t|ba|ирекле|sc=Cyrl}}, {{t|ba|азат|sc=Cyrl}}, {{t|ba|бәйһеҙ|sc=Cyrl}}, {{t|ba|хөр|sc=Cyrl}}
+* Belarusian: {{t+|be|свабо́дны}}, {{t+|be|во́льны}}
+* Bengali: {{t+|bn|মুক্ত}}, {{t+|bn|আজাদ}}
+* Bikol Central: {{t+|bcl|talingkas}}
+* Bulgarian: {{t+|bg|свобо́ден}}
+* Catalan: {{t+|ca|lliure}}
+* Chinese:
+*: Cantonese: {{t|yue|自由|tr=zi6 jau4}}
+*: Mandarin: {{t+|cmn|自由|tr=zìyóu de|alt=自由的}}
+* Czech: {{t+|cs|svobodný}}, {{t+|cs|volný}}
+* Danish: {{t+|da|fri}}
+* Dutch: {{t+|nl|vrij}}, {{t+|nl|los}}
+* Esperanto: {{t+|eo|libera}}
+* Estonian: {{t+|et|vaba}}, {{t+|et|prii}}
+* Finnish: {{t+|fi|vapaa}}
+* French: {{t+|fr|libre}}
+* Friulian: {{t|fur|libar}}
+* Galician: {{t+|gl|ceibo|m}}, {{t+|gl|libre}}
+* Georgian: {{t|ka|თავისუფალი|sc=Geor}}
+* German: {{t+|de|frei}}
+* Gothic: {{t|got|𐍆𐍂𐌴𐌹𐍃}}
+* Greek: {{t+|el|ελεύθερος}}
+*: Ancient: {{t|grc|ἐλεύθερος}}
+* Haitian Creole: {{t|ht|lib}}
+* Hebrew: {{t|he|חופשי|tr=khofshí|alt=חופשי / חָפְשִׁי}}
+* Hindi: {{t+|hi|मुक्त}}, {{t+|hi|आज़ाद}}, {{t+|hi|स्वतंत्र}}, {{t+|hi|रिहा}}
+* Hungarian: {{t+|hu|szabad}}
+* Icelandic: {{t+|is|frjáls}}
+* Ido: {{t+|io|libera}}
+* Indonesian: {{t+|id|bebas}}
+* Ingrian: {{t|izh|vappaa}}
+* Interlingua: {{t+|ia|libere}}
+* Irish: {{t|ga|saor}}
+*: Old Irish: {{t|sga|sóer}}
+* Istriot: {{t|ist|leîbaro}}
+* Italian: {{t+|it|libero}}
+* Japanese: {{t+|ja|自由|tr=じゆう, jiyū}}
+* Jarai: {{t|jra|rơngai}}
+* Khmer: {{t+|km|សេរី}}
+* Korean: {{t+|ko|자유(自由)}}
+* Kurdish:
+*: Central Kurdish: {{t+|ckb|ئازاد}}, {{t|ckb|ڕزگار}}
+*: Northern Kurdish: {{t+|kmr|azad}}, {{t+|kmr|serbest}}, {{t+|kmr|rizgar}}
+* Latin: {{t+|la|līber}}
+* Latvian: {{t|lv|brīvs}}
+* Leonese: {{t|roa-leo|ḷḷibru}}
+* Lezgi: {{t|lez|азад}}
+* Limburgish: {{t+|li|vrie}}
+* Lithuanian: {{t+|lt|laisvas}}
+* Lombard: {{t+|lmo|liber}}
+* Low German: {{t|nds|frii}}, {{t|nds|fri}}
+*: German Low German: {{t+|nds-de|free}}
+* Luxembourgish: {{t|lb|fräi}}
+* Macedonian: {{t|mk|слободен}}
+* Malay: {{t+|ms|bebas}}
+* Malayalam: {{t|ml|സ്വതന്ത്രം}}
+* Manchu: {{t|mnc|ᠰᡠᠯᡶᠠᠩᡤᠠ}}
+* Maori: {{t|mi|herekore}}
+* Norman: {{t|nrf|libre}}
+* Norwegian: {{t+|no|fri}}
+* Occitan: {{t+|oc|liure}}
+* Old English: {{t|ang|frēo}}
+* Papiamentu: {{t|pap|liber}}
+* Persian: {{t+|fa|آزاد|tr=âzâd}}, {{t+|fa|رها|tr=rahâ}}
+* Piedmontese: {{t|pms|liber}}
+* Polish: {{t+|pl|wolny}}, {{t+|pl|swobodny}}
+* Portuguese: {{t+|pt|livre}}
+* Quechua: {{t+|qu|qispi}}
+* Romagnol: {{t|rgn|lèbar}}
+* Romanian: {{t+|ro|liber}}, {{t+|ro|slobod}}
+* Russian: {{t+|ru|свобо́дный}}, {{t+|ru|во́льный}}
+* Sanskrit: {{t+|sa|मुक्त}}, {{t+|sa|स्वतन्त्र}}
+* Scottish Gaelic: {{t|gd|saor}}
+* Serbo-Croatian:
+*: Cyrillic: {{t|sh|слободан}}
+*: Roman: {{t+|sh|slobodan}}
+* Seychellois Creole: {{t|crs|lib}}
+* Sindhi: {{t+|sd|آزاد|tr=āzād}}
+* Slovak: {{t|sk|slobodný}}, {{t|sk|voľný}}
+* Slovene: {{t+|sl|svoboden}}
+* Somali: {{t|so|xor}}
+* Southern Altai: {{t|alt|эркин}}
+* Spanish: {{t+|es|libre}}
+* Swahili: {{t|sw|huru}}
+* Swedish: {{t+|sv|fri}}
+* Tabasaran: {{t|tab|азад}}
+* Tagalog: {{t|tl|malaya}}
+* Tarantino: {{t|roa-tar|lìbbere}}
+* Tatar: {{t|tt|ирекле|sc=Cyrl}}, {{t+|tt|азат|sc=Cyrl}}, {{t|tt|бәйсез|sc=Cyrl}}, {{t|tt|хөр|sc=Cyrl}}
+* Telugu: {{t+|te|విడుదల}}
+* Thai: {{t+|th|อิสระ}}
+* Turkish: {{t+|tr|özgür}}
+* Udi: {{t|udi|азад}}
+* Ukrainian: {{t+|uk|ві́льний}}, {{t+|uk|свобі́дний}}
+* Urdu: {{t+|ur|آزاد|tr=āzād}}, {{t|ur|سوتنتر|tr=svatantra|sc=ur-Arab}}, {{t|ur|مکت|tr=mukt|sc=ur-Arab}}
+* Uyghur: {{t|ug|ئەركىن|sc=ug-Arab}}, {{t|ug|ھۆر|sc=ug-Arab}}
+* Vietnamese: {{t+|vi|tự do}}
+* Volapük: {{t+|vo|libik}}
+* Walloon: {{t+|wa|libe}}
+* Welsh: {{t+|cy|rhydd}}
+* West Frisian: {{t|fy|frijlitten}}, {{t|fy|frij}}
+* Yiddish: {{t|yi|פֿרײַ}}
+* Zazaki: {{t|zza|azad}}, {{t|zza|xoser}}
+{{trans-bottom}}
+
+{{trans-see|obtainable without payment|free of charge}}
+
+{{trans-top|unconstrained}}
+* Albanian: {{t+|sq|pafre}}, {{t+|sq|falas}}
+* Amharic: {{t|am|ነፃ|sc=Ethi}}
+* Arabic: {{t+|ar|حُرّ}}
+*: Egyptian Arabic: {{t|arz|حر|tr=ḥurr}}
+* Armenian: {{t+|hy|ազատ}}
+* Assamese: {{t|as|মুকলি}}
+* Asturian: {{t|ast|llibre}}
+* Azerbaijani: {{t+|az|sərbəst}}
+* Bambara: {{t|bm|hɔrɔn}}
+* Bashkir: {{t|ba|иркен|sc=Cyrl}}
+* Catalan: {{t+|ca|lliure}}
+* Chinese:
+*: Mandarin: {{t+|cmn|自由|tr=zìyóu de|alt=自由的}}
+* Czech: {{t+|cs|volný}}
+* Danish: {{t+|da|fri}}
+* Dutch: {{t+|nl|vrij}}, {{t+|nl|los}}, {{t+|nl|loslopend}}
+* Esperanto: {{t+|eo|libera}}
+* Estonian: {{t+|et|vaba}}, {{t+|et|prii}}
+* Finnish: {{t+|fi|vapaa}}, {{t+|fi|rajoittamaton}}
+* French: {{t+|fr|libre}}
+* Galician: {{t+|gl|libre|m|f}}
+* German: {{t+|de|frei}}, {{t+|de|ungezwungen}}, {{t+|de|freimütig}}, {{t+|de|frank und frei}} {{qualifier|idiomatic}}
+* Gothic: {{t|got|𐍆𐍂𐌴𐌹𐍃}}
+* Greek: {{t+|el|ελεύθερος}}, {{t+|el|ανεμπόδιστος}}
+* Hebrew: {{t|he|פָּנוּי|tr=panúy}}
+* Hindi: {{t+|hi|आज़ाद}}
+* Ido: {{t+|io|libera}}
+* Interlingua: {{t+|ia|libere}}, {{t+|ia|franc}}
+* Irish: {{t|ga|saor}}, {{t|ga|scaoilte}}, {{t|ga|éasca}}
+*: Old Irish: {{t|sga|sóer}}
+* Italian: {{t+|it|libero|m}}, {{t+|it|brado|m}}
+* Japanese: {{t+|ja|自由|tr=じゆう, jiyū}}
+* Khmer: {{t+|km|ស្រស់ស្រាយ}}
+* Korean: {{t|ko|[[자유적(自由的)]]-이다}}
+* Kurdish:
+*: Central Kurdish: {{t|ckb|سەربەست}}
+*: Northern Kurdish: {{t+|kmr|berdayî}}, {{t+|kmr|aza}}
+* Latin: {{t+|la|līber}}
+* Latvian: {{t|lv|brīvs}}
+* Limburgish: {{t+|li|vrie}}
+* Lindu: {{t|klw|naloa}}
+* Low German:
+*: German Low German: {{t+|nds-de|free}}
+* Macedonian: {{t|mk|слободен}}
+* Malay: {{t+|ms|merdeka}}
+* Malayalam: {{t|ml|സ്വതന്ത്രം}}
+* Maori: {{t|mi|māhorahora}}
+* Norman: {{t|nrf|libre}}
+* Norwegian: {{t+|no|fri}}, {{t+|no|løs}}
+* Old English: {{t|ang|unċīepe}}
+* Persian: {{t+|fa|آزاد|tr=âzâd}}
+* Polish: {{t+|pl|wolny}}, {{t+|pl|swobodny}}
+* Portuguese: {{t+|pt|livre}}
+* Romanian: {{t+|ro|liber}}, {{t|ro|neîmpiedicat}}
+* Russian: {{t+|ru|свобо́дный}}
+* Scottish Gaelic: {{t|gd|saor}}
+* Serbo-Croatian:
+*: Roman: {{t+|sh|povoljno}}, {{t+|sh|voljno}}, {{t+|sh|neograničen}}, {{t+|sh|slobodan}}
+* Sindhi: {{t|sd|چٽل}}
+* Sorbian:
+*: Lower Sorbian: {{t|dsb|lichy}}
+* Spanish: {{t+|es|libre}}
+* Swedish: {{t+|sv|fri}}
+* Turkish: {{t+|tr|serbest}}
+* Vietnamese: {{t+|vi|tự do}}
+* Welsh: {{t+|cy|rhydd}}
+* Yiddish: {{t|yi|פֿרײַ}}
+* Zazaki: {{t|zza|serbest}}
+{{trans-bottom}}
+
+{{trans-top|mathematics: unconstrained}}
+* Czech: {{t+|cs|volný}}
+* Finnish: {{t+|fi|vapaa}}
+* French: {{t+|fr|libre}}
+* Hungarian: {{t+|hu|szabad}}
+* Norwegian: {{t+|no|fri}}
+* Polish: {{t+|pl|wolny}}
+* Portuguese: {{t+|pt|livre}}
+* Romanian: {{t+|ro|liber}}, {{t|ro|nelegat}}
+{{trans-bottom}}
+
+{{trans-top|unobstructed}}
+* Albanian: {{t+|sq|lirë}}
+* Assamese: {{t|as|মুকলি}}
+* Azerbaijani: {{t|az|maneə törədilməmiş}}
+* Catalan: {{t+|ca|lliure}}
+* Chinese:
+*: Mandarin: {{t+|cmn|通暢|alt=通暢的|tr=tōngchàng de}}, {{t+|cmn|順暢|alt=順暢的|tr=shùnchàng de}}
+* Czech: {{t+|cs|volný|m}}
+* Dutch: {{t+|nl|vrij}}, {{t+|nl|open}}
+* Esperanto: {{t+|eo|libera}}
+* Estonian: {{t|et|piiramatu}}, {{t|et|takistamatu}}
+* Finnish: {{t+|fi|auki}} {{qualifier|adverb}}, {{t|fi|aukinainen}}, {{t+|fi|avoin}}, {{t+|fi|esteetön}}, {{t+|fi|selvä}}
+* French: {{t+|fr|libre}}
+* German: {{t+|de|frei}}
+* Greek: {{t+|el|ελεύθερος|m}}, {{t+|el|ανεμπόδιστος|m}}
+* Hebrew: {{t|he|פָּנוּי|tr=panúy}}
+* Hindi: {{t+|hi|खुला|sc=Deva}}
+* Ido: {{t+|io|libera}}
+* Interlingua: {{t+|ia|libere}}, {{t+|ia|franc}}
+* Italian: {{t+|it|libero|m}}
+* Japanese: {{t|ja|[[その]][[まま]]の|tr=sono mama no}}
+* Korean: {{t|ko|막힘없다}}
+* Kurdish:
+*: Northern Kurdish: {{t+|kmr|vekirî}}, {{t+|kmr|vebûyî}}
+* Limburgish: {{t+|li|vrie}}
+* Low German:
+*: German Low German: {{t+|nds-de|free}}
+* Macedonian: {{t|mk|непречен}}
+* Maori: {{t|mi|māhorahora}}
+* Norman: {{t|nrf|libre}}
+* Norwegian: {{t+|no|åpen}}, {{t+|no|fri}}
+* Polish: {{t+|pl|wolny}}, {{t+|pl|swobodny}}
+* Portuguese: {{t+|pt|livre}}
+* Romanian: {{t+|ro|liber}}, {{t|ro|neîmpiedicat}}
+* Russian: {{t+|ru|беспрепя́тственный}}, {{t+|ru|свобо́дный}}
+* Scottish Gaelic: {{t|gd|saor}}
+* Serbo-Croatian:
+*: Roman: {{t+|sh|slobodan}}, {{t+|sh|otvoren}}
+* Sindhi: {{t|sd|خلاصو}}
+* Slovene: {{t+|sl|prost}}
+* Sorbian:
+*: Lower Sorbian: {{t|dsb|lichy}}
+* Spanish: {{t+|es|libre}}, {{t+|es|obstáculo|alt=sin obstáculos}}, {{t+|es|despejado}}
+* Telugu: {{t|te|అడ్డగించని}}
+* Turkish: {{t+|tr|engellenmemiş}}
+* Yiddish: {{t|yi|פֿרײַ}}
+{{trans-bottom}}
+
+{{trans-top|not in use}}
+* Arabic: {{t|ar|شَاغِر}}
+*: Egyptian Arabic: {{t|arz|فاضى|tr=fāḍi}}
+* Armenian: {{t+|hy|ազատ}}
+* Azerbaijani: {{t+|az|boş}}
+* Bashkir: {{t|ba|буш|sc=Cyrl}}
+* Bulgarian: {{t+|bg|незает}}, {{t+|bg|неизползван}}
+* Burmese: {{t+|my|အား|sc=Mymr}}
+* Catalan: {{t|ca|desocupat}}
+* Czech: {{t+|cs|volný}}
+* Finnish: {{t+|fi|vapaa}}
+* French: {{t+|fr|libre}}, {{t+|fr|disponible}}
+* German: {{t+|de|frei}}, {{t|de|unbesetzt}}
+* Greek: {{t+|el|ελεύθερος|m}}
+* Hindi: {{t+|hi|बेकार}}
+* Latvian: {{t|lv|brīvs}}
+* Macedonian: {{t|mk|слободен}}
+* Norman: {{t|nrf|libre}}
+* Norwegian: {{t|no|ledig}}
+* Persian: {{t+|fa|آزاد|tr=âzâd}}, {{t|fa|بی‌کار|tr=bi-kâr}}
+* Polish: {{t+|pl|wolny}}
+* Portuguese: {{t+|pt|vago}}, {{t+|pt|livre}}, {{t+|pt|desocupado}}
+* Romanian: {{t+|ro|liber}}, {{t+|ro|neocupat}}
+* Russian: {{t+|ru|свобо́дный}}, {{t+|ru|неза́нятый}}
+* Spanish: {{t+|es|libre}}, {{t+|es|desocupado}}
+* Swedish: {{t+|sv|ledig}}
+* Telugu: {{t|te|ఉపయోగించని}}
+* Thai: {{t+|th|ว่าง}}
+* Turkish: {{t+|tr|boş}}
+* Yiddish: {{t|yi|פֿרײַ}}
+* Zazaki: {{t+|zza|veng}}, {{t|zza|bêkar}}, {{t|zza|azad}}
+{{trans-bottom}}
+
+{{trans-top|without obligations}}
+* Abkhaz: {{t|ab|аҭацәы}}
+* Albanian: {{t+|sq|pazënë}}
+* Armenian: {{t+|hy|ազատ}}
+* Azerbaijani: {{t+|az|sərbəst}}, {{t|az|bağımsız}}
+* Bambara: {{t|bm|hɔrɔn}}
+* Bashkir: {{t|ba|буш|sc=Cyrl}}, {{t|ba|ирекле|sc=Cyrl}}
+* Bulgarian: {{t+|bg|свободен}}
+* Burmese: {{t+|my|အား|sc=Mymr}}
+* Catalan: {{t+|ca|lliure}}
+* Chinese:
+*: Mandarin: {{t+|cmn|自由|tr=zìyóu de|alt=自由的}}, {{t|cmn|空閒//空閑//空闲|tr=kòngxián}}
+* Czech: {{t+|cs|volný}}
+* Danish: {{t+|da|fri}}
+* Dutch: {{t+|nl|vrij}}, {{t+|nl|ongedwongen}}
+* Esperanto: {{t+|eo|libera}}
+* Estonian: {{t+|et|vaba}}
+* Finnish: {{t+|fi|vapaa}}
+* French: {{t+|fr|libre}}
+* Galician: {{t+|gl|libre}}
+* German: {{t+|de|frei}}
+* Greek: {{t+|el|ελεύθερος|m}}
+* Hebrew: {{t|he|פָּנוּי|tr=panúy}}, {{t|he|חופשי|tr=khofshí|alt=חופשי / חָפְשִׁי}}
+* Hindi: {{t+|hi|निबंधन}}
+* Hungarian: {{t+|hu|szabad}}
+* Ido: {{t+|io|libera}}
+* Interlingua: {{t+|ia|libere}}
+* Irish: {{t|ga|saor}}
+*: Old Irish: {{t|sga|sóer}}
+* Italian: {{t+|it|libero}}
+* Japanese: {{t+|ja|自由|tr=じゆうな, jiyū na|alt=自由な}}
+* Korean: {{t+|ko|자의}}, {{t+|ko|자유롭다}}
+* Kurdish:
+*: Northern Kurdish: {{t+|kmr|azad}}, {{t+|kmr|serbest}}
+* Latvian: {{t|lv|brīvs}}
+* Limburgish: {{t+|li|vrie}}
+* Macedonian: {{t|mk|слободен}}
+* Malayalam: {{t|ml|സ്വതന്ത്രം}}
+* Maori: {{t|mi|māhorahora}}
+* Ngazidja Comorian: {{t|zdj|nafasi|alt=na nafasi}}
+* Norman: {{t|nrf|libre|m|f}}
+* Norwegian: {{t+|no|fri}}, {{t|no|ledig}}
+* Old English: {{t|ang|frēo}}
+* Polish: {{t+|pl|wolny}}
+* Portuguese: {{t+|pt|livre}}
+* Quechua: {{t|qu|qasi}}
+* Romanian: {{t+|ro|liber|m}}
+* Russian: {{t+|ru|свобо́дный}}
+* Scottish Gaelic: {{t|gd|saor}}
+* Serbo-Croatian:
+*: Roman: {{t|sh|bezobavezno}}, {{t+|sh|slobodan}}
+* Sindhi: {{t|sd|فارِغ}}, {{t+|sd|واندو}}
+* Slovene: {{t+|sl|prost}}
+* Sorbian:
+*: Lower Sorbian: {{t|dsb|lichy}}
+* Spanish: {{t+|es|libre}}, {{t+|es|exento}}
+* Swedish: {{t+|sv|fri}}
+* Telugu: {{t|te|నిబంధన లేని}}
+* Thai: {{t+|th|ว่าง}}
+* Turkish: {{t+|tr|serbest}}, {{t|tr|zorunsuz}}
+* Vietnamese: {{t+|vi|rỗi}}
+* Yiddish: {{t|yi|פֿרײַ}}
+{{trans-bottom}}
+
+{{trans-top|software: with very few limitations on distribution or improvement}}
+* Albanian: {{t|sq|lejuar}}
+* Arabic: {{t+|ar|حُرّ}}
+* Azerbaijani: {{t+|az|azad}}
+* Bambara: {{t|bm|hɔrɔn}}
+* Bashkir: {{t|ba|түләүһеҙ|sc=Cyrl}}
+* Bulgarian: {{t+|bg|безплатен}}
+* Catalan: {{t+|ca|lliure}}
+* Chinese:
+*: Mandarin: {{t+|cmn|自由|tr=zìyóu de|alt=自由的}}
+* Czech: {{t+|cs|svobodný}}
+* Danish: {{t+|da|fri}}
+* Dutch: {{t+|nl|vrij}}, {{t+|nl|vrije}}
+* Esperanto: {{t+|eo|libera}}
+* Estonian: {{t+|et|vaba}}
+* Finnish: {{t+|fi|avoin}}, {{t+|fi|vapaa}}
+* French: {{t+|fr|libre}}
+* Galician: {{t+|gl|libre}}
+* German: {{t+|de|frei}}
+* Greek: {{t+|el|ελεύθερος}}
+* Hebrew: {{t|he|חופשי|tr=khofshí|alt=חופשי / חָפְשִׁי}}
+* Ido: {{t+|io|libera}}
+* Interlingua: {{t+|ia|libere}}
+* Irish: {{t|ga|saor}}
+* Italian: {{t+|it|libero}}, {{t+|it|free}}, {{t+|it|libre}} {{gloss|software}}
+* Japanese: {{t+|ja|自由|tr=じゆう, jiyuu}}
+* Korean: {{t+|ko|자유}}
+* Kurdish:
+*: Northern Kurdish: {{t+|kmr|azad}}, {{t+|kmr|vekirî}}, {{t+|kmr|serbest}}
+* Limburgish: {{t+|li|vrie}}
+* Lithuanian: {{t+|lt|nemokama}}
+* Macedonian: {{t|mk|слободен}}
+* Norwegian: {{t+|no|fri}}
+* Polish: {{t+|pl|wolny}}
+* Portuguese: {{t+|pt|livre}}
+* Romanian: {{t+|ro|gratuit}}, {{t+|ro|liber}}
+* Russian: {{t+|ru|свободный}}
+* Serbo-Croatian:
+*: Roman: {{t+|sh|slobodan}}
+* Sindhi: {{t|sd|کليل}}
+* Spanish: {{t+|es|libre}}
+* Swedish: {{t+|sv|fri}}
+* Telugu: {{t|te|ఉచిత దిగుమతి}}
+* Turkish: {{t+|tr|özgür}}
+* Zazaki: {{t|zza|xoser}}
+{{trans-bottom}}
+
+{{trans-top|without}}
+* Arabic: {{t|ar|بِغَيْرِ}}, {{t|ar|بِدُونِ}}
+* Armenian: {{t+|hy|ազատ}}
+* Bashkir: {{t|ba|-һыҙ|sc=Cyrl}} / {{t|ba|-һеҙ|sc=Cyrl}}, {{t|ba|-һоҙ|sc=Cyrl}} / {{t|ba|-һөҙ|sc=Cyrl}}
+* Burmese: {{t+|my|လွတ်လပ်|sc=Mymr}}
+* Czech: {{t+|cs|prostý}}
+* Dutch: {{t+|nl|zonder}}, {{t|nl|-vrij}}
+* Finnish: {{t+|fi|-ton}}, {{t|fi|[[ilman]] ([[jotakin]])}}, {{t+|fi|vapaa|alt=-vapaa}}
+* French: {{t+|fr|sans}}
+* Galician: {{t+|gl|sen}}
+* German: {{t+|de|frei}}, {{t+|de|-frei}}, {{t+|de|-los}}
+* Hebrew: {{t+|he|בְּלְי|sc=Hebr}}
+* Hindi: {{t+|hi|बे}}, {{t|hi|बे-}}
+* Indonesian: {{t+|id|bebas}}, {{t+|id|tanpa}}
+* Irish: {{t+|ga|gan}}
+* Italian: {{t+|it|senza}}
+* Low German:
+*: German Low German: {{t+|nds-de|free}}
+* Macedonian: {{t|mk|без-}}, {{t|mk|бес-}}
+* Malay: {{t+|ms|tanpa}}
+* Norwegian: {{t+|no|fri}}, {{t+|no|uten}}
+* Persian: {{t+|fa|بدون}}
+* Polish: {{t+|pl|bez}}, {{t+|pl|wolny}}
+* Portuguese: {{t+|pt|semideus}}
+* Romanian: {{t+|ro|fără}}
+* Serbo-Croatian: {{t|sh|bez-}}, {{t|sh|bes-}}
+* Sorbian:
+*: Lower Sorbian: {{t|dsb|lichy}}
+* Telugu: {{t+|te|లేకుండా}}
+* Zazaki: {{t|zza|berdos}}
+{{trans-bottom}}
+
+{{trans-top|programming: not bound}}
+* Czech: {{t+|cs|volný}}
+* Finnish: {{t+|fi|riippumaton}}
+* Hindi: {{t+|hi|अपरमित}}, {{t+|hi|असीम}}
+* Portuguese: {{t+|pt|livre}}
+* Telugu: {{t|te|పరిమితి లేని}}
+{{trans-bottom}}
+
+{{trans-top|mycology: not attached to the stipe}}
+* Azerbaijani: {{t+|az|zəif}}
+* Finnish: {{t+|fi|irtonainen}}
+* Turkish: {{t+|tr|gevşek}}
+* Zazaki: {{t+|zza|sıst}}
+{{trans-bottom}}
+
+{{checktrans-top}}
+* Albanian: {{qualifier|i/e}} {{t+check|sq|lirë}}, {{t+check|sq|pa}}
+* Interlingua: {{t+check|ia|libere}}
+* Italian: {{t+check|it|senza}}
+* Lithuanian: {{qualifier|3}} {{t+check|lt|be}}, {{qualifier|4}} {{t-check|lt|neribotas}}
+* Low German: {{t-check|nds|leddig}}, {{t-check|nds|ledig}}
+* Occitan: {{qualifier|1,3}} {{t+check|oc|liure}}, {{qualifier|2}} {{t+check|oc|dobèrt}}, {{qualifier|5}} {{t-check|oc|gratis}}, {{qualifier|5}} {{t-check|oc|gratuït}}
+* Serbo-Croatian:
+*: Roman: {{t+check|sh|slobodan}} {{q|1}}, {{t+check|sh|besplatan}} {{q|5}}, {{t-check|sh|oslobođen}}, {{t+check|sh|pušten}}
+* Slovak: {{t-check|sk|slobodný}}, {{t+check|sk|bezplatný}}, {{qualifier|1}} {{t-check|sk|slobodný}}, {{qualifier|1|2|4}} {{t-check|sk|voľný}}, {{qualifier|5}} {{t+check|sk|bezplatný}}
+* Swedish: {{t+check|sv|fri}}, {{t+check|sv|lös}}, {{t+check|sv|släppt}}
+* Tamil: {{t+check|ta|இலவசம்}}
+* Volapük: {{t+check|vo|libik}}, {{t+check|vo|livik}}
+* West Frisian: {{t-check|fy|frijlitten}}, {{t-check|fy|befrijt}}
+{{trans-bottom}}
+
+===Adverb===
+{{en-adv}}
+
+# Without needing to [[pay]].
+#: {{syn|en|for free|for nothing|gratis}}
+#: {{ux|en|I got this bike '''free'''.}}
+#* {{quote-journal|en|year=1960|month=December|title=The Glasgow Suburban Electrification is opened|journal=Trains Illustrated|page=714|text=Above all, the 48-page timetables of the new service, which have been distributed '''free''' at every station in the scheme, are a model to the rest of B.R. For the first time on British Railways, so far as we are aware, a substantial timetable has been produced, not only without a single footnote but also devoid of all wearisome asterisks, stars, letter suffixes and other hieroglyphics.}}
+# {{lb|en|obsolete}} Freely; willingly.
+#* {{quote-book|en|title=[[w:Henry VIII (play)|Henry VIII]]|author=w:William Shakespeare|year=c. 1601–1602|year_published=1623|passage=I as '''free''' forgive you / As I would be forgiven.}}
+
+====Translations====
+{{trans-top|without needing to pay}}
+* Albanian: {{t+|sq|falas}}
+* Arabic: {{t|ar|مَجَّانًا}}
+*: Hijazi Arabic: {{t|acw|بِبَلاش|tr=bibalāš}}
+* Armenian: {{t+|hy|անվճար}}, {{t+|hy|ձրի}}
+* Bulgarian: {{t+|bg|безплатно}}
+* Catalan: {{t+|ca|gratis}}, {{t+|ca|gratuïtament}}, {{t+|ca|de franc}}
+* Chukchi: {{t|ckt|эркуркэ|tr=ėrkurkė}}
+* Czech: {{t+|cs|zadarmo}}
+* Danish: {{t+|da|gratis}}
+* Dutch: {{t+|nl|gratis}}
+* Esperanto: {{t|eo|senpage}}
+* Estonian: {{t|ee|tasuta}}
+* Finnish: {{t+|fi|ilmaiseksi}}
+* French: {{t+|fr|gratuitement}}, <!--{{qualifier|informal}}--> {{t+|fr|gratis}}, <!--{{qualifier|informal}}--> {{t+|fr|gratos}}
+* German: {{t+|de|gratis}}, {{t+|de|umsonst}}
+* Hindi: {{t|hi|मुफ़्त|sc=Deva}}
+* Hungarian: {{t+|hu|ingyen}}
+* Icelandic: {{t+|is|ókeypis}}
+* Indonesian: {{t+|id|gratis}}, {{t+|id|cuma-cuma}}
+* Irish: {{t|ga|saor}}
+* Italian: {{t+|it|gratuitamente}}
+* Kabuverdianu: {{t|kea|fabal}}
+* Latin: {{t|la|grātīs}}
+* Latvian: {{t|lv|bezmaksas}}
+* Macedonian: {{t|mk|бесплатно}}
+* Malayalam: {{t+|ml|സൗജന്യം}}, {{t|ml|സൗജന്യമായി}}
+* Maori: {{t+|mi|utukore}}
+* Navajo: {{t|nv|tʼáá jííkʼe}}, {{t|nv|tʼáadoo bą́ą́h ílíní da}}
+* Norwegian: {{t+|no|gratis}}
+* Plautdietsch: {{t|pdt|emsonst}}
+* Polish: {{t+|pl|za darmo}}, {{t+|pl|bezpłatnie}}
+* Portuguese: {{t+|pt|grátis}}, {{t+|pt|de graça}}, {{t+|pt|gratuitamente}}
+* Russian: {{t+|ru|беспла́тно}}, {{t+|ru|да́ром}}
+* Scottish Gaelic: {{t|gd|an-asgaidh}}
+* Spanish: {{t+|es|gratis}}
+* Swedish: {{t+|sv|gratis}}
+* Tagalog: {{t|tl|libre}}, {{t|tl|walang bayad}}, {{t|tl|gratis}}
+* Tamil: {{t+|ta|இலவசம்}}
+* Telugu: {{t|te|చెల్లించనవసరం లేని}}
+* Thai: {{t+|th|ฟรี}}
+* Turkish: {{t+|tr|bedava}}
+* Welsh: {{t+|cy|am ddim}}
+* Yiddish: {{t|yi|בחינם|tr=bkhinem|sc=Hebr}}
+* Zazaki: {{t|zza|berdos}}
+{{trans-bottom}}
+
+===Verb===
+[[File:Peter Paul Rubens - Perseus Freeing Andromeda - WGA20306.jpg|thumb|A painting depicting mythical Greek hero Perseus '''freeing''' Andromeda, who was imprisoned by a sea monster]]
+{{en-verb}}
+
+# {{lb|en|transitive}} To make free; set at [[liberty]]; [[release]].
+#* {{RQ:Shakespeare Tempest|I|ii|page=5|passage={{w|Prospero|''Pro.''}}{{...}}{{w|Ariel (The Tempest)|Spirit}}, fine ſpirit, [[I'll|Ile]] '''free''' thee / Within two dayes for this.}}
+# {{lb|en|transitive}} To [[rid]] of something that confines or oppresses.
+#* {{quote-text|en|year=1885|author=w:Richard F. Burton|title=w:The Book of the Thousand Nights and a Night|section=Night 564
+|passage=Then I walked about, till I found on the further side, a great river of sweet water, running with a strong current; whereupon I called to mind the boat-raft I had made aforetime and said to myself, "Needs must I make another; haply I may '''free''' me from this strait. If I escape, I have my desire and I vow to Allah Almighty to forswear travel; and if I perish I shall be at peace and shall rest from toil and moil."}}
+# {{lb|en|transitive|programming}} To [[relinquish]] (previously [[allocate]]d [[memory]]) to the [[system]].
+#* {{quote-text|en|year=2002|author=Jesse Liberty|title=SAMS Teach Yourself C++ in 24 Hours|page=148
+|passage=There is no way to access that original area of memory, nor is there any way to '''free''' it before the program ends.}}
+
+====Synonyms====
+* {{l|en|befree}}
+* {{l|en|emancipate}}
+* {{l|en|let loose}}
+* {{l|en|liberate}}
+* {{l|en|manumit}}
+* {{l|en|release}}
+* {{l|en|unchain}}
+* {{l|en|unfetter}}
+* {{l|en|unshackle}}
+
+====Derived terms====
+{{col4|en
+|befree
+|free up
+}}
+
+====Translations====
+{{trans-top|to make free, set at liberty}}
+* Afrikaans: {{t|af|bevry}}, {{t|af|loslaat}}, {{t|af|laat gaan}}
+* Albanian: {{t|sq|shkec}}, {{t+|sq|liroj}}
+* Arabic: {{t+|ar|حَرَّرَ}}
+*: Egyptian Arabic: {{t|arz|يحرر|tr=yeḥarrar}}
+* Armenian: {{t+|hy|ազատել}}
+* Belarusian: {{t|be|вызваля́ць|impf}}, {{t|be|вы́зваліць|pf}}
+* Bulgarian: {{t+|bg|освобожда́вам|impf}}, {{t|bg|освободя́|pf}}
+* Catalan: {{t+|ca|alliberar}}
+* Chinese:
+*: Mandarin: {{t+|cmn|解放|tr=jiěfàng}}
+* Czech: {{t|cs|osvobozovat|impf}}, {{t+|cs|osvobodit|pf}}
+* Danish: {{t|da|befri}}, {{t|da|fritage}}, {{t|da|løslade}}
+* Dutch: {{t+|nl|bevrijden}}, {{t+|nl|loslaten}}, {{t|nl|laten gaan}}
+* Esperanto: {{t|eo|liberi}}, {{t|eo|liberigi}}
+* Estonian: {{t+|et|vabastama}}, {{t|et|vabaks laskma}}
+* Finnish: {{t+|fi|vapauttaa}}, {{t|fi|[[päästää]] [[vapaa|vapaaksi]]}}
+* French: {{t+|fr|libérer}}, {{t+|fr|dégager}}, {{t+|fr|affranchir}}
+* Galician: {{t+|gl|liberar}}
+* German: {{t+|de|befreien}}, {{t+|de|freisetzen}} {{qualifier|free someone from prison}}
+* Greek: {{t+|el|ελευθερώνω}}
+* Hebrew: {{t+|he|שחרר|tr=shikhrér|alt=שיחרר / שִׁחְרֵר}}
+* Hindi: {{t|hi|मुक्त करना}}
+* Hungarian: {{t+|hu|kiszabadít}}, {{t+|hu|felszabadít}}, {{t+|hu|szabadon enged}}
+* Ido: {{t+|io|libereskar}}
+* Indonesian: {{t+|id|membebaskan}}, {{t+|id|memerdekakan}}
+* Interlingua: {{t+|ia|liberar}}
+* Irish: {{t|ga|saor}}, {{t|ga|fuascail}}
+* Italian: {{t+|it|liberare}}
+* Japanese: {{t+|ja|解放|tr=かいほうする, kaihō suru|alt=解放する}}
+* Korean: {{t+|ko|해방(解放)하다}}
+* Kurdish:
+*: Central Kurdish: {{t|ckb|ڕزگار کردن}}
+* Latin: {{t|la|līberō}}
+* Latvian: {{t|lv|atbrīvot}}, {{t|lv|atsvabināt}}
+* Lithuanian: {{t|lt|išlaisvinti}}
+* Macedonian: {{t|mk|ослободува|impf}}, {{t|mk|ослободи|pf}}
+* Malayalam: {{t|ml|സ്വതന്ത്രമാക്കുക}}
+* Maori: {{t+|mi|whakawātea}}, {{t|mi|wewete}}, {{t|mi|kokiro}} {{qualifier|from a spell or ritual }}
+* Norman: {{t|nrf|libéther}}
+* Norwegian: {{t+|no|frigjøre}}, {{t|no|frigi}}, {{t|no|befri}}, {{t|no|løslate}}
+* Occitan: {{t+|oc|desliurar}}
+* Old English: {{t|ang|frēoġan}}
+* Persian: {{t|fa|آزاد ساختن|tr=âzâd sâxtan}}, {{t+|fa|آزاد کردن|tr=âzâd kardan}}
+* Polish: {{t+|pl|uwalniać|impf}}, {{t+|pl|uwolnić|pf}}, {{t+|pl|wyzwalać|impf}}, {{t+|pl|wyzwolić|pf}}, {{t|pl|oswabadzać|impf}}, {{t+|pl|oswobodzić|pf}}
+* Portuguese: {{t+|pt|libertar}}, {{t+|pt|livrar}}, {{t+|pt|soltar}}
+* Romanian: {{t+|ro|elibera}}, {{t+|ro|slobozi}}
+* Russian: {{t+|ru|освобожда́ть|impf}}, {{t+|ru|освободи́ть|pf}}, {{t+|ru|вызволя́ть|impf}}, {{t+|ru|вы́зволить|pf}}
+* Sanskrit: {{t+|sa|मुञ्चति}}
+* Serbo-Croatian:
+*: Cyrillic: {{t|sh|ослобађати|impf}}, {{t|sh|ослободити|pf}}
+*: Roman: {{t+|sh|oslobađati|impf}}, {{t+|sh|osloboditi|pf}}
+* Slovak: {{t|sk|oslobodzovať|impf}}, {{t+|sk|oslobodiť|pf}}
+* Slovene: {{t|sl|osvobajati|impf}}, {{t|sl|osvoboditi|pf}}
+* Spanish: {{t+|es|librar}}
+* Swedish: {{t+|sv|frigöra}}, {{t+|sv|befria}}, {{t+|sv|frita}}(ga) <!--{{t+|sv|fria}}: Someone please give an example of this?--->
+* Telugu: {{t|te|విడుదల చేయు}}
+* Thai: {{t+|th|ปลดปล่อย}}
+* Turkish: {{t+|tr|serbest bırakmak}}
+* Ukrainian: {{t|uk|звільня́ти|impf}}, {{t|uk|звільни́ти|pf}}, {{t|uk|визволя́ти|impf}}, {{t|uk|ви́зволити|pf}}
+* Urdu: {{t|ur|فرار}}, {{t|ur|پری}}, {{t+|ur|آزاد}}
+* Vietnamese: {{t+|vi|giải phóng}} ({{t+|vi|解放}})
+* Welsh: {{t+|cy|rhyddhau}}
+* Yiddish: {{t|yi|באַפֿרײַען|sc=Hebr}}
+{{trans-bottom}}
+
+{{trans-top|to rid of something that confines or oppresses}}
+* Hungarian: {{t+|hu|megszabadít}}, {{t|hu|szabaddá tesz}}
+{{trans-bottom}}
+
+{{trans-top|programming: to relinquish (previously allocated memory) to the system}}
+* Hungarian: {{t+|hu|felszabadít}}
+{{trans-bottom}}
+
+===Noun===
+{{en-noun}}
+
+# {{lb|en|Australian rules football|Gaelic football}} {{abbreviation of|en|free kick}}
+#* '''2006''', [http://footballlegends.org/daryn_cresswell.htm]:
+#*: Whether deserved or not, the '''free''' gave Cresswell the chance to cover himself in glory with a shot on goal after the siren. <!-- a typical, but not especially notable usage here, feel '''free''' (pun intended) to replace with a better one -->
+# {{lb|en|association football}} A [[free transfer]].
+#* {{quote-journal
+|en
+|date=September 21, 2011
+|author=Sam Lyon
+|title=Man City 2 - 0 Birmingham
+|work=BBC Sport
+|url=http://news.bbc.co.uk/sport2/hi/football/14910208.stm
+|page=
+|passage=Hargreaves, who left Manchester United on a '''free''' during the summer, drilled a 22-yard beauty to open the scoring.}}
+# {{lb|en|hurling}} The usual means of restarting play after a [[foul]] is committed, where the non-offending team restarts from where the foul was committed.
+# {{lb|en|swimming|informal}} {{abbreviation of|en|freestyle}}
+#: {{ux|en|The team won the 200 meters '''free''' relay.}}
+
+====Translations====
+<!-- Only abbreviated forms here (if they exist), please -->
+{{trans-top|abbreviation of free kick}}
+* Finnish: {{t+|fi|vapari}}
+* German: {{t+|de|Freistoss}}
+{{trans-bottom}}
+
+{{trans-top|hurling}}
+* Irish: {{t|ga|poc saor|m}}
+{{trans-bottom}}
+
+===References===
+* {{R:OneLook}}
+<references/>
+
+===Anagrams===
+* {{anagrams|en|a=eefr|feer|fere|reef}}
+
+[[Category:en:Money]]
+
+==Galician==
+
+===Verb===
+{{head|gl|verb form}}
+
+# {{gl-verb form of|frear}}
+
+==Low German==
+
+===Alternative forms===
+* {{l|nds|frie}} {{q|more common}}
+
+===Etymology===
+From {{inh|nds|gml|vrîe}}, variant of {{m|gml|vrî}}, from {{der|nds|osx|frī}}, from {{der|nds|gem-pro|*frijaz}}, from {{der|nds|ine-pro|*prey||new}}. Compare {{cog|nl|vrij}}, {{cog|fy|frij}}, {{cog|en|free}}, {{cog|de|frei}}.
+
+===Adjective===
+{{head|nds|adjective|comparative|fre'er|superlative|freest}}
+
+# {{lb|nds|rather|_|rare}} {{l|en|free}}
+
+====Declension====
+{{nds-decl-adj|head=free|free|fre'|Fre'e|fre'er|freest|Freest}}
+
+====Derived terms====
+* {{l|nds|Freeheit}}
+`
+
 var TestWikiPage = `{{also|Break}}
 ==English==
 {{wikipedia}}

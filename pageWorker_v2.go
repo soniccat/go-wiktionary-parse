@@ -9,7 +9,7 @@ import (
 )
 
 type WordEntry struct {
-	Order          int                       `bson:"order"`
+	Order          int                       //`bson:"order"`
 	Word           string                    `bson:"term,omitempty"`
 	Transcriptions []string                  `bson:"transcriptions,omitempty"`
 	Etymology      int                       `bson:"etymology,omitempty"`
@@ -40,11 +40,12 @@ func pageWorkerV2(
 	for _, page := range pages {
 		word := page.Title
 		logger.Debug("Processing page: %s\n", word)
-		logger.Info("text: %s\n", page.Revisions[0].Text)
+		logger.Debug("text: %s\n", page.Revisions[0].Text)
 
 		w, err := parseWikitext(page.Revisions[0].Text)
 		if err != nil {
 			logger.Error("parse error for %s, %v", page.Title, err.Error())
+			logger.Error("text %s", page.Revisions[0].Text)
 			continue
 		}
 
@@ -130,6 +131,39 @@ func processWikitext(word string, wikitext Wikitext) []WordEntry {
 			case "en-noun":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("noun")
+			case "en-adj":
+				inPartOfSpeech = true
+				cb.SetPartOfSpeech("adj")
+			case "en-adv":
+				inPartOfSpeech = true
+				cb.SetPartOfSpeech("adv")
+			case "en-con":
+				inPartOfSpeech = true
+				cb.SetPartOfSpeech("con")
+			case "en-det":
+				inPartOfSpeech = true
+				cb.SetPartOfSpeech("det")
+			case "en-interj":
+				inPartOfSpeech = true
+				cb.SetPartOfSpeech("interj")
+			case "en-num":
+				inPartOfSpeech = true
+				cb.SetPartOfSpeech("num")
+			case "en-part":
+				inPartOfSpeech = true
+				cb.SetPartOfSpeech("part")
+			case "en-postp":
+				inPartOfSpeech = true
+				cb.SetPartOfSpeech("postp")
+			case "en-prep":
+				inPartOfSpeech = true
+				cb.SetPartOfSpeech("prep")
+			case "en-pron":
+				inPartOfSpeech = true
+				cb.SetPartOfSpeech("pron")
+			case "en-proper noun":
+				inPartOfSpeech = true
+				cb.SetPartOfSpeech("proper noun")
 			case "lb":
 				for i, v := range re.props {
 					if i > 0 && v.isStringValue() {

@@ -269,8 +269,12 @@ func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 			if readingName {
 				readingName = false
 
-				str, _ := Peek(reader, 2)
-				if strings.HasPrefix(str, "{{") {
+				str, _ := Peek(reader, 7)
+				if strings.HasPrefix(str, "{{...}}") {
+					valueStringBuilder.WriteString("...")
+					reader.Seek(7, io.SeekCurrent)
+					readingStringValue = true
+				} else if strings.HasPrefix(str, "{{") {
 					valueTemplateElement, err = parseTemplateElement(reader)
 					break
 				} else {
@@ -324,21 +328,24 @@ func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 				break
 			}
 		} else {
-			var isLinkProcessed = false
-			if readingName && r == '[' {
-				nextR, _ := Peek(reader, 1)
-				if nextR == "[" {
-					l, err := parseWikitextLink(reader)
-					if err != nil {
-						break
-					}
+			var isProcessed = false
 
-					nameBuilder.WriteString(l.name)
-					isLinkProcessed = true
+			bstr, _ := Peek(reader, 6)
+			if readingName && r == '[' && strings.HasPrefix(bstr, "[") {
+				l, err := parseWikitextLink(reader)
+				if err != nil {
+					break
 				}
+
+				nameBuilder.WriteString(l.name)
+				isProcessed = true
+			} else if readingStringValue && r == '{' && strings.HasPrefix(bstr, "{...}}") {
+				valueStringBuilder.WriteString("...")
+				reader.Seek(6, io.SeekCurrent)
+				isProcessed = true
 			}
 
-			if !isLinkProcessed {
+			if !isProcessed {
 				if readingName {
 					nameBuilder.WriteRune(r)
 				} else if readingStringValue {
