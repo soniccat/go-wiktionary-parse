@@ -376,7 +376,8 @@ func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 
 			bstr, _ := Peek(reader, 1)
 			if r == '[' && strings.HasPrefix(bstr, "[") {
-				l, err := parseWikitextLink(reader)
+				var l WikitextLink
+				l, err = parseWikitextLink(reader)
 				if err != nil {
 					break
 				}
@@ -582,8 +583,20 @@ func parseWikitext(str string) (Wikitext, error) {
 			if r == ' ' && !readingText {
 				// skip
 			} else {
-				readingText = true
-				textBuilder.WriteRune(r)
+				bstr, _ := Peek(reader, 1)
+				if r == '[' && strings.HasPrefix(bstr, "[") {
+					var l WikitextLink
+					l, err = parseWikitextLink(reader)
+					if err != nil {
+						break
+					}
+
+					readingText = true
+					textBuilder.WriteString(l.name)
+				} else {
+					readingText = true
+					textBuilder.WriteRune(r)
+				}
 			}
 		}
 

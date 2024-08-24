@@ -256,7 +256,7 @@ func TestParsingWikitext3(t *testing.T) {
 	assert.True(t, ok)
 	assert.Equal(
 		t,
-		"To [[separate]] into two or more [[piece]]s, to [[fracture]] or [[crack]], by a process that cannot easily be [[reverse]]d for [[reassembly]].",
+		"To separate into two or more pieces, to fracture or crack, by a process that cannot easily be reversed for reassembly.",
 		text.value,
 	)
 }
@@ -325,4 +325,17 @@ func TestParsingWikitext8(t *testing.T) {
 
 	assert.Nil(t, err)
 	assert.Equal(t, 15, len(text.elements))
+}
+
+func TestParsingWikitext9(t *testing.T) {
+	str := `==English==
+
+===Noun===
+{{en-noun|~}}
+
+# {{lb|en|organic compound}} The [[alkaloid]] ''(2S,3R,11bS)-3-ethyl-2-[[(1R)-2,3,4,9-tetrahydro-1H-pyrido[3,4-b]indol-1-yl]methyl]-2,3,4,6,7,11b-hexahydro-1H-benzo[a]quinolizine''`
+	text, err := parseWikitext(str)
+
+	assert.Nil(t, err)
+	assert.Equal(t, 8, len(text.elements))
 }
