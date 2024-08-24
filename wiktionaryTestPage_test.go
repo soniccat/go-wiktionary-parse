@@ -1,6 +1,49 @@
 package main
 
-var TestWikiPage3 = `[2024-08-24T13:27:37+03:00] <ERROR> text {{also|-free}}
+var TestWikiPage4 = `
+==English==
+{{was wotd|2019|December|21}}
+
+===Etymology===
+[[File:A Sherman Necktie, Ft. McAllister. GA. US.jpg|thumb|A Sherman necktie in the {{w|Fort McAllister Historic State Park}}, [[Georgia]], USA]]
+
+From {{m|en|Sherman}}, the [[surname]] of {{w|Union Army}} [[general#Noun|general]] {{w|William Tecumseh Sherman}} (1820–1891) + {{m|en|necktie}}. During the [[American Civil War]], Sherman ordered the [[destruction]] of the [[rail#Noun|rails]] of [[railway]]s in order to [[obstruct]] the {{w|Confederate States Army}}.
+
+===Pronunciation===
+* {{IPA|en|/ˈʃɜːmən ˈnɛktaɪ/|a=RP}}
+* {{IPA|en|/ˈʃɝmən ˈnɛktaɪ/|a=GA}}
+* {{hyphenation|en|Sher|man neck|tie}}
+
+===Noun===
+{{en-noun}}
+
+# {{lb|en|US|rail transport|historical|chiefly|in the plural}} A [[segment#Noun|segment]] of [[rail#Noun|rail]] that has been [[heat#Verb|heated]] and [[twist#Verb|twisted]] into a [[loop#Noun|loop]], as a means of [[destroy]]ing a [[railway]].
+#: {{synonyms|en|Sherman's bow tie|Sherman's hairpin|Jeff Davis's necktie}}
+#* {{quote-book|en|author=James Morris Morgan|chapter=XXVIII|title=Recollections of a Rebel Reefer|location=Boston, Mass.; New York, N.Y.|publisher=[[w:Houghton Mifflin Harcourt|Houghton Mifflin Company]]{{nb...|The Riverside Press Cambridge [Mass.]}}|year=1917|page=244|pageurl=https://archive.org/details/recollectionsofr00morg/page/244/mode/1up|oclc=585312|passage=We were compelled to go by carriage, as the railroads had been destroyed, the fat-pine cross-ties burned to heat the rails and the red-hot rails wrapped around the trees growing near the track. We used to call these iron rails "'''Sherman's neckties'''," and the solemn-looking chimneys standing guard over the former sites of once happy homes were called by the natives "Sherman's monuments."|brackets=on}}
+#* {{quote-book|en|author=w:James M. McPherson|chapter=We are Going to be Wiped Off the Earth|title=[[w:Battle Cry of Freedom (book)|Battle Cry of Freedom: The Civil War Era]]|series=The Oxford History of the United States|seriesvolume=6|location=New York, N.Y.|publisher=w:Oxford University Press|year=1988|isbn=978-0-19-503863-7|edition2=paperback|location2=New York, N.Y.|publisher2=Oxford University Press|year2=2003|page2=774|pageurl2=https://books.google.com/books?id=GXfGuNAvm7AC&pg=PA774|isbn2=978-0-19-516895-2|passage=As the Democrats met in Chicago to declare the war a failure, northern soldiers 700 miles away were making "'''Sherman neckties'''" out of the last open railroad into Atlanta by heating the rails over a bonfire of ties and twisting the iron around trees.}}
+#* {{quote-book|en|author=[[w:Jerry Ellis (author)|Jerry Ellis]]|chapter=11|title=Marching through Georgia: My Walk with Sherman|location=New York, N.Y.|publisher=[[w:Dell Publishing|Delacorte Press]]|year=1995|isbn=978-0-385-31182-3|title2=Marching through Georgia: My Walk along Sherman’s Route|edition2=paperback|location2=Athens, Ga.|publisher2=w:University of Georgia Press|year2=2002|page2=74|pageurl2=https://books.google.com/books?id=xW3tirg9SwMC&pg=PA74|isbn2=978-0-8203-2425-8|passage=I break camp and push down the road to the tiny town of Lithonia. It was here that [[w:William Tecumseh Sherman|[William Tecumseh] Sherman]] saw the first homes on the March to the Sea go up in flames as his men wrecked the railroad, twisting the iron rails into '''Sherman's Neckties'''.}}
+#* {{quote-book|en|author=Christopher J. Olsen|chapter=Confederate Families at War in 1864–1865|title=The American Civil War: A Hands-on History|location=New York, N.Y.|publisher=[[w:Hill & Wang|Hill and Wang]]|year=2006|isbn=978-0-8090-9538-4|edition2=paperback|location2=New York, N.Y.|publisher2=Hill and Wang|year2=2007|page2=214|pageurl2=https://books.google.com/books?id=OkTgvdz7xAQC&pg=PA214|isbn2=978-0-8090-1640-2|passage=Sherman's army cut a swath of destruction fifty miles wide as it marched leisurely through Georgia without any meaningful Confederate resistance. The men destroyed nearly all property in their path, famously twisting railroad tracks around tree trunks—"'''Sherman neckties'''"—so they would never be usable again.}}
+#* {{quote-book|en|author=Marc [Josef] Wortman|chapter=The First Bonfire|title=The Bonfire: The Siege and Burning of Atlanta|location=New York, N.Y.|publisher=w:PublicAffairs|year=2009|section=part VI (War is Cruelty, and You Cannot Refine It)|page=306|pageurl=https://books.google.com/books?id=vB_k_G5KMnUC&pg=PA306|isbn=978-1-58648-482-8|passage=Sherman, however, had grown to hate the Confederate trains running into Atlanta almost as much as the armies behind the city's earthworks. He declared, "Let the destruction be so thorough that not a rail or tie can be used again." The troops had a two-day-long '''Sherman necktie''' party.}}
+#* {{quote-book|en|author=Anne Sarah Rubin|chapter=Conclusion: Rubin’s March|title=Through the Heart of Dixie: Sherman’s March and American Memory|location=Chapel Hill, N.C.|publisher=w:University of North Carolina Press|year=2014|page=232|pageurl=https://books.google.com/books?id=Q2MJBAAAQBAJ&pg=PA232|isbn=978-1-4696-1777-0|passage=The Road to Tara Museum had a lot of ''[[w:Gone with the Wind (novel)|Gone with the Wind]]'' and almost no Sherman, except for one twisted '''Sherman's necktie'''.}}
+
+====Alternative forms====
+* {{l|en|Sherman's necktie}}
+
+====Translations====
+{{trans-top|segment of rail that has been heated and twisted into a loop}}
+* French: {{t|fr|cravate de Sherman|f}}
+* Italian: {{t|it|cravatta di Sherman|f}}
+* Ukrainian: {{t|uk|крава́тка Шермана|f}}
+{{trans-bottom}}
+
+===Further reading===
+* {{pedia|Sherman's neckties}}
+
+[[Category:English eponyms]]
+[[Category:en:American Civil War]]
+`
+
+var TestWikiPage3 = `{{also|-free}}
 ==English==
 
 ===Etymology===

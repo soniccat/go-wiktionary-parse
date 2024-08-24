@@ -170,7 +170,7 @@ func processWikitext(word string, wikitext Wikitext) []WordEntry {
 						labels = append(labels, v.stringValue())
 					}
 				}
-			case "syn":
+			case "syn", "synonyms":
 				for i, v := range re.props {
 					if i > 0 && v.isStringValue() {
 						cb.AddSynonym(v.stringValue())
@@ -333,6 +333,7 @@ func (cb *CardBuilder) saveDefinition() {
 }
 
 func (cb *CardBuilder) Build() []WordEntry {
+	cb.saveDefinition()
 	cb.save()
 	return cb.inserts
 }

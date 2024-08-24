@@ -132,7 +132,7 @@ func (e *WikitextTemplateElement) PropStringPropByIndex(anI int) *WikitextTempla
 
 type WikitextTemplateProp struct {
 	name  string
-	value *WikitextTemplateElement
+	value *string // TODO: store list of elements (WikitextTemplateElement, WikitextTextElement)
 }
 
 func (e *WikitextTemplateProp) isStringValue() bool {
@@ -144,11 +144,11 @@ func (e *WikitextTemplateProp) stringValue() string {
 }
 
 func (e *WikitextTemplateProp) isInnerStringValue() bool {
-	return !e.isStringValue() && len(e.value.props) == 0
+	return !e.isStringValue() && e.value != nil
 }
 
 func (e *WikitextTemplateProp) innerStringValue() string {
-	return e.value.name
+	return *e.value
 }
 
 type WikitextNewlineElement struct {
@@ -246,7 +246,6 @@ func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 	// important: name link will be converted to link name ([[Rail (magazine)|Rail]] -> Rail), so wiktionary link text will be lost here
 	element := WikitextTemplateProp{}
 	nameBuilder := strings.Builder{}
-	valueTemplateElement := WikitextTemplateElement{}
 	valueStringBuilder := strings.Builder{}
 
 	var r rune
@@ -268,18 +267,7 @@ func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 		} else if r == rune('=') {
 			if readingName {
 				readingName = false
-
-				str, _ := Peek(reader, 7)
-				if strings.HasPrefix(str, "{{...}}") {
-					valueStringBuilder.WriteString("...")
-					reader.Seek(7, io.SeekCurrent)
-					readingStringValue = true
-				} else if strings.HasPrefix(str, "{{") {
-					valueTemplateElement, err = parseTemplateElement(reader)
-					break
-				} else {
-					readingStringValue = true
-				}
+				readingStringValue = true
 			} else {
 				if readingStringValue {
 					valueStringBuilder.WriteRune(r)
@@ -329,23 +317,52 @@ func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 			}
 		} else {
 			var isProcessed = false
+			var addStr string
 
-			bstr, _ := Peek(reader, 6)
-			if readingName && r == '[' && strings.HasPrefix(bstr, "[") {
+			bstr, _ := Peek(reader, 1)
+			if r == '[' && strings.HasPrefix(bstr, "[") {
 				l, err := parseWikitextLink(reader)
 				if err != nil {
 					break
 				}
 
-				nameBuilder.WriteString(l.name)
+				addStr = l.name
 				isProcessed = true
-			} else if readingStringValue && r == '{' && strings.HasPrefix(bstr, "{...}}") {
-				valueStringBuilder.WriteString("...")
-				reader.Seek(6, io.SeekCurrent)
+			} else if r == '{' && strings.HasPrefix(bstr, "{") {
+				reader.UnreadByte()
+
+				// important: inner templates would be converted to text
+				innerElement := WikitextTemplateElement{}
+				innerElement, err = parseTemplateElement(reader)
+				if err != nil {
+					break
+				}
+
+				if len(innerElement.props) == 0 {
+					addStr = innerElement.name
+				} else {
+					p0 := innerElement.props[0]
+					if p0.isStringValue() {
+						addStr = p0.stringValue()
+					} else if p0.isInnerStringValue() {
+						addStr = p0.innerStringValue()
+					}
+				}
 				isProcessed = true
 			}
 
-			if !isProcessed {
+			if isProcessed {
+				if len(addStr) > 0 {
+					if readingName {
+						nameBuilder.WriteString(addStr)
+					} else if readingStringValue {
+						valueStringBuilder.WriteString(addStr)
+					} else {
+						isInvalidState = true
+						break
+					}
+				}
+			} else {
 				if readingName {
 					nameBuilder.WriteRune(r)
 				} else if readingStringValue {
@@ -359,13 +376,8 @@ func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 	}
 
 	element.name = nameBuilder.String()
-
 	if readingStringValue {
-		valueTemplateElement.name = valueStringBuilder.String()
-	}
-
-	if len(valueTemplateElement.name) > 0 {
-		element.value = &valueTemplateElement
+		element.value = Ptr(valueStringBuilder.String())
 	}
 
 	if err != nil || isInvalidState {
@@ -411,7 +423,11 @@ func parseWikitextLink(reader *strings.Reader) (link WikitextLink, err error) {
 				reader.Seek(1, io.SeekCurrent)
 				break
 			} else {
-				isInvalidState = true
+				if isReadingLinkText {
+					linkTextBuilder.WriteRune(r)
+				} else if isReadingLinkName {
+					linkNameBuilder.WriteRune(r)
+				}
 			}
 		} else if r == '|' && isReadingLinkText {
 			isReadingLinkText = false

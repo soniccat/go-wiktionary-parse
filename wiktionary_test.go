@@ -40,7 +40,7 @@ func TestParsingTemplateProp1(t *testing.T) {
 
 	assert.Nil(t, err)
 	assert.Equal(t, "a", e.name)
-	assert.Equal(t, "d", e.value.name)
+	assert.Equal(t, "d", *e.value)
 }
 
 func TestParsingTemplateProp2(t *testing.T) {
@@ -49,7 +49,7 @@ func TestParsingTemplateProp2(t *testing.T) {
 
 	assert.Nil(t, err)
 	assert.Equal(t, "abc", e.name)
-	assert.Equal(t, "def", e.value.name)
+	assert.Equal(t, "def", *e.value)
 }
 
 func TestParsingTemplateProp3(t *testing.T) {
@@ -58,7 +58,7 @@ func TestParsingTemplateProp3(t *testing.T) {
 
 	assert.Nil(t, err)
 	assert.Equal(t, "abc", e.name)
-	assert.Equal(t, "def", e.value.name)
+	assert.Equal(t, "def", *e.value)
 }
 
 func TestParsingTemplateProp4(t *testing.T) {
@@ -67,10 +67,10 @@ func TestParsingTemplateProp4(t *testing.T) {
 
 	assert.Nil(t, err)
 	assert.Equal(t, "abc", e.name)
-	assert.Equal(t, "n", e.value.name)
-	assert.Equal(t, 1, len(e.value.props))
-	assert.Equal(t, "def", e.value.props[0].name)
-	assert.Equal(t, "doom", e.value.props[0].value.name)
+	assert.Equal(t, "doom", *e.value)
+	// assert.Equal(t, 1, len(e.value.props))
+	// assert.Equal(t, "def", e.value.props[0].name)
+	// assert.Equal(t, "doom", e.value.props[0].value.name)
 }
 
 func TestParsingTemplateProp5(t *testing.T) {
@@ -97,6 +97,15 @@ func TestParsingTemplateProp7(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, "passage", e.name)
 	assert.Equal(t, "... the '''hypermasculinized''' image of rappers such as Puff Daddy (Sean Combs) ...", e.innerStringValue())
+}
+
+func TestParsingTemplateProp8(t *testing.T) {
+	str := "title={{w|Taming of the Shrew}}, I, ii"
+	e, err := parseTemplateProp(strings.NewReader(str))
+
+	assert.Nil(t, err)
+	assert.Equal(t, "title", e.name)
+	assert.Equal(t, "Taming of the Shrew, I, ii", e.innerStringValue())
 }
 
 func TestParsingTemplate1(t *testing.T) {
@@ -126,7 +135,7 @@ func TestParsingTemplate3(t *testing.T) {
 	assert.Equal(t, "abc", e.name)
 	assert.Equal(t, 1, len(e.props))
 	assert.Equal(t, "def", e.props[0].name)
-	assert.Equal(t, "boom", e.props[0].value.name)
+	assert.Equal(t, "boom", *e.props[0].value)
 }
 
 func TestParsingTemplate4(t *testing.T) {
@@ -138,7 +147,7 @@ func TestParsingTemplate4(t *testing.T) {
 	assert.Equal(t, "quote-text", e.name)
 	assert.Equal(t, 5, len(e.props))
 	assert.Equal(t, "passage", e.props[4].name)
-	assert.Equal(t, "Colonel: See, gentlemen? Any horse could be '''broken'''.", e.props[4].value.name)
+	assert.Equal(t, "Colonel: See, gentlemen? Any horse could be '''broken'''.", *e.props[4].value)
 }
 
 func TestParsingTemplate5(t *testing.T) {
