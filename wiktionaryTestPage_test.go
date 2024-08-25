@@ -262,8 +262,11 @@ d: become successful
 	s: grow
 	s: thrive
 d: depart
+d: antonyms of remove
 	a: don
+d: antonyms of ascend
 	a: land
+d: antonyms of begin flight
 	a: land
 	a: touch down
 noun
