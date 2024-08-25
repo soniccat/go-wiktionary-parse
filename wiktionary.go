@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/macdub/go-colorlog"
+	"golang.org/x/exp/slices"
 )
 
 const (
@@ -218,7 +219,7 @@ func parseTemplateElement(reader *strings.Reader) (WikitextTemplateElement, erro
 				} else {
 					// read sth like {2}
 					nameBuilder.WriteRune(r)
-					for {
+					for { // TODO: move that in a separate function
 						var r2 rune
 						r2, _, err = reader.ReadRune()
 						if err != nil {
@@ -376,6 +377,7 @@ func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 
 			bstr, _ := Peek(reader, 1)
 			if r == '[' && strings.HasPrefix(bstr, "[") {
+				// important: the link text will be lost, here only the link name is kept
 				var l WikitextLink
 				l, err = parseWikitextLink(reader)
 				if err != nil {
@@ -583,16 +585,33 @@ func parseWikitext(str string) (Wikitext, error) {
 			if r == ' ' && !readingText {
 				// skip
 			} else {
-				bstr, _ := Peek(reader, 1)
+				bstr, _ := Peek(reader, 2)
 				if r == '[' && strings.HasPrefix(bstr, "[") {
+					// important: the link text will be lost, here only the link name is kept
 					var l WikitextLink
 					l, err = parseWikitextLink(reader)
 					if err != nil {
 						break
 					}
-
 					readingText = true
 					textBuilder.WriteString(l.name)
+
+				} else if r == '\'' && strings.HasPrefix(bstr, "''") {
+					reader.Seek(2, io.SeekCurrent)
+
+					var addStr string
+					addStr, err = ReadUntil(reader, []byte("'''"))
+					textBuilder.WriteString(addStr)
+					readingText = true
+
+				} else if r == '\'' && strings.HasPrefix(bstr, "'") {
+					reader.Seek(1, io.SeekCurrent)
+
+					var addStr string
+					addStr, err = ReadUntil(reader, []byte("''"))
+					textBuilder.WriteString(addStr)
+					readingText = true
+
 				} else {
 					readingText = true
 					textBuilder.WriteRune(r)
@@ -652,11 +671,43 @@ func Peek(reader *strings.Reader, l int) (string, error) {
 func ReadLine(reader *strings.Reader) (string, error) {
 	b := strings.Builder{}
 	for {
-		r, _, err := reader.ReadRune()
+		bt, err := reader.ReadByte()
 		if err != nil {
 			break
+		} else if bt == '\n' {
+			break
 		} else {
-			b.WriteRune(r)
+			b.WriteByte(bt)
+		}
+	}
+
+	return b.String(), nil
+}
+
+func ReadUntil(reader *strings.Reader, stop []byte) (string, error) {
+	b := strings.Builder{}
+	for {
+		bt, err := reader.ReadByte()
+		if err != nil {
+			break
+		} else if bt == stop[0] {
+			if len(stop) == 1 {
+				b.WriteByte(bt)
+				break
+			}
+
+			var lastPart string
+			lastPart, err = Peek(reader, len(stop)-1)
+			if slices.Equal([]byte(lastPart), stop[1:]) {
+				reader.Seek(int64(len(lastPart)), io.SeekCurrent)
+				break
+			}
+			b.WriteString(lastPart)
+			if err != nil {
+				break
+			}
+		} else {
+			b.WriteByte(bt)
 		}
 	}
 

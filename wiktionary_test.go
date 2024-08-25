@@ -242,7 +242,7 @@ func TestParsingWikitext2(t *testing.T) {
 }
 
 func TestParsingWikitext3(t *testing.T) {
-	str := "# {{lb|en|transitive|intransitive}} To [[separate]] into two or more [[piece]]s, to [[fracture]] or [[crack]], by a process that cannot easily be [[reverse]]d for [[reassembly]]."
+	str := "# {{lb|en|transitive|intransitive}} To [[separate]] into '''two''' or more [[piece]]s, to [[fracture]] or [[crack]], by a process that cannot easily be [[reverse]]d for [[reassembly]]."
 
 	s, err := parseWikitext(str)
 
@@ -337,5 +337,7 @@ func TestParsingWikitext9(t *testing.T) {
 	text, err := parseWikitext(str)
 
 	assert.Nil(t, err)
-	assert.Equal(t, 8, len(text.elements))
+	assert.Equal(t, 9, len(text.elements))
+	te := text.elements[8].(*WikitextTextElement)
+	assert.Equal(t, `The alkaloid (2S,3R,11bS)-3-ethyl-2-[[(1R)-2,3,4,9-tetrahydro-1H-pyrido[3,4-b]indol-1-yl]methyl]-2,3,4,6,7,11b-hexahydro-1H-benzo[a]quinolizine`, te.value)
 }
