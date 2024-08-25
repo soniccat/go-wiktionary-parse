@@ -96,7 +96,7 @@ func TestParsingTemplateProp7(t *testing.T) {
 
 	assert.Nil(t, err)
 	assert.Equal(t, "passage", e.name)
-	assert.Equal(t, "... the '''hypermasculinized''' image of rappers such as Puff Daddy (Sean Combs) ...", e.innerStringValue())
+	assert.Equal(t, "... the hypermasculinized image of rappers such as Puff Daddy (Sean Combs) ...", e.innerStringValue())
 }
 
 func TestParsingTemplateProp8(t *testing.T) {
@@ -114,7 +114,7 @@ func TestParsingTemplateProp9(t *testing.T) {
 
 	assert.Nil(t, err)
 	assert.Equal(t, "passage", e.name)
-	assert.Equal(t, "The redshift of light leaking outward from the '''photon sphere''' is <math>\\sqrt{3} - 1 = 0.732</math>. All light rays approaching a black hole closer than <math>\\sqrt{3}</math> times the radius of the '''photon sphere''' spiral inwards and are captured (see Figure 13.5).", e.innerStringValue())
+	assert.Equal(t, "The redshift of light leaking outward from the photon sphere is <math>\\sqrt{3} - 1 = 0.732</math>. All light rays approaching a black hole closer than <math>\\sqrt{3}</math> times the radius of the photon sphere spiral inwards and are captured (see Figure 13.5).", e.innerStringValue())
 }
 
 func TestParsingTemplate1(t *testing.T) {
@@ -156,7 +156,7 @@ func TestParsingTemplate4(t *testing.T) {
 	assert.Equal(t, "quote-text", e.name)
 	assert.Equal(t, 5, len(e.props))
 	assert.Equal(t, "passage", e.props[4].name)
-	assert.Equal(t, "Colonel: See, gentlemen? Any horse could be '''broken'''.", *e.props[4].value)
+	assert.Equal(t, "Colonel: See, gentlemen? Any horse could be broken.", *e.props[4].value)
 }
 
 func TestParsingTemplate5(t *testing.T) {
