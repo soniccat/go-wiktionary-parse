@@ -1,5 +1,278 @@
 package main
 
+var TestWikiPage10 = `
+{{also|takeoff|take-off}}
+==English==
+
+===Pronunciation===
+* {{audio|en|En-au-take off.ogg|a=AU}}
+
+===Verb===
+{{en-verb|take<,,took,taken> off}}
+
+# {{lb|en|transitive}} To [[remove]].
+#: {{ux|en|He '''took off''' his shoes.}}
+#: {{ux|en|The test grader '''takes off''' a point for every misspelled word.}}
+#: {{ux|en|Tomorrow the doctor will '''take''' the cast '''off''' her arm.}}
+#* {{quote-av|en|year=1980|title=w:Charlie's Angels|season=4|number=23|text=Sounds nice. Has a certain ring to it. '''Take''' your shirt '''off.'''|network=[[w:American Broadcasting Company|ABC]]|episode=Three for the Money|director=w:George McCowan|writer=w:[[Lee Sheldon (writer)|Lee Sheldon]]}}
+#* {{quote-book|en|1995|w:Richard Rhodes|quotee=w:Curtis LeMay|pageurl=https://books.google.com/books?id=rSgfbK0hi2UC&pg=PP1&pg=PA574|chapter=Scorpions in a Bottle|Dark Sun: The Making of the Hydrogen Bomb|location=w:New York||publisher=w:Simon & Schuster|574|isbn=9780684804002|The Russian bear has always been eager to stick his paw in Latin American waters.  Now we've got him in a trap, let's '''take''' his leg '''off''' right up to his testicles.  On second thought, let's '''take off''' his testicles, too.}}
+#* {{quote-journal|en||date=2024/1/10|Chris Gilson|RAIL's famous five...|w:[[Rail (magazine)|Rail]]|issue=1000||27|By March 1994, it had moved to Cardiff Canton, and was still allocated there when its nameplates were '''taken off''' in March 1997.}}
+# {{lb|en|transitive}} To [[imitate]] somebody, often in a [[satirical]] manner.
+#* {{quote-journal|en|date=1978/4/22||w:Robert Chesley|The Return Of The Peaches|w:[[Gay Community News (Boston)|Gay Community News]]||12|Yes, the Peaches, on a nearly non-existent budget, lack professionalism. The basic format of this show — '''taking off''' on television, with a soap opera, a quiz show , news, a cooking class and commercials for KY and grass, etc. — resembles kids getting up a skit.}}
+#* {{quote-book|en|year=1986|author=w:John Le Carré|title=A Perfect Spy|publisher=Sceptre|year_published=2011|page=365
+|passage=Pym would '''take''' him '''off''' perfectly, thought Brotherhood. Pym would catch that accent to a tee.}}
+# {{senseid|en|ascend}}{{lb|en|intransitive|of an aircraft or spacecraft}} To [[leave]] the [[ground]] and begin [[flight]]; to [[ascend]] into the [[air]].
+#: {{ux|en|The plane has been cleared to '''take off''' from runway 3.}}
+# {{lb|en|intransitive}} To become [[successful]], to [[flourish]].
+#: {{ux|en|The business has really '''taken off''' this year and has made quite a profit.}}
+#* '''2007''' July 12, The Guardian, ''A welcome invasion''.<!--Article about the success of Scandinavian companies in the British market.-->
+#*: The message is now the medium – that is powerful and means products can '''take off''' practically all by themselves.
+#* {{quote-journal|en|date=2023 November 1|author=Nick Brodrick talks to Jason Cocker|title=A station that "oozes" customer service...|journal=RAIL|issue=995|pages=52-53|text=As well as the boom in off-peak leisure numbers, "there has been a big spike in passenger assistance - that's really '''taken off''' as well", he continues. "We're probably victims of our own success because we promote this more than we ever used to. We promote how accessible the railways are. I think that this area has more than doubled from pre-COVID levels.}}
+# {{lb|en|intransitive}} To [[depart]].
+#: {{ux|en|I'm going to '''take off''' now.}}
+#: {{ux|en|'''Take off''', loser!}}
+#* {{quote-text|en|year=2020|author=Armando Lazzari|title=Dinner with the Mafia
+|passage=Ben threw twenty bucks on the table, grabbed the map and '''took off''' after the thief, following Susan who had run off before him.}}
+# {{lb|en|transitive}} To [[quantify]].
+#: {{ux|en|I'll '''take off''' the concrete and steel for this construction project.}}
+# {{lb|en|ambitransitive}} To absent oneself from (work or other responsibility), especially with permission.
+#: {{ux|en|If you '''take off''' for Thanksgiving you must work Christmas and vice versa.}}
+#: {{ux|en|He decided to let his mother '''take''' a night '''off''' from cooking, so he took her and his siblings out to dinner.}}
+# {{lb|en|intransitive|slang|dated}} To [[take]] [[drug]]s; to [[inject]] drugs.
+# {{lb|en|transitive|slang|dated}} To [[steal]] (something) or [[rob]] (someone).
+# {{lb|en|transitive|archaic}} To [[swallow]].
+#: {{ux|en|to '''take off''' a glass of wine}}
+
+====Synonyms====
+* {{sense|remove clothing}} {{l|en|doff}}
+* {{sense|imitate}} {{l|en|ape}}, {{l|en|imitate}}, {{l|en|impersonate}}, {{l|en|mimic}}
+* {{sense|become successful}} {{l|en|bloom}}, {{l|en|blossom}}, {{l|en|flourish}}, {{l|en|grow}}, {{l|en|thrive}}
+* {{sense|depart}} ''See'' [[depart]]
+
+====Antonyms====
+* {{antsense|remove}} {{l|en|don}} (''applies to clothing only''), [[put on]]
+* {{antsense|ascend}} {{l|en|land}} (''also applies to spacecraft and some other vessels'')
+* {{antsense|begin flight}} {{l|en|land}}, {{l|en|touch down}}
+
+====Derived terms====
+{{col3|en
+|{{l|en|take-off|pos=n}}
+|{{l|en|takeoff|pos=n}}|take off one's gloves
+|take one's hat off to
+}}
+
+====Translations====
+{{trans-top|to remove}}
+* Arabic: {{t|ar|خَلَعَ}} {{qualifier|clothing}}
+* Armenian: {{t+|hy|հանել|sc=Armn}}
+* Azerbaijani: {{t+|az|çıxarmaq}}
+* Belarusian: {{t|be|здыма́ць|impf|sc=Cyrl}}, {{t|be|зняць|pf|sc=Cyrl}} {{qualifier|clothing}}
+* Catalan: {{t+|ca|treure}}
+* Cherokee: {{q|pants}} {{t|chr|ᎠᏑᎳᎩᎠ}}, {{q|shoes}} {{t|chr|ᏓᎳᏑᎳᎩᎠ}}, {{q|mask or veil}} {{t|chr|ᎠᎵᎬᏚᎴᎠ}}
+* Chinese:
+*: Mandarin: {{qualifier|clothing}} {{t+|cmn|脫|tr=tuō}}
+* Czech: {{t|cs|svléci|pf}}, {{t+|cs|sundat|pf}}
+* Danish: {{t|da|fjerne}}, {{t+|da|aftage}}
+* Dutch: {{t+|nl|uittrekken}} {{qualifier|clothing}}, {{t+|nl|afzetten}} {{qualifier|hat}}
+* Finnish: {{t|fi|[[ottaa]] [[pois]]}}
+* French: {{t+|fr|enlever}}, {{t+|fr|ôter}}
+* Georgian: {{t-needed|ka}}
+* German: {{t+|de|ausziehen}} {{gloss|clothing}}, {{t+|de|loslösen}}, {{t+|de|abziehen}}, {{t+|de|ablegen}}, {{t+|de|abnehmen}}
+* Greek: {{t+|el|βγάζω}}
+* Hawaiian: {{t|haw|wehe}}
+* Hindi: {{t+|hi|उतारना}}
+* Hungarian: {{t+|hu|levesz}}, {{t+|hu|levet}}
+* Icelandic: {{t|is|taka af}}, {{t|is|fjarlægja}}, {{t|is|fara úr}} {{qualifier|referring to clothing that closes around the body or parts of it}}
+* Ingrian: {{t|izh|hylätä}}
+* Irish: {{t|ga|bain de}}
+* Italian: {{t+|it|togliere}}
+* Japanese: {{qualifier|clothing}} {{t+|ja|脱ぐ|tr=ぬぐ, nugu}}
+* Khmer: {{t+|km|ដោះ}}
+* Korean: {{t+|ko|벗다}} {{qualifier|clothing}}
+* Kurdish:
+*: Central Kurdish: {{t|ckb|داکەنە}}
+* Latin: {{t|la|exuō}}
+* Macedonian: {{t|mk|си́мнува}}, {{t|mk|тр́гнува}}, (''clothing'') {{t|mk|сле́кува}}, {{t|mk|собле́кува}}
+* Maltese: {{t|mt|neħħa}}
+* Maori: {{t|mi|marere}}
+* Ngazidja Comorian: {{t|zdj|tsua|alt=utsua}} {{gloss|clothing}}
+* Norwegian: {{t|no|ta av}}
+*: Bokmål: {{t+|nb|fjerne}}
+* Old English: {{t|ang|dōn of}}
+* Polish: {{t+|pl|zdejmować|impf}}, {{t+|pl|zdjąć|pf}}
+* Portuguese: {{t+|pt|tirar}}
+* Romanian: {{t|ro|da jos}}
+* Russian: {{t+|ru|снима́ть|impf}} {{qualifier|usually of clothing}}, {{t+|ru|снять|pf}}; {{t+|ru|убира́ть|impf}}, {{t+|ru|убра́ть|pf}}
+* Spanish: {{t+|es|quitarse}}
+* Swedish: {{t+|sv|ta av}}
+* Thai: {{t+|th|ถอด}}
+* Tibetan: {{t|bo|ཕུད}}
+* Tocharian B: {{t|txb|rutk-}}
+* Ukrainian: {{t|uk|зніма́ти|impf|sc=Cyrl}}, {{t|uk|зня́ти|pf|sc=Cyrl}} {{qualifier|clothing}}
+* Urdu: {{t+|ur|اتارنا|tr=utārnā|sc=ur-Arab}}
+* Vietnamese: {{t+|vi|bỏ}}
+{{trans-bottom}}
+
+{{trans-see|to imitate|imitate}}
+
+{{trans-top|to begin flight}}
+* Albanian: {{t-needed|sq}}
+* Arabic: {{t|ar|أَقْلَعَ}}
+* Armenian: {{t+|hy|թռչել}}, {{t+|hy|պոկվել}}
+* Basque: {{t|eu|aireratu}}
+* Belarusian: {{t|be|узлята́ць|impf}}, {{t|be|узляце́ць|pf}}
+* Bulgarian: {{t+|bg|отлитам}}, {{t+|bg|излитам}}
+* Burmese: {{t-needed|my}}
+* Catalan: {{t+|ca|enlairar-se}}
+* Chinese:
+*: Mandarin: {{t+|cmn|起飛|tr=qǐfēi}}
+* Czech: {{t|cs|vzlétnout}}
+* Danish: {{t|da|afgå}}
+* Esperanto: {{t|eo|ekflugi}}
+* Estonian: {{t-needed|et}}
+* Finnish: {{t+|fi|nousta}}, {{t|fi|lähteä lentoon}}
+* French: {{t+|fr|décoller}}, {{t+|fr|prendre son vol}}, {{t+|fr|prendre son essor}}
+* Galician: {{t+|gl|engalar}}
+* Georgian: {{t-needed|ka}}
+* German: {{t+|de|starten}}, {{t+|de|abheben}}
+* Greek: {{t+|el|απογειώνομαι}}
+* Hebrew: {{t+|he|הִמְרִיא|tr=himrí}}
+* Hindi: {{t-needed|hi}}
+* Hungarian: {{t+|hu|felszáll}}
+* Icelandic: {{t|is|hefja sig á loft}}, {{t|is|hefja sig á flug}}, {{t|is|takast á loft}}, {{t|is|takast á flug}}
+* Interlingua: {{t|ia|elevar|alt=elevar se}}
+* Italian: {{t+|it|decollare}}
+* Japanese: {{t+|ja|飛び立つ|tr=とびたつ, tobitatsu|sc=Jpan}}
+* Khmer: {{t|km|ហោះ​ឡើង}}
+* Korean: {{t+|ko|이륙하다}}
+* Latvian: {{t-needed|lv}}
+* Lithuanian: {{t-needed|lt}}
+* Macedonian: {{t|mk|поле́тува}}
+* Maori: {{t|mi|hārewa}}
+* Mongolian: {{t-needed|mn}}
+* Norwegian: {{t-needed|no}}
+*: Bokmål: {{t|nb|ta av}}, {{t+|nb|lette}}
+* Ottoman Turkish: {{t|ota|هوالانمق|tr=havalanmak}}
+* Portuguese: {{t+|pt|decolar}} {{q|Brazil}}, {{t+|pt|descolar}} {{q|Portugal}}, {{t|pt|levantar voo}}
+* Romanian: {{t+|ro|decola}}
+* Russian: {{t+|ru|взлета́ть|impf}}, {{t+|ru|взлете́ть|pf}}
+* Spanish: {{t+|es|despegar}}
+* Swedish: {{t+|sv|lyfta}}
+* Thai: {{t|th|ออกตัว}}
+* Turkish: {{t+|tr|havalanmak}}
+* Ukrainian: {{t|uk|зліта́ти|impf}}, {{t|uk|злеті́ти|pf}}
+* Vietnamese: {{t+|vi|cất cánh}}
+{{trans-bottom}}
+
+{{trans-top|to become successful}}
+* Arabic: {{t|ar|اِزْدَهَرَ}}
+* Chinese:
+*: Mandarin: {{t+|cmn|騰飛|tr=téngfēi}}
+* Dutch: {{t|nl|een vlucht nemen}}
+* Finnish: {{t|fi|lähteä lentoon}}
+* German: {{t+|de|durchstarten}}, {{t|de|in Schwung kommen}}
+* Portuguese: {{t+|pt|deslanchar}}
+* Russian: {{t+|ru|подняться|pf}}, {{t+|ru|подниматься|impf}}
+* Swedish: {{t|sv|ta fart}}
+{{trans-bottom}}
+
+{{trans-top|to depart}}
+* Finnish: {{t+|fi|lähteä}}, {{t+|fi|häipyä}}
+* French: {{t+|fr|décoller}}, {{t+|fr|s'arracher}}
+* German: {{t+|de|abhauen}} {{qualifier|slang}}, {{t|de|sich verziehen}} {{qualifier|slang}}, {{t|de|weg sein}} {{qualifier|coll.}}, {{t+|de|den Abflug machen}} {{qualifier|coll. / idiomatic}}, {{t+|de|fortgehen}}
+{{trans-bottom}}
+
+{{trans-see|to quantify|quantify}}
+
+{{trans-top|to absent oneself from work or other responsibility}}
+* Finnish: {{t|fi|[[pitää]] [[vapaa]]ta}}
+* German: {{t+|de|freinehmen}}
+* Portuguese: {{t+|pt|folgar}}
+{{trans-bottom}}
+
+====See also====
+* to [[lift off]]
+
+===Noun===
+{{en-noun}}
+
+# {{nonstandard spelling of|en|takeoff}}
+#* {{quote-book|en|year=1986 |title=Working-class Formation|author=Ira Katznelson; Aristide R. Zolberg |page=45 |ISBN=|passage=France never experienced a "'''take off'''" of the sort hypothesized by W. W. Rostow — a sudden spurt of output that begins sustained industrial growth.}}
+#* {{quote-book|en|year=2003|title=Estimating Building Costs |author=Calin M. Popescu; Kan Phaobunjong; Nuntapong Ovararin |page=354 |ISBN=|passage=Therefore, the only sure way to estimate the quantity of lumber required for any particular job is to do a '''take off''' of each piece of lumber needed for the work.}}
+#* {{quote-book|en|year=2003 |title=Jet Propulsion|author=N. A. Cumpsty |page= |ISBN=|passage=This is virtually equal to the minimum value shown above to be necessary in the case of a total loss in thrust from one of the four engines at '''take off'''.}}
+
+===Anagrams===
+* {{anagrams|en|a=aeffkot|offtake}}
+`
+
+var TestWikiPage10_parsed = `Term: w
+Transcriptions:
+
+verb
+d: To remove.
+l: transitive, 
+	e: He took off his shoes.
+	e: The test grader takes off a point for every misspelled word.
+	e: Tomorrow the doctor will take the cast off her arm.
+	e: Sounds nice. Has a certain ring to it. Take your shirt off.
+	e: The Russian bear has always been eager to stick his paw in Latin American waters.  Now we've got him in a trap, let's take his leg off right up to his testicles.  On second thought, let's take off his testicles, too.
+	e: By March 1994, it had moved to Cardiff Canton, and was still allocated there when its nameplates were taken off in March 1997.
+d: To imitate somebody, often in a satirical manner.
+l: transitive, 
+	e: Yes, the Peaches, on a nearly non-existent budget, lack professionalism. The basic format of this show — taking off on television, with a soap opera, a quiz show , news, a cooking class and commercials for KY and grass, etc. — resembles kids getting up a skit.
+	e: Pym would take him off perfectly, thought Brotherhood. Pym would catch that accent to a tee.
+d: To leave the ground and begin flight; to ascend into the air.
+l: intransitive, of an aircraft or spacecraft, 
+	e: The plane has been cleared to take off from runway 3.
+d: To become successful, to flourish.
+l: intransitive, 
+	e: The business has really taken off this year and has made quite a profit.
+	e: The message is now the medium – that is powerful and means products can take off practically all by themselves.
+	e: As well as the boom in off-peak leisure numbers, "there has been a big spike in passenger assistance - that's really taken off as well", he continues. "We're probably victims of our own success because we promote this more than we ever used to. We promote how accessible the railways are. I think that this area has more than doubled from pre-COVID levels.
+d: To depart.
+l: intransitive, 
+	e: I'm going to take off now.
+	e: Take off, loser!
+	e: Ben threw twenty bucks on the table, grabbed the map and took off after the thief, following Susan who had run off before him.
+d: To quantify.
+l: transitive, 
+	e: I'll take off the concrete and steel for this construction project.
+d: To absent oneself from (work or other responsibility), especially with permission.
+l: ambitransitive, 
+	e: If you take off for Thanksgiving you must work Christmas and vice versa.
+	e: He decided to let his mother take a night off from cooking, so he took her and his siblings out to dinner.
+d: To take drugs; to inject drugs.
+l: intransitive, slang, dated, 
+d: To steal (something) or rob (someone).
+l: transitive, slang, dated, 
+d: To swallow.
+l: transitive, archaic, 
+	e: to take off a glass of wine
+d: remove clothing
+	s: doff
+d: imitate
+	s: ape
+	s: imitate
+	s: impersonate
+	s: mimic
+d: become successful
+	s: bloom
+	s: blossom
+	s: flourish
+	s: grow
+	s: thrive
+d: depart
+	a: don
+	a: land
+	a: land
+	a: touch down
+noun
+d: nonstandard spelling of takeoff
+	e: France never experienced a "take off" of the sort hypothesized by W. W. Rostow — a sudden spurt of output that begins sustained industrial growth.
+	e: Therefore, the only sure way to estimate the quantity of lumber required for any particular job is to do a take off of each piece of lumber needed for the work.
+	e: This is virtually equal to the minimum value shown above to be necessary in the case of a total loss in thrust from one of the four engines at take off.
+`
+
 var TestWikiPage9 = `
 ==English==
 {{wikipedia}}
@@ -10,6 +283,18 @@ var TestWikiPage9 = `
 ===Etymology===
 {{root|en|ine-pro|*dʰrewgʰ-|id=deceive}}
 From {{inh|en|enm|drem}}, from {{inh|en|ang|drēam|t=music, joy}}, from {{inh|en|gmw-pro|*draum}}, from {{inh|en|gem-pro|*draumaz}}, from earlier {{m|gem-pro||*draugmaz}}, from {{inh|en|ine-pro||*dʰrowgʰ-mos}}, from {{m|ine-pro|*dʰrewgʰ-|t=to deceive, injure, damage}}.
+
+The sense of "dream", though not attested in Old English, may still have been present (compare {{cog|osx|drōm|t=bustle, revelry, jubilation", also "dream}}), and was undoubtedly reinforced later in Middle English by {{cog|non|draumr|t=dream}}, from same Proto-Germanic root.
+
+Cognate with {{cog|sco|dreme||dream}}, {{cog|frr|drom||dream}}, {{cog|fy|dream||dream}}, {{cog|nds|Droom}}, {{cog|nl|droom||dream}}, {{cog|de|Traum||dream}}, {{cog|da|-}} and {{cog|nb|drøm}}, {{cog|nn|draum}}, {{cog|sv|dröm||dream}}, {{cog|is|draumur||dream}}. Related also to {{cog|non|draugr||ghost, undead, spectre}}, {{cog|nl|bedrog||deception, deceit}}, {{cog|de|Trug||deception, illusion}}.
+
+{{rel-top|more details}}
+The derivation from Old English ''drēam'' is controversial, since the word itself is only attested in writing in its meaning of “joy, mirth, musical sound”. Possibly there was a separate word ''drēam'' meaning “images seen while sleeping”, which was avoided in literature due to potential confusion with the “joy” sense. Otherwise, the modern sense must have been borrowed from another Germanic language, most probably Old Norse.<ref>{{R:Online Etymology Dictionary}}.</ref> Since this is the common sense in all Germanic languages outside the British isles, a spontaneous development from “joy, mirth” to “dream” in Middle English is hardly conceivable. In {{m+|osx|-}}, the cognate {{m|osx|drōm}} did mean “dream”, but was a rare word.
+
+Attested words for “sleeping vision” in Old English, both of which appeared in ''The Dream of the Rood'', were {{m|ang|mǣting}} (Middle English {{m|enm|mæte}}, {{m|enm|mete}}), from an unclear source, and {{m|ang|swefn}} (Modern {{cog|en|sweven}}), from {{cog|gem-pro|*swefnaz}}, from Proto-Indo-European {{m|ine-pro|*swepno-}}, {{m|ine-pro|*swep-}}; compare {{cog|grc|ὕπνος||sleep}}.
+
+The verb is from {{inh|en|enm|dremen}}, possibly (see above) from {{inh|en|ang|drīeman||to make a joyous sound with voice or with instrument; rejoice; sing a song; play on an instrument}}, from {{inh|en|gem-pro|*draumijaną}}, {{m|gem-pro|*draugmijaną||to be festive, dream, hallucinate}}, from the noun. Cognate with {{cog|sco|dreme||to dream}}, {{cog|fy|dreame||to dream}}, {{cog|nl|dromen||to dream}}, {{cog|de|träumen||to dream}}, {{cog|sv|drömma||to dream, muse}}, {{cog|is|dreyma||to dream}}.
+{{rel-bottom}}
 
 ===Pronunciation===
 * {{enPR|drēm}}, {{IPA|en|/dɹiːm/| [d͡ʒɹiːm]|[d̠͡ɹ̠˔ʷɪi̯m]}}
@@ -69,6 +354,659 @@ From {{inh|en|enm|drem}}, from {{inh|en|ang|drēam|t=music, joy}}, from {{inh|en
 |passage=There sober thought pursued the amusing theme, <br> Till Fancy coloured it and formed a '''dream'''.}}
 #* {{quote-text|en|year=1870|author={{w|John Campbell Shairp|John Shairp}}|title=Culture and Religion
 |passage=It is not, then, a mere '''dream''', but a very real aim which they propose.}}
+
+====Derived terms====
+{{col4|en|American dream|beyond one's wildest dreams|daydream|dreamboat|dreamcatcher|dream come true|dreamgirl|Indian's dream
+|dreamish|dreamland|dreamless|dreamlife|dreamlike|dreamscape|dream team|dreamy|dream vision|dreamwork|dreamworker|dreamworld|fever dream|in your dreams|in your wildest dreams|like a dream|live the dream|lucid dream|manic pixie dream girl|in one's wildest dreams|pipe dream|wet dream|African dream herb|cheese dream|dream board|dream catcher|dream factory|dream feed|dream house|dream life|dream list|dream pop|dream trance|go like a dream|impossible dream|teamwork makes the dream work|waking dream|work like a dream|dream yoga}}
+
+====Translations====
+{{trans-top|imaginary events seen while sleeping}}
+{{multitrans|data=
+* Abkhaz: {{t|ab|аԥхыӡ}}
+* Acehnese: {{t|ace|lumpoë}}
+* Adyghe: {{t|ady|пщӏыхьапӏэ}}
+* Afrikaans: {{tt+|af|droom}}
+* Aguaruna: {{tt|agr|kaha}}
+* Ainu: {{t|ain|タラㇷ゚|tr=tarap}}
+* Albanian: {{tt+|sq|ëndërr|f}}
+* Arabic: {{tt+|ar|حُلْم|m}}, {{tt|ar|رُؤْيَا|f}}, {{tt|ar|مَنام|m}}
+*: Egyptian Arabic: {{tt|arz|حلم|m|tr=ḥélem}}
+*: Hijazi Arabic: {{tt|acw|حلم|m|tr=ḥílim}}
+*: North Levantine Arabic: {{tt|arz|حلم|m|tr=ḥélem}}
+*: South Levantine Arabic: {{tt|ajp|حلم|m|tr=ḥélem, ḥúlum}}
+* Aramaic:
+*: Classical Syriac: {{tt|syc|ܚܠܡܐ|m|tr=ḥelmā}}
+* Armenian: {{tt+|hy|երազ}}, {{tt+|hy|անուրջ}}
+* Assamese: {{tt|as|সপোন}}
+* Asturian: {{tt|ast|suañu|m}}
+* Avar: {{t|av|макьу}}
+* Azerbaijani: {{tt|az|röya}}, {{tt+|az|yuxu}}
+* Baluchi: {{tt|bal|واب|tr=wáb}}
+* Bashkir: {{tt|ba|төш}}
+* Basque: {{tt+|eu|amets}}
+* Bavarian: {{tt|bar|Draam}}
+* Belarusian: {{tt|be|сон|m}}, {{t|be|сне́нне|n}}, {{t|be|сьне́ньне|n}} {{qualifier|Taraškievica}}
+* Bengali: {{tt+|bn|স্বপ্ন}}, {{tt+|bn|খোয়াব}}
+* Bikol Central: {{tt|bcl|pangiturog}}
+* Breton: {{tt+|br|hunvre|m}}
+* Buginese: {{t|bug|nipi}}
+* Bulgarian: {{tt+|bg|сън|m}}
+* Burmese: {{tt+|my|အိပ်မက်}}
+* Catalan: {{tt+|ca|somni|m}}
+* Cebuano: {{tt|ceb|damgo}}
+* Central Atlas Tamazight: {{tt|tzm|ⵜⴰⵡⴰⵔⴳⵉⵜ|f}}
+* Chechen: {{tt|ce|гӏан|alt=гIан}}
+* Chepang: {{t|cdm|माङः|tr=mang'}}
+* Cherokee: {{tt|chr|ᎠᏍᎩᏘᏍᏗ}}
+* Chinese:
+*: Cantonese: {{tt+|yue|夢|tr=mung6}}
+*: Mandarin: {{tt+|cmn|夢|tr=mèng}}
+* Classical Nahuatl: {{tt|nci|temictli}}
+* Czech: {{tt+|cs|sen|m}}
+* Danish: {{tt+|da|drøm|c}}
+* Dongxiang: {{tt|sce|zhaojin}}
+* Drung: {{t|duu|mlvng}}
+* Dutch: {{tt+|nl|droom|m}}
+* Egyptian: {{t-egy|rswt|f|h=D21-S29-G43-X1-T13-D4}}
+* Esperanto: {{tt|eo|sonĝo}}
+* Estonian: {{tt|et|unenägu}}
+* Even: {{t|eve|толкун}}
+* Evenki: {{t|evn|толкин}}
+* Faroese: {{tt|fo|dreymur|m}}
+* Finnish: {{tt+|fi|uni}}
+* French: {{tt+|fr|rêve|m}}, {{tt+|fr|songe|m}}
+* Friulian: {{tt|fur|sium|m}}, {{tt|fur|insium|m}}
+* Galician: {{tt+|gl|soño|m}}
+* Garo: {{tt|grt|জুমাং|tr=dźu-maŋ}}
+* Georgian: {{tt|ka|სიზმარი}}
+* German: {{tt+|de|Traum|m}}
+* Greek: {{tt+|el|όνειρο|n}}, {{tt+|el|ενύπνιο|n}}
+*: Ancient: {{tt|grc|ὄνειρος|m}}, {{tt|grc|ἐνύπνιον|n}}
+* Guaraní: {{tt|gn|ke}}
+* Gujarati: {{tt|gu|સ્વપ્ન}}
+* Haitian Creole: {{tt|ht|rèv}}
+* Hawaiian: {{tt|haw|moeʻuhane}}, {{tt|haw|moe}}
+* Hebrew: {{tt+|he|חֲלוֹם|m|tr=khalóm}}
+* Higaonon: {{t|mba|damugo}}
+* Hiligaynon: {{t|hil|damgo}}
+* Hindi: {{tt+|hi|सपना|m}}, {{t+|hi|ख़्वाब|m}}
+* Hungarian: {{tt+|hu|álom}}
+* Hunsrik: {{tt|hrx|Draum|m}}
+* Icelandic: {{tt+|is|draumur|m}}
+* Ido: {{tt+|io|sonjo}}
+* Indonesian: {{tt+|id|mimpi}}
+* Ingrian: {{t|izh|uni}}
+* Irish: {{tt+|ga|brionglóid|f}}, {{tt|ga|taibhreamh|m}}
+* Istriot: {{tt|ist|sugno|m}}
+* Italian: {{tt+|it|sogno|m}}
+* Jamaican Creole: {{tt|jam|jriim}}
+* Japanese: {{tt+|ja|夢|tr=ゆめ, yume}}
+* Kabardian: {{t+|kbd|пщӏыхь}}
+* Kabyle: {{tt|kab|targit|f}}
+* Kannada: {{tt+|kn|ಕನಸು}}, {{tt+|kn|ಸ್ವಪ್ನ}}
+* Kapampangan: {{tt|pam|pananinap}}
+* Kazakh: {{tt+|kk|түс}}
+* Khmer: {{tt|km|សប្តិ}}, {{tt|km|ការយល់សប្តិ}}, {{tt+|km|សុបិន}}, {{tt+|km|មមាល}}
+* Khowar: {{tt|khw|خوشپ|tr=xošp}}
+* Kikuyu: {{tt|ki|kĩroto|c7}}
+* Komi-Permyak: {{tt|koi|он}}
+* Komi-Zyrian: {{t|kpv|ун}}
+* Korean: {{tt+|ko|꿈}}
+* Kurdish:
+*: Central Kurdish: {{tt|ckb|خەون}}
+*: Northern Kurdish: {{tt+|kmr|xewn|f}}
+* Kyrgyz: {{tt+|ky|түш}}
+* Lao: {{tt|lo|ຝັນ}}
+* Latgalian: {{tt|ltg|sapyns}}
+* Latin: {{tt|la|somnium|n}}, {{tt+|la|nox|f}}
+* Latvian: {{tt+|lv|sapnis|m}}
+* Lithuanian: {{tt+|lt|sãpnas|m}}
+* Lombard: {{tt+|lmo|sogn|m}}
+* Luganda: {{tt|lg|ekilooto}}
+* Lushootseed: {{t|lut|sqəlalitut}}
+* Luxembourgish: {{tt|lb|Dram|m}}
+* Macedonian: {{tt|mk|сон|m}}
+* Makasar: {{t|mak|cini}}
+* Malay: {{tt+|ms|mimpi}}
+* Malayalam: {{tt+|ml|കിനാവ്}}, {{tt+|ml|സ്വപ്നം}}
+* Maltese: {{tt+|mt|ħolma|f}}
+* Manchu: {{tt|mnc|ᡨᠣᠯᡤᡳᠨ}}
+* Maori: {{tt|mi|moemoeā}}, {{tt|mi|tahakura}} {{qualifier|involving the appearance of someone who has died}}, {{tt|mi|maruāpō}}, {{tt|mi|marupō}}
+* Marathi: {{tt|mr|स्वप्न|n}}
+* Mari:
+*: Eastern Mari: {{t|mhr|омо}}
+* Middle English: {{tt|enm|drem}}, {{tt|enm|sweven}}
+* Middle French: {{tt|frm|resve|m}}
+* Middle Korean: {{tt|okm|ᄭᅮᆷ〮|tr=skwúm}}
+* Mirandese: {{tt|mwl|suonho}}
+* Mizo: {{t|lus|mang}}
+* Mongolian:
+*: Cyrillic: {{tt+|mn|зүүд}}
+* Mpade: {{tt|mpi|sware}}
+* Mwani: {{tt|wmw|nloto}}
+* Nanai: {{t|gld|толкин}}
+* Navajo: {{tt|nv|naʼiidzeeł}}
+* Nepali: {{t|ne|सपना|tr=sapanā}}
+* North Frisian: {{tt|frr|Droom|c}} {{qualifier|Sylt}}
+* Northern Mansi: {{t-check|mns-nor|ӯлем}} {{attention|mns-nor|check that this is Northern Mansi and not some other variety}}
+* Norwegian:
+*: Bokmål: {{tt+|nb|drøm|m}}
+*: Nynorsk: {{tt|nn|draum|m}}
+* Occitan: {{tt+|oc|sòmi|m}}
+* Odia: {{tt|or|ସ୍ୱପ୍ନ}}
+* Okinawan: {{tt|ryu|夢|tr=imi}}
+* Old Church Slavonic:
+*: Cyrillic: {{tt|cu|сънъ|m}}
+* Old English: {{tt|ang|swefn|n}}
+* Old Japanese: {{tt|ojp|夢|tr=ime<sub>2</sub>}}
+* Old Javanese: {{t|kaw|ipi}}
+* Old Norse: {{tt|non|draumr}}
+* Old Saxon: {{tt|osx|drom}}
+* Oromo: {{tt|om|abjuu}}
+* Osage: {{tt|osa|hǫ́bre}}
+* Ossetian: {{t|os|фын}}
+* Pali: {{tt|pi|supina}}
+* Pela: {{t|bxd|ja̠p⁵⁵ maʔ⁵⁵}}
+* Persian:
+*: Iranian Persian: {{tt+|fa-ira|خواب}}, {{tt+|fa-ira|رُؤْیا}}
+* Piedmontese: {{t|pms|seugn|m}}
+* Plautdietsch: {{tt+|pdt|Droom|m}}
+* Polish: {{tt+|pl|sen|m}}, {{tt+|pl|sny|p}}
+* Portuguese: {{tt+|pt|sonho|m}}
+* Romani: {{t|rom|suno|m}}
+* Romanian: {{tt+|ro|vis|n}}
+* Romansch: {{tt|rm|siemi|m}} {{qualifier|Rumantsch Grischun, Sursilvan, Sutsilvan}}, {{tt|rm|semi|m}} {{qualifier|Surmiran}}, {{tt|rm|sömmi|m}} {{qualifier|Puter, Vallader}}
+* Russian: {{tt+|ru|сон|m}}, {{tt+|ru|сновиде́ние|n}}, {{tt+|ru|грёза|f}}
+* Sami:
+*: Kildin Sami: {{t|sjd|нагерь}}
+* Sanskrit: {{tt+|sa|स्वप्न}}
+* Sardinian: {{tt|sc|bisu}}
+* Scottish Gaelic: {{tt|gd|bruadar|m}}
+* Serbo-Croatian:
+*: Cyrillic: {{tt|sh|са̏н|m}}, {{tt|sh|сно̀виђе̄ње|n}}
+*: Roman: {{tt+|sh|sȁn|m}}, {{tt+|sh|snòviđēnje|n}}
+* Shona: {{tt|sn|chiroto}}
+* Sicilian: {{tt+|scn|sonnu|m}}
+* Sinhalese: {{tt|si|ස්වප්න}}
+* Slovak: {{tt|sk|sen|m}}
+* Slovene: {{tt+|sl|sanje|f-p}}
+* Sorbian:
+*: Lower Sorbian: {{tt|dsb|cowanje|n}}
+*: Upper Sorbian: {{t|hsb|són|m}}
+* Spanish: {{tt+|es|sueño|m}}, {{tt+|es|ensueño|m}}
+* Swahili: {{tt+|sw|ndoto}}
+* Swedish: {{tt+|sv|dröm|c}}
+* Tagalog: {{tt|tl|panaginip}}
+* Tajik: {{tt+|tg|хоб}}, {{t|tg|рӯъё}}
+* Tamil: {{tt+|ta|கனவு}}
+* Tarifit: {{tt|rif|tarjit|f}}, {{tt|rif|tirja|f-p}}
+* Tashelhit: {{tt|shi|tawargit|f}}
+* Tat: {{t|ttt|xo}}, {{t|ttt|xo}}
+* Tatar: {{tt+|tt|төш}}
+* Telugu: {{tt+|te|కల}}, {{tt+|te|స్వప్నము}}
+* Thai: {{tt+|th|ฝัน}}
+* Tibetan: {{tt|bo|རྨི་ལམ}}, {{tt|bo|གཉིད་ལམ}}
+* Turkish: {{tt+|tr|rüya}}, {{tt+|tr|düş}}
+* Turkmen: {{tt|tk|düýş}}
+* Tuvan: {{tt|tyv|дүш}}
+* Udmurt: {{tt|udm|ум}}
+* Ukrainian: {{tt+|uk|сон|m}}, {{tt|uk|сновиді́ння|n}}
+* Urdu: {{tt|ur|خْوَاب|m}}, {{tt|ur|سَپْنا|m}}
+* Uyghur: {{tt+|ug|چۈش}}
+* Uzbek: {{tt+|uz|tush}}
+* Venetian: {{tt|vec|insonjo|m}}
+* Vietnamese: {{tt+|vi|giấc mơ}}
+* Waray-Waray: {{tt|war|i-nop}}
+* Welsh: {{tt+|cy|breuddwyd|m|f}}
+* West Frisian: {{tt+|fy|dream}}
+* White Hmong: {{tt|mww|npau}}, {{tt|mww|npau suav}}
+* Yagnobi: {{tt|yai|хун}}
+* Yiddish: {{tt|yi|חלום|m|tr=kholem}}
+* Yucatec Maya: {{t|yua|wayakʼ}}, {{t|yua|náay}}
+* Zulu: {{tt|zu|iphupho|c5|c6}}
+{{trans-bottom}}
+
+{{trans-top|hope or wish}}
+* Arabic: {{tt+|ar|حُلْم|m}}, {{tt|ar|أَحْلام|m-p}}
+* Archi: {{t|aqc|хийал}}
+* Armenian: {{tt+|hy|երազանք}}
+* Assamese: {{tt|as|সপোন}}, {{tt|as|হেঁপাহ}}
+* Asturian: {{tt|ast|suañu|m}}
+* Azerbaijani: {{tt+|az|xəyal}}
+* Bashkir: {{tt|ba|хыял}}
+* Belarusian: {{tt+|be|ма́ра|f}}, {{tt|be|мро́я|f}}
+* Bengali: {{tt+|bn|স্বপ্ন}}
+* Breton: {{tt+|br|hunvre|m}}
+* Bulgarian: {{tt+|bg|сън|m}}, {{tt+|bg|съ́нища|m-p}}, {{tt+|bg|мечта́|f}}
+* Catalan: {{tt+|ca|somni|m}}, {{tt+|ca|il·lusió|f}}
+* Chinese:
+*: Cantonese: {{t|yue|夢想}}
+*: Mandarin: {{tt+|cmn|夢想}}
+* Czech: {{tt+|cs|sen|m}}
+* Danish: {{tt+|da|drøm|c}}
+* Dutch: {{tt+|nl|droom|m}}, {{tt+|nl|hoop|n}}
+* Esperanto: {{tt|eo|revo}}
+* Estonian: {{tt|et|unistus}}
+* Faroese: {{tt|fo|dreymur|m}}
+* Finnish: {{tt+|fi|unelma}}, {{tt+|fi|haave}}
+* French: {{tt+|fr|rêve|m}}, {{tt+|fr|songe|m}}, {{tt+|fr|voeu|m}}, {{tt+|fr|souhait|m}}, {{tt+|fr|vœu|m}}
+* Galician: {{tt+|gl|soño|m}}
+* Georgian: {{tt|ka|ოცნება}}
+* German: {{tt+|de|Traum|m}}, {{tt+|de|Wunsch|m}}
+* Greek: {{tt+|el|όραμα|n}}, {{tt+|el|όνειρο|n}}
+* Hebrew: {{tt+|he|חֲלוֹם|m|tr=khalóm}}
+* Hindi: {{tt+|hi|ख़्वाब|m}}, {{tt+|hi|सपना|m}}, {{tt|hi|आरज़ू|f}}, {{tt|hi|ख़याल|m}}
+* Hungarian: {{tt+|hu|álom}}
+* Indonesian: {{tt+|id|mimpi}}, {{tt+|id|impian}}
+* Italian: {{tt+|it|sogno|m}}
+* Japanese: {{tt+|ja|夢|tr=ゆめ, yume}}, {{tt+|ja|希望|tr=きぼう, kibō}}, {{tt+|ja|望み|tr=のぞみ, nozomi}}, {{tt|ja|ドリーム|tr=dorīmu}}, {{t+|ja|夢想|tr=むそう, musō}}
+* Kazakh: {{tt+|kk|түс}}, {{tt|kk|арман}}
+* Korean: {{tt+|ko|꿈}}, {{t+|ko|희망(希望)}}, {{t+|ko|몽상(夢想)}}, {{t|ko|드림}} {{qualifier|Anglicism}}
+* Kurdish:
+*: Northern Kurdish: {{tt+|kmr|xewn|f}}, {{tt+|kmr|xeyal|f}}, {{tt+|kmr|aşop|f}}
+* Kyrgyz: {{tt|ky|түштөгүдөй}}, {{tt+|ky|түш}}
+* Lao: {{tt|lo|ຄວາມຝັນ}}
+* Latin: {{tt|la|somnium|n}}, {{tt+|la|quiēs|f}}
+* Latvian: {{tt+|lv|sapnis|m}}
+* Lithuanian: {{tt+|lt|svajonė|f}}, {{tt|lt|svaja|f}}
+* Luxembourgish: {{tt|lb|Dram|m}}, {{tt+|lb|Wonsch|m}}, {{tt|lb|Dreem}}
+* Macedonian: {{tt|mk|мечта|f}}
+* Malay: {{tt+|ms|harapan}}, {{tt|ms|impian}}
+* Maori: {{tt|mi|wawata}}
+* Marathi: {{tt|mr|स्वप्न|n}}
+* Middle French: {{tt|frm|resve}}
+* Mirandese: {{tt|mwl|suonho}}
+* Mongolian:
+*: Cyrillic: {{tt+|mn|мөрөөдөл}}
+* Norwegian:
+*: Bokmål: {{tt+|nb|drøm|m}}
+*: Nynorsk: {{tt|nn|draum|m}}
+* Old Church Slavonic:
+*: Cyrillic: {{tt|cu|мъчьта|f}}
+* Old East Slavic: {{t|orv|мьчьта|f}}, {{t|orv|мечьта|f}}, {{t|orv|мечта|f}}, {{t|orv|грѣза|f}}
+* Persian:
+*: Iranian Persian: {{tt+|fa-ira|آرِزو}}, {{tt+|fa-ira|آرْزو}}, {{tt+|fa-ira|خِیال}}, {{tt+|fa-ira|خَیال|tr=xayâl}}
+* Polish: {{tt+|pl|marzenie|n}}
+* Portuguese: {{tt+|pt|sonho|m}}, {{tt+|pt|desejo|m}}
+* Romanian: {{tt+|ro|vis|n}}
+* Russian: {{tt+|ru|мечта́|f}}, {{tt+|ru|грёза|f}}
+* Serbo-Croatian:
+*: Cyrillic: {{tt|sh|са̏н|m}}, {{tt|sh|ма̀шта|f}}
+*: Roman: {{tt+|sh|sȁn|m}}, {{tt+|sh|màšta|f}}
+* Slovak: {{tt|sk|sen|m}}
+* Slovene: {{tt+|sl|sánje|f-p}}
+* Spanish: {{tt+|es|sueño|m}}
+* Swedish: {{tt+|sv|dröm|c}}
+* Tagalog: {{tt|tl|pangarap}}
+* Tajik: {{tt+|tg|орзу}}, {{tt|tg|хаёл}}
+* Tarifit: {{t|rif|tarjit|f}}
+* Tatar: {{tt+|tt|хыял}}
+* Telugu: {{tt|te|స్వప్నం}}
+* Thai: {{tt+|th|ความฝัน}}, {{tt|th|ความใฝ่ฝัน}}
+* Turkish: {{tt+|tr|hayal}} {{qualifier|figurative}}, {{tt+|tr|düş}} {{qualifier|figurative}}, {{t+|tr|arzu}} {{qualifier|literal}}
+* Turkmen: {{tt|tk|düýş}}
+* Ukrainian: {{tt+|uk|мрі́я|f}}
+* Urdu: {{tt+|ur|آرْزُو|f}}, {{tt|ur|خْوَاب|m}}, {{tt|ur|سَپْنا|m}}, {{tt|ur|خَیال|m}}, {{t|ur|رویا|m}}
+* Uyghur: {{tt|ug|ئارزۇ}}
+* Uzbek: {{tt+|uz|tush}}, {{tt+|uz|orzu}}, {{t+|uz|xayol}}
+* Venetian: {{t|vec|insonjo}}
+* West Frisian: {{tt+|fy|dream}}
+* Yiddish: {{tt|yi|טרוים|m}}
+{{trans-bottom}}
+
+{{trans-top|visionary scheme}}
+* Bashkir: {{tt|ba|хыял}}
+* Finnish: {{tt+|fi|haave}}, {{tt+|fi|visio}}
+* French: {{tt+|fr|rêve|m}}
+* Slovak: {{tt|sk|sen}}
+* Venetian: {{t|vec|vizion}}
+}}<!-- close {{multitrans}} -->
+{{trans-bottom}}
+
+{{checktrans-top}}
+* Shan: {{t+check|shn|ၽၼ်}}
+{{trans-bottom}}
+
+===Verb===
+{{en-verb|past2=dreamt}}
+
+# {{lb|en|intransitive}} To [[see]] [[imaginary]] [[event]]s in one's [[mind]] while [[sleep]]ing.
+#: {{ux|en|Last night I '''dreamed''' of cupcakes and chocolate cookies.}}
+#* {{quote-book|1=en|year=1859|title=[[w:Rubaiyat of Omar Khayyam|The Rub&aacute;iy&aacute;t of Omar Khayy&aacute;m: The Astronomer-Poet of Persia]]|author=w:Edward Fitzgerald|page=1|text='''Dreaming''' when Dawn's Left Hand was in the Sky<br>I heard a Voice within the Tavern cry,<br>"Awake, my Little ones, and fill the Cup<br>Before Life's Liquor in its Cup be dry."}}
+# {{lb|en|intransitive}} To [[hope]], to [[wish]].
+#: {{ux|en|Lucy '''dreams''' of becoming a scientist when she'll grow up.}}
+# {{lb|en|intransitive}} To [[daydream]].
+#: {{ux|en|Stop '''dreaming''' and get back to work.}}
+# {{lb|en|transitive}} To [[envision]] as an [[imaginary]] [[experience]] (usually when [[asleep]]).
+#: {{ux|en|I '''dreamed''' a vivid dream last night.}}
+#* {{RQ:Cowper Task|text=And still they '''dream''' that they shall still succeed.}}
+#* {{RQ:Dryden Fables|chapter=Palamon and Arcite|passage=At length in sleep their bodies they compose, / And '''dreamt''' the future fight, and early rose.}}
+# {{lb|en|intransitive}} To [[consider]] the [[possibility]] (of).
+#: {{ux|en|I wouldn't '''dream''' of snubbing you in public.}}
+#* {{RQ:Shakespeare Hamlet|I|5|lines=167-8|text=There are more things in heaven and earth, Horatio, <br> Than are '''dreamt''' of in your philosophy.}}
+#* {{RQ:Jefferies Amateur Poacher|chapter=1|passage=But then I had the [massive] flintlock by me for protection. <br>{{...}}The linen-press and a chest on the top of it formed, however, a very good gun-carriage; and, thus mounted, aim could be taken out of the window{{nb...}}, and a 'bead' could be drawn upon Molly, the dairymaid, kissing the fogger behind the hedge, little '''dreaming''' that the deadly tube was levelled at them.}}
+
+====Usage notes====
+* "Dreamt" is less common than "dreamed" in both US and UK English in current usage, though somewhat more prevalent in the UK than in the US.
+
+====Derived terms====
+* {{l|en|bedream}}
+* {{l|en|dream up}}
+* {{l|en|dream on}}
+
+====Translations====
+{{trans-top|see imaginary events while sleeping}}
+{{multitrans|data=
+* Adyghe: {{t-needed|ady}}
+* Ainu: {{t|ain|ウェンタラㇷ゚|tr=wentarap}}
+* Albanian: {{tt+|sq|ëndërroj}}
+* Arabic: {{tt+|ar|حَلَمَ}}
+* Aramaic:
+*: Classical Syriac: {{tt|syc|ܚܠܡ|tr=ḥəlam}}
+* Armenian: {{tt+|hy|երազ տեսնել}}
+* Asturian: {{tt+|ast|suañar}}, {{tt+|ast|soñar}}
+* Azerbaijani: {{tt|az|röya görmək}}
+* Basque: {{tt|eu|amets egin}}
+* Belarusian: {{tt|be|сні́цца|impf}} {{qualifier|the person dreaming is the object}}
+* Bengali: {{tt|bn|স্বপ্ন দেখা}}
+* Breton: {{tt+|br|hunvreal}}
+* Bulgarian: {{tt+|bg|сънувам}}
+* Burmese:  {{t-needed|my}}
+* Catalan: {{tt+|ca|somiar}}
+* Chechen: {{tt|ce|гӏан|alt=гIан}}, {{tt|ce|саха хуьйла}}
+* Chinese:
+*: Cantonese: {{tt|yue|發夢|tr=faat3 mung6}}
+*: Mandarin: {{tt+|cmn|做夢|tr=zuòmèng}}, {{tt+|cmn|夢見|tr=mèngjiàn}}, {{tt+|cmn|發夢|tr=fāmèng}} {{q|Southwestern Mandarin}}
+* Czech: {{tt+|cs|snít}}, {{tt+|cs|zdát se}}, {{tt|cs|mít sny}}
+* Danish: {{tt|da|drømme}}
+* Dutch: {{tt+|nl|dromen}}
+* Elfdalian: {{tt|ovd|dröma}}
+* Esperanto: {{tt|eo|sonĝi}}
+* Estonian: {{tt|et|und nägema}}
+* Faroese: {{tt|fo|droyma}}
+* Finnish: {{tt|fi|nähdä unta}}, {{tt+|fi|uneksia}}
+* French: {{tt+|fr|rêver}}
+*: Middle French: {{tt|frm|resver}}
+*: Old French: {{t|fro|resver}}
+* Friulian: {{tt|fur|insumiâsi}}
+* Galician: {{tt+|gl|soñar}}
+* Georgian: {{tt|ka|სიზმრის ნახვა}}, {{tt|ka|დასიზმრება}}
+* German: {{tt+|de|träumen}}
+* Greek: {{tt+|el|ονειρεύομαι}}
+*: Ancient: {{tt|grc|ὀνειροπολέω}}
+* Greenlandic: {{tt|kl|sinnattorpoq}}
+* Haitian Creole: {{tt|ht|reve}}
+* Hawaiian: {{tt|haw|moeʻuhane}}
+* Hebrew: {{tt+|he|חָלַם|tr=khalám}}
+* Hindi: {{tt|hi|सपना देखना}}
+* Hungarian: {{tt+|hu|álmodik}}
+* Icelandic: {{tt+|is|dreyma}}
+* Ido: {{tt+|io|sonjar}}
+* Indonesian: {{tt+|id|bermimpi}}, {{tt+|id|memimpikan}}
+* Interlingua: {{tt|ia|soniar}}
+* Irish: {{tt|ga|taibhrigh}}
+* Italian: {{tt+|it|sognare}}
+* Japanese: {{tt|ja|夢を見る|tr=yume o miru}}, {{tt|ja|...[[を]][[夢見る]]|tr=...o yumemiru}}, {{t+|ja|夢見る|tr=ゆめみる, yumemiru}}
+* Jarai: {{tt|jra|rơpơi}}
+* Javanese: {{t+|jv|ngimpi}}
+* Kabyle: {{tt|kab|argu}}
+* Khmer: {{tt|km|យល់សប្តិ}}, {{tt+|km|មមាល}}, {{tt+|km|សុបិន}}
+* Korean: {{tt+|ko|꿈꾸다}}
+* Kurdish:
+*: Central Kurdish: {{tt|ckb|خەو بینین}}
+* Lao: {{tt|lo|ຝັນ}}
+* Latin: {{tt|la|somniō}}
+* Latvian: {{tt|lv|sapņot}}
+* Lithuanian: {{tt+|lt|sapnuoti}}
+* Lombard: {{t|lmo|sognà}}
+* Luganda: {{tt|lg|okuloota}}
+* Luxembourgish: {{tt|lb|dreemen}}
+* Macedonian: {{tt|mk|сонува}}
+* Malay: {{tt|ms|bermimpi}}
+* Maltese: {{tt+|mt|ħolma|alt=ħolom}}
+* Maori: {{tt|mi|tahakura}} {{qualifier|involving the appearance of someone who has died}}, {{tt|mi|moemoeā}}
+* Maranao: {{t|mrw|taginep}}
+* Marathi: {{tt|mr|स्वप्न पाहणे}}
+* Middle English: {{t|enm|dremen}}
+* Mongolian: {{tt+|mn|зүүдлэх}}
+* Neapolitan: {{tt|nap|sunnà}}
+* Nepali: {{tt|ne|सपना देख्नु}}
+* Northern Sami: {{tt|se|niegadit}}
+* Norwegian: {{tt+|no|drømme}}
+*: Nynorsk: {{tt|nn|drøyma}}
+* Occitan: {{tt+|oc|somiar}}
+* Old English: {{tt|ang|mǣtan}}
+* Old Norse: {{tt|non|dreyma}}
+* Osage: {{tt|osa|hǫ́bre}}
+* Pela: {{t|bxd|ja̠p⁵⁵ maʔ⁵⁵ maʔ³¹}}
+* Persian: {{tt+|fa|خواب دیدن|tr=xâb didan}}
+* Piedmontese: {{t|pms|sugné}}
+* Polabian: {{t|pox|bľǫdăt}}
+* Polish: {{tt+|pl|śnić}}
+* Portuguese: {{tt+|pt|sonhar}}
+* Romani: {{t|rom|dikhel suno}}
+* Romanian: {{tt+|ro|visa}}
+* Romansch: {{tt|rm|siemiar}}
+* Russian: {{tt|ru|[[ви́деть]] [[сон]]|impf}}, {{tt|ru|[[уви́деть]] [[сон]]|pf}}, {{qualifier|+ dative case}} {{tt+|ru|сни́ться|impf}}, {{tt+|ru|присни́ться|pf}} {{qualifier|the person dreaming is the object}} (e.g., мне приснилось, что ...), {{tt+|ru|гре́зить|impf}}
+* Sardinian: {{tt|sc|bisai}}
+* Serbo-Croatian:
+*: Cyrillic: {{tt|sh|сањати}}, {{tt|sh|снивати}}
+*: Roman: {{tt+|sh|sanjati}}, {{tt+|sh|snivati}}
+* Shona: {{tt|sn|rota|alt=-rota}}
+* Sicilian: {{tt+|scn|nzunnari}}
+* Slovak: {{tt|sk|snívať}}
+* Slovene: {{tt+|sl|sanjati}}
+* Spanish: {{tt+|es|soñar}}
+* Swahili: {{tt+|sw|ota|alt=-ota}}
+* Swedish: {{tt+|sv|drömma}}
+* Tamil: {{tt+|ta|கனவு}}
+* Tausug: {{t|tsg|tagainup}}
+* Telugu: {{tt+|te|కలగను}}
+* Tetum: {{t|tet|mehi}}
+* Thai: {{tt|th|ฝันถึง}}, {{tt+|th|ฝัน}}
+* Tibetan: {{tt|bo|རྨི་བ}}
+* Turkish: {{tt+|tr|rüya görmek}}, {{tt+|tr|düş görmek}}
+* Ukrainian: {{tt|uk|сни́тися|impf}} {{qualifier|the person dreaming is the object}}
+* Uzbek: {{tt|uz|tush koʻrmoq}}
+* Vietnamese: {{tt+|vi|mơ}}
+* Volapük: {{t+|vo|drimön}}
+* Welsh: {{tt+|cy|breuddwydio}}
+* West Frisian: {{tt+|fy|dreame}}
+* Xhosa: {{t-needed|xh}}
+* Yiddish: {{tt|yi|חלומען|tr=kholemen}}
+* Yucatec Maya: {{t|yua|wayakʼ}}, {{t|yua|náay}}
+* ǃXóõ: {{tt|nmn|ʘôõ ǁnṵã}}
+{{trans-bottom}}
+
+{{trans-top|to hope, to wish}}
+* Arabic: {{tt+|ar|حَلَمَ}}
+* Armenian: {{tt+|hy|երազել}}
+* Asturian: {{tt+|ast|suañar}}, {{tt+|ast|soñar}}
+* Basque: {{t|eu|amestu}}
+* Belarusian: {{tt|be|ма́рыць|impf}}, {{tt|be|мро́іць|impf}}
+* Breton: {{tt+|br|hunvreal}}
+* Bulgarian: {{tt+|bg|мечта́я|impf}}
+* Catalan: {{tt+|ca|somiar}}
+* Chinese:
+*: Mandarin: {{tt+|cmn|夢想|tr=mèngxiǎng}}
+* Czech: {{tt+|cs|přát}}, {{tt+|cs|doufat}}, {{tt+|cs|snít}}
+* Danish: {{tt|da|drømme}}
+* Dutch: {{tt+|nl|dromen}}
+* Finnish: {{tt+|fi|uneksia}}, {{tt+|fi|unelmoida}}, {{tt+|fi|haaveilla}}
+* French: {{tt+|fr|rêver}}, {{tt+|fr|souhaiter}}
+* Galician: {{tt+|gl|soñar}}
+* Georgian: {{tt|ka|წადილი}}, {{tt|ka|ნდომა}}
+* German: {{tt+|de|träumen}}, {{tt+|de|wünschen}}
+* Greek: {{tt+|el|ονειρεύομαι}}
+* Hebrew: {{tt+|he|חלם|tr=khalám}}
+* Indonesian: {{tt+|id|bermimpi}}, {{tt+|id|memimpikan}}
+* Italian: {{tt+|it|sognare}}
+* Japanese: {{tt+|ja|夢見る|tr=yumemiru}}, {{tt|ja|[[夢想|夢想する]]|tr=musō suru}}
+* Khmer: {{tt|km|សូង}}
+* Korean: {{tt+|ko|꿈꾸다}}
+* Lithuanian: {{tt|lt|svajoti}}
+* Luxembourgish: {{tt|lb|dreemen}}, {{tt+|lb|wënschen}}
+* Malay: {{tt|ms|mengimpi}}
+* Mongolian: {{tt+|mn|мөрөөдөх}}
+* Polish: {{tt+|pl|marzyć}}
+* Portuguese: {{tt+|pt|sonhar}}, {{tt+|pt|desejar}}
+* Romanian: {{tt+|ro|visa}}
+* Russian: {{tt+|ru|мечта́ть|impf}}, {{tt+|ru|гре́зить|impf}}
+* Serbo-Croatian:
+*: Cyrillic: {{tt|sh|са́њати}}, {{tt|sh|сни́вати}}, {{tt|sh|[[на́дати]] се}}
+*: Roman: {{tt+|sh|sánjati}}, {{tt+|sh|snívati}}, {{tt|sh|[[nádati]] se}}
+* Slovak: {{tt|sk|snívať}}
+* Spanish: {{tt+|es|soñar}}
+* Swedish: {{tt+|sv|drömma|c}}
+* Thai: {{tt|th|ฝันใฝ่}}, {{tt+|th|ปรารถนา}}
+* Turkish: {{tt|tr|hayali olmak}}, {{tt+|tr|ummak}}
+* Ukrainian: {{tt|uk|мрі́яти|impf}}, {{tt|uk|ма́рити|impf}}, {{tt|uk|мрі́ти|impf}}
+* West Frisian: {{tt+|fy|dreame}}
+{{trans-bottom}}
+
+{{trans-see|daydream}}
+
+{{trans-top|to create an imaginary experience}}
+* Bulgarian: {{tt+|bg|мечта́я|impf}}
+* Czech: {{tt+|cs|vysnít si}}
+* French: {{tt+|fr|rêver}}
+* Georgian: {{tt|ka|ფანტაზიორობა}}
+* German: {{tt+|de|träumen}}
+* Greek: {{tt+|el|οπτασιάζομαι}}, {{tt+|el|φαντάζομαι}}, {{tt+|el|ονειρεύομαι}}
+* Hungarian: {{tt+|hu|álmodik}}
+* Kurdish:
+*: Central Kurdish: {{tt|ckb|خەو بینین}}
+* Maori: {{tt|mi|whakaririka}}
+* Nepali: {{tt|ne|सपना}}
+* Portuguese: {{tt+|pt|sonhar}}
+* Romanian: {{tt+|ro|imagina}}
+* Russian: {{tt+|ru|мечта́ть|impf}}, {{tt+|ru|фантази́ровать|impf}}
+* Spanish: {{tt+|es|soñar}}
+* Thai: {{tt+|th|ฝันเฟื่อง}}
+}}<!-- close {{multitrans}} -->
+{{trans-bottom}}
+
+===Adjective===
+{{en-adj|-}}
+
+# [[ideal|Ideal]]; [[perfect]].
+#* {{quote-book|en|year=2014|author=P.G. Wodehouse|title=Jeeves and the Yule-Tide Spirit and Other Stories|publisher=Random House|isbn=9781473518599|pageurl=https://books.google.com/books?id=kJrYBAAAQBAJ&lpg=PA158&dq=%22dreamgirl%22&pg=PA158#v=onepage&q=%22dreamgirl%22&f=false|page=158
+|passage=If a girl who talked like that was not his '''dream''' girl, he didn't know a '''dream''' girl when he heard one.}}
+#* {{quote-web|en|date=14 November 2017|author=Phil McNulty|title=England 0-0 Brazil|url=http://www.bbc.com/sport/football/41884888|work=BBC News|passage=England found chances a rarity, although Liverpool striker Solanke almost made it a '''dream''' debut in the closing seconds, only to miscontrol at the far post.}}
+
+===References===
+<references/>
+
+===Further reading===
+* {{R:Webster 1913}}
+* {{R:Century 1911}}
+
+===Anagrams===
+* {{anagrams|en|a=ademr|Emard|derma-|m'dear|dearm|ad rem|armed|medar|derma|redam|Mader|ramed|-derma}}
+
+{{cln|en|irregular verbs}}
+{{c|en|Dreams|Sleep|Thinking}}
+
+==Irish==
+{{was fwotd|ga|2014|February|16}}
+
+===Etymology===
+From {{inh|ga|mga|dremm||crowd, throng}},<ref>{{R:DIL|18631|head=drem(m)}}</ref> from {{inh|ga|cel-pro|*drexsmā}}, itself probably related to {{m|cel-pro|*drungos|t=throng, host}}.
+
+===Pronunciation===
+* {{IPA|ga|/dˠɾˠaumˠ/|a=Munster}},<ref>{{cite-book|first=Myles |last=Dillon |first2=Donncha |last2=Ó Cróinín |title=Teach Yourself Irish |publisher=Hodder and Stoughton |year=1961 |isbn=0-340-27841-2 |page=224}}</ref> {{IPAchar|/dˠɾˠoumˠ/}}<ref>{{R:ga:GCD|537}}</ref> {{qualifier|as if spelled ''dram''}}
+* {{IPA|ga|/dʲɾʲɑːmˠ/|a=Connacht}},<ref>{{cite-book|ga |first=T.&nbsp;S. |last=Ó Máille |title=Liosta Focal as Ros Muc |publisher=Irish University Press |year=1974 |page=75}}</ref> {{IPAchar|/dʲɾʲamˠ/}}<ref>{{R:ga:Finck|II|87}}</ref>
+* {{IPA|ga|/dʲɾʲamˠ/|a=Ulster}}<ref>{{R:ga:Quiggin|5|4}}</ref>
+
+===Noun===
+{{ga-noun|m|~a|~anna}}
+
+# [[crowd]], [[group]] of [[people]], [[party]] {{gloss|group of people traveling or attending an event together, or participating in the same activity}}
+#* {{quote-book|ga|year=1929|first=Tomás |last=Ó Criomhthain |authorlink=Tomás Ó Criomhthain |title=An t-Oileánach |chapter=IV: Scolaidheacht agus Fánaidheacht |page=[[s:mul:An t-Oileánach/4#48|48]] |text=Thug sé scilling do’n té ab’ fhearr is gach rang agus ar shíneadh na scillinge ’nár rang-ne ní h-aenne de’n '''dream''' mór do fuair í ach me féin. |t=He gave a shilling to the best one in each class, and when he was giving out shillings in our class, there wasn't one in that big group who got one but me myself.}}
+
+====Declension====
+{{ga-decl-m3|d|ream|reama|reamanna}}
+
+===Mutation===
+{{ga-mut}}
+
+===References===
+{{reflist|size=smaller}}
+
+===Further reading===
+* {{R:ga:Dinneen 1904|260}}
+* {{R:ga:Ó Dónaill}}
+
+[[Category:ga:People]]
+
+==Middle English==
+
+===Noun===
+{{head|enm|noun}}
+
+# {{tlb|enm|Early ME}} {{alt form|enm|drem}}
+
+==Old English==
+
+===Alternative forms===
+* {{alter|ang|drīm|drēm|*drīem|drām}}
+
+===Etymology===
+{{root|ang|ine-pro|*dʰrewgʰ-|id=deceive}}
+From {{inh|ang|gmw-pro|*draum}}, from {{inh|ang|gem-pro|*draumaz}}, whence also {{cog|ofs|drām}}, {{cog|osx|drōm||joy, music, dream}}, {{cog|goh|troum}}, {{cog|non|draumr}}.
+
+===Pronunciation===
+* {{ang-IPA|drēam}}
+
+===Noun===
+{{ang-noun|m|head=drēam}}
+
+# [[joy]], [[pleasure]], [[gladness]], [[rejoicing]]
+# that which causes [[merriment]]: [[musical instrument]], [[music]], [[melody]], [[song]], [[harmony]]
+# [[frenzy]], [[ecstasy]]
+
+====Declension====
+{{ang-decl-noun-a-m|drēam}}
+
+====Derived terms====
+* {{l|ang|drēamere}}
+* {{l|ang|drīeman}}
+* {{l|ang|pīpdrēam}}
+
+====Descendants====
+* {{desctree|enm|drem}}
+
+====See also====
+* {{l|ang|swefn}}
+* {{l|ang|mǣtan}}
+
+==West Frisian==
+
+===Etymology===
+{{root|fy|ine-pro|*dʰrewgʰ-|id=deceive}}
+From {{inh|fy|ofs|drām}}, from {{inh|fy|gmw-pro|*draum}}, from {{inh|fy|gem-pro|*draumaz}}.
+
+===Pronunciation===
+* {{IPA|fy|/drɪə̯m/}}
+
+===Noun===
+{{fy-noun|c|dreamen|dreamke}}
+
+# {{topics|fy|Sleep}} [[#English|dream]], [[vision]] in one's [[sleep]]
+#* '''2008''', Greet Andringa, ''Libben reach'', Friese Pers Boekerij, page 70.
+#*: {{quote|fy|Hy koe net sliepe, want de '''dreamen''' oer syn deade maten wiene noch slimmer as wat er mei de eagen iepen seach.|He couldn't sleep, because the '''dreams''' about his dead companions were even worse than what he saw with his eyes open.}}
+# [[daydream]]
+# [[desire]], what one [[wish]]es
+# [[delusion]]
+
+====Derived terms====
+* {{l|fy|deidream}}
+
+====Related terms====
+* {{l|fy|dreame}}
+
+====Further reading====
+* {{R:WFT|17313}}
 `
 
 var TestWikiPage8 = `

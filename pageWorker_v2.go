@@ -186,6 +186,14 @@ func processWikitext(word string, wikitext Wikitext) []WordEntry {
 				if (areSynonyms || areAntonyms) && len(re.props) > 0 && re.props[0].isStringValue() {
 					cb.AddDefinition(re.props[0].stringValue(), nil)
 				}
+			case "antsense":
+				if len(re.props) > 0 && re.props[0].isStringValue() {
+					cb.AddDefinition("antonyms of "+re.props[0].stringValue(), []string{})
+				}
+			case "nonstandard spelling of":
+				if len(re.props) > 1 && re.props[1].isStringValue() {
+					cb.AddDefinition("nonstandard spelling of "+re.props[1].stringValue(), []string{})
+				}
 			case "l":
 				if (areSynonyms || areAntonyms) && len(re.props) > 1 && re.props[1].isStringValue() {
 					if areSynonyms {
@@ -255,7 +263,8 @@ func (cb *CardBuilder) StartEtymology() {
 }
 
 func (cb *CardBuilder) SetPartOfSpeech(s string) {
-	//cb.save()
+	// don'st call cb.save() to keep different part of speeches in the same definitions
+	cb.saveDefinition()
 	cb.currentPartOfSpeech = s
 }
 
@@ -282,6 +291,8 @@ func (cb *CardBuilder) AddAntonym(a string) {
 // TODO: support hyponym / Derived terms
 
 func (cb *CardBuilder) save() {
+	cb.saveDefinition()
+
 	if len(cb.currentInsert.WordDefs) > 0 {
 		if len(cb.currentInsert.Transcriptions) == 0 {
 			cb.currentInsert.Transcriptions = append(cb.currentInsert.Transcriptions, cb.globalTranscriptions...)
@@ -301,13 +312,11 @@ func (cb *CardBuilder) saveDefinition() {
 	if len(cb.currentDef.WordDef.Def) > 0 {
 		defs := cb.currentInsert.WordDefs[cb.currentPartOfSpeech]
 		cb.currentInsert.WordDefs[cb.currentPartOfSpeech] = append(defs, cb.currentDef)
+		cb.currentDef = WordDefEntry{}
 	}
-
-	cb.currentDef = WordDefEntry{}
 }
 
 func (cb *CardBuilder) Build() []WordEntry {
-	cb.saveDefinition()
 	cb.save()
 	return cb.inserts
 }
