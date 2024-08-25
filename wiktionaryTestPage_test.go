@@ -1,5 +1,48 @@
 package main
 
+var TestWikiPage8 = `
+[2024-08-25T12:24:07+03:00] <ERROR> text ==English==
+
+===Etymology===
+From {{w|Jean le Rond d'Alembert}} {{suffix|en||ian}}.
+
+===Noun===
+{{en-noun}}
+
+# {{lb|en|physics}} The [[d'Alembert operator]].
+#* {{quote-book|en|year=2011|author=Ashok Das|title=Lectures on Gravitation|publisher=World Scientific|location=Singapore|pageurl=https://books.google.pl/books?id=oupB7VUGzGcC&pg=PA25&dq=%22d%27alembertian%22#v=onepage&q=%22d'alembertian%22&f=false|page=25
+|passage=Furthermore, we note that <math>\partial_\mu \partial^\mu = \eta^{\mu \nu} \partial_\mu \partial_\nu = {{\partial^2} \over {\partial t^2}} - \nabla^2 = \square</math>, which is known as the '''d'Alembertian''', is invariant under Lorentz transformations.}}
+
+[[Category:English eponyms]]
+`
+
+var TestWikiPage7 = `
+==English==
+
+===Alternative forms===
+* {{l|en|materiated}}
+
+===Etymology===
+{{uder|en|la|-}} {{lena}} {{m|la|materiatus}}.
+
+===Adjective===
+{{en-adj|-}}
+
+# {{lb|en|obsolete}} Consisting of [[matter]]; [[material}}
+#: {{ant|en|immateriate}}
+#* {{RQ:Bacon Sylva Sylvarum|passage=After long enquiry of things immersed in matter, to interpose some subject which is immateriate, or less '''materiate'''; such as this of sounds.}}
+
+===References===
+*{{R:Webster 1913}}
+
+==Latin==
+
+===Participle===
+{{head|la|participle form|head=māteriāte}}
+
+# {{inflection of|la|māteriātus||voc|m|s}}
+`
+
 var TestWikiPage6 = `
 ==English==
 

@@ -471,6 +471,8 @@ func parseWikitextLink(reader *strings.Reader) (link WikitextLink, err error) {
 		} else if r == '|' && isReadingLinkText {
 			isReadingLinkText = false
 			isReadingLinkName = true
+		} else if r == '\n' {
+			break // handle wrong formatting
 		} else {
 			if isReadingLinkText {
 				linkTextBuilder.WriteRune(r)
@@ -692,6 +694,10 @@ func readUntil(reader *strings.Reader, stop []byte) (string, error) {
 		bt, err := reader.ReadByte()
 		if err != nil {
 			break
+
+		} else if bt == '\n' {
+			break // handle wrong formatting
+
 		} else if bt == stop[0] {
 			if len(stop) == 1 {
 				b.WriteByte(bt)
