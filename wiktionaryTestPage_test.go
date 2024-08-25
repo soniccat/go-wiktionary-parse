@@ -1,7 +1,78 @@
 package main
 
+var TestWikiPage9 = `
+==English==
+{{wikipedia}}
+
+===Alternative forms===
+* {{alt|en|dreame||obsolete}}
+
+===Etymology===
+{{root|en|ine-pro|*dʰrewgʰ-|id=deceive}}
+From {{inh|en|enm|drem}}, from {{inh|en|ang|drēam|t=music, joy}}, from {{inh|en|gmw-pro|*draum}}, from {{inh|en|gem-pro|*draumaz}}, from earlier {{m|gem-pro||*draugmaz}}, from {{inh|en|ine-pro||*dʰrowgʰ-mos}}, from {{m|ine-pro|*dʰrewgʰ-|t=to deceive, injure, damage}}.
+
+===Pronunciation===
+* {{enPR|drēm}}, {{IPA|en|/dɹiːm/| [d͡ʒɹiːm]|[d̠͡ɹ̠˔ʷɪi̯m]}}
+* {{audio|en|En-us-dream.ogg|a=US}}
+* {{rhymes|en|iːm|s=1}}
+
+===Noun===
+{{en-noun}}
+
+# [[imaginary|Imaginary]] [[event]]s seen in the [[mind]] while [[sleeping]].
+#: {{syn|en|sweven|q1=archaic}}
+#: {{hypo|en|nightmare}}
+#: {{coi|en|have a '''dream'''}}
+#: {{coi|en|scary '''dream'''}}
+#: {{coi|en|vivid '''dream'''}}
+#: {{coi|en|erotic '''dream'''}}
+#: {{coi|en|feel like a '''dream'''}}
+#: {{coi|en|be in a '''dream'''}}
+#* {{RQ:Dryden Fables|The Cock and the Fox
+|passage='''Dreams''' are but interludes which fancy makes.}}
+#* {{RQ:Vance Outsider|chapter=II|page=378|column=1|passage={{smallcaps|She}} wakened in sharp panic, bewildered by the grotesquerie of some half-remembered '''dream''' in contrast with the harshness of inclement fact, drowsily realizing that since she had fallen asleep it had come on to rain smartly out of a shrouded sky.}}
+#* {{quote-song|en|year=1982|title=Mad World|artist=Tears for Fears|album=The Hurting|lyricist=Roland Orzabal|passage=And I find it kind of funny, I find it kind of sad <br> The '''dreams''' in which I'm dying are the best I've ever had}}
+# {{lb|en|figurative}} A [[hope]] or [[wish]].
+#: {{coi|en|have a '''dream'''}}
+#: {{coi|en|fulfil a '''dream'''}}
+#: {{coi|en|harbour a '''dream'''}}
+#: {{coi|en|realize a '''dream'''}}
+#* {{RQ:Ferguson Zollenstein|IV
+|passage=So this was my future home, I thought!{{...}}Backed by towering hills, the but faintly discernible purple line of the French boundary off to the southwest, a sky of palest Gobelin flecked with fat, fleecy little clouds, it in truth looked a dear little city; the city of one's '''dreams'''.}}
+#* {{quote-text|en|date=August 28, 1963|author=w:Martin Luther King|url=https://kinginstitute.stanford.edu/king-papers/documents/i-have-dream-address-delivered-march-washington-jobs-and-freedom|title=I have a Dream|passage=I have a '''dream''' that my four little children will one day live in a nation where they will not be judged by the color of their skin, but by the content of their character. I have a '''dream''' today!}}
+#* {{quote-journal|en|date=August 5, 2012|author=Nathan Rabin|journal=AV Club
+|title=[http://www.avclub.com/articles/i-love-lisa,83183/ TV: Review: THE SIMPSONS (CLASSIC): “I Love Lisa” (season 4, episode 15; originally aired 02/11/1993)]
+|passage=Ralph Wiggum is generally employed as a bottomless fount of glorious non sequiturs, but in “I Love Lisa” he stands in for every oblivious chump who ever deluded himself into thinking that with persistence, determination, and a pure heart he can win the girl of his '''dreams'''.}}
+#* {{quote-book
+|en
+|year=2010
+|author=[[w:Jonathan Green (journalist)|Jonathan Green]]
+|title=Murder in the High Himalaya: Loyalty, Tragedy, and Escape from Tibet
+|url=https://archive.org/details/murderinhighhima0000gree_s1a7/
+|edition=1st
+|genre=Politics
+|publisher=w:PublicAffairs
+|ISBN=978-1-58648-959-5
+|LCCN=2010002571
+|OCLC=706029625
+|page=33
+|pageurl=https://archive.org/details/murderinhighhima0000gree_s1a7/page/33/
+|text=More likely than capture is death at the hands of Chinese border police. Killings like that of fifteen-year-old Yeshe Dundrub, shot at night in Saga County (Ch: Saga Xian) in November 1999, while fleeing with forty others to Nepal, are covered up when possible. (Dundrub, whose '''dream''' was to be a monk, died in a military hospital bed nine hours after he was shot.)}}
+# A [[visionary]] [[scheme]]; a [[wild]] [[conceit]]; an [[idle]] [[fancy]].
+#: {{syn|en|vision}}
+#: {{coi|en|live in a '''dream'''}}
+#: {{coi|en|wake up from a '''dream'''}}
+#: {{coi|en|impossible '''dream'''}}
+#: {{ux|en|a '''dream''' of bliss}}
+#: {{ux|en|the '''dream''' of his youth}}
+#* {{quote-text|en|year=c. 1735|author=w:Alexander Pope|title=John Donne's Satires Versified
+|passage=There sober thought pursued the amusing theme, <br> Till Fancy coloured it and formed a '''dream'''.}}
+#* {{quote-text|en|year=1870|author={{w|John Campbell Shairp|John Shairp}}|title=Culture and Religion
+|passage=It is not, then, a mere '''dream''', but a very real aim which they propose.}}
+`
+
 var TestWikiPage8 = `
-[2024-08-25T12:24:07+03:00] <ERROR> text ==English==
+==English==
 
 ===Etymology===
 From {{w|Jean le Rond d'Alembert}} {{suffix|en||ian}}.

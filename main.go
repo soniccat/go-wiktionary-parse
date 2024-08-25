@@ -246,7 +246,8 @@ func main() {
 	for i := 0; i < *threads; i++ {
 		wg.Add(1)
 		go func(safeI int) {
-			entries := pageWorkerV2(safeI, &wg, chunks[safeI], dbh, mongoCollection)
+			defer wg.Done()
+			entries := pageWorkerV2(chunks[safeI])
 			if mongoCollection != nil {
 				documents := make([]interface{}, len(entries))
 				for i := range entries {
@@ -256,7 +257,7 @@ func main() {
 				logger.Debug("%v %v", r, err)
 			}
 
-			logger.Info("[%2d] Inserted %6d records for %6d pages\n", i, len(entries), len(chunks[i]))
+			logger.Info("[%2d] Inserted %6d records for %6d pages\n", safeI, len(entries), len(chunks[safeI]))
 		}(i)
 	}
 

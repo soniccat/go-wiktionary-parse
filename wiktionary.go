@@ -513,7 +513,7 @@ func (e *WikitextMarkupElement) ElementType() int {
 }
 
 func parseWikitextTextBlock(r rune, reader *strings.Reader) (s string, isHandled bool, err error) {
-	bstr, _ := peek(reader, 2)
+	bstr, _ := peek(reader, 5)
 	if r == '[' && strings.HasPrefix(bstr, "[") {
 		// important: the link text will be lost, here only the link name is kept
 		var l WikitextLink
@@ -523,6 +523,10 @@ func parseWikitextTextBlock(r rune, reader *strings.Reader) (s string, isHandled
 		if err != nil {
 			return
 		}
+	} else if r == '<' && strings.HasPrefix(bstr, "math>") {
+		reader.Seek(5, io.SeekCurrent)
+		s, err = readUntil(reader, []byte("</math>"))
+		isHandled = true
 	} else if r == '\'' && strings.HasPrefix(bstr, "''") {
 		reader.Seek(2, io.SeekCurrent)
 		s, err = readUntil(reader, []byte("'''"))
