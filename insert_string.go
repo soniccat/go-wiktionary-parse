@@ -9,22 +9,22 @@ func InsertsToString(inserts []WordEntry) string {
 	strBuilder := strings.Builder{}
 
 	for _, insert := range inserts {
-		strBuilder.WriteString(fmt.Sprintf("Term: %s\n", insert.Word))
+		strBuilder.WriteString(fmt.Sprintf("Term: %s\n", insert.Term))
 		strBuilder.WriteString("Transcriptions:\n")
 		for _, t := range insert.Transcriptions {
 			strBuilder.WriteString(t + ", ")
 		}
 		strBuilder.WriteString("\n")
 
-		for k, t := range insert.WordDefs {
-			strBuilder.WriteString(k + "\n")
+		for _, v := range insert.DefPairs {
+			strBuilder.WriteString(v.PartOfSpeech + "\n")
 
-			for _, d := range t {
-				strBuilder.WriteString("d: " + d.WordDef.Def + "\n")
+			for _, d := range v.DefEntries {
+				strBuilder.WriteString("d: " + d.Def.Value + "\n")
 
-				if len(d.WordDef.Labels) > 0 {
+				if len(d.Def.Labels) > 0 {
 					strBuilder.WriteString("l: ")
-					for _, l := range d.WordDef.Labels {
+					for _, l := range d.Def.Labels {
 						strBuilder.WriteString(l + ", ")
 					}
 					strBuilder.WriteString("\n")

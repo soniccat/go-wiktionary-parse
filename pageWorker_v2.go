@@ -5,22 +5,27 @@ import (
 )
 
 type WordEntry struct {
-	Order          int                       //`bson:"order"`
-	Word           string                    `bson:"term,omitempty"`
-	Transcriptions []string                  `bson:"transcriptions,omitempty"`
-	Etymology      int                       `bson:"etymology,omitempty"`
-	WordDefs       map[string][]WordDefEntry `bson:"defs,omitempty"`
+	// Order          int           //`bson:"order"`
+	Term           string        `bson:"term,omitempty"`
+	Transcriptions []string      `bson:"transcriptions,omitempty"`
+	Etymology      int           `bson:"etymology,omitempty"`
+	DefPairs       []WordDefPair `bson:"defs,omitempty"`
+}
+
+type WordDefPair struct {
+	PartOfSpeech string         `bson:"partofspeech,omitempty"`
+	DefEntries   []WordDefEntry `bson:"defentries,omitempty"`
 }
 
 type WordDefEntry struct {
-	WordDef  WordDef  `bson:"def,omitempty"`
+	Def      WordDef  `bson:"def,omitempty"`
 	Examples []string `bson:"examples,omitempty"`
 	Synonyms []string `bson:"synonyms,omitempty"`
 	Antonyms []string `bson:"antonyms,omitempty"`
 }
 
 type WordDef struct {
-	Def    string   `bson:"def,omitempty"`
+	Value  string   `bson:"def,omitempty"`
 	Labels []string `bson:"labels,omitempty"`
 }
 
@@ -245,8 +250,7 @@ type CardBuilder struct {
 }
 
 func (cb *CardBuilder) SetWord(w string) {
-	cb.currentInsert.Word = w
-	cb.currentInsert.WordDefs = make(map[string][]WordDefEntry)
+	cb.currentInsert.Term = w
 }
 
 func (cb *CardBuilder) AddTranscription(t string) {
@@ -270,8 +274,8 @@ func (cb *CardBuilder) SetPartOfSpeech(s string) {
 
 func (cb *CardBuilder) AddDefinition(d string, labels []string) {
 	cb.saveDefinition()
-	cb.currentDef.WordDef = WordDef{
-		Def:    d,
+	cb.currentDef.Def = WordDef{
+		Value:  d,
 		Labels: labels,
 	}
 }
@@ -293,7 +297,7 @@ func (cb *CardBuilder) AddAntonym(a string) {
 func (cb *CardBuilder) save() {
 	cb.saveDefinition()
 
-	if len(cb.currentInsert.WordDefs) > 0 {
+	if len(cb.currentInsert.DefPairs) > 0 {
 		if len(cb.currentInsert.Transcriptions) == 0 {
 			cb.currentInsert.Transcriptions = append(cb.currentInsert.Transcriptions, cb.globalTranscriptions...)
 		}
@@ -302,16 +306,23 @@ func (cb *CardBuilder) save() {
 	}
 
 	cb.currentInsert = WordEntry{
-		Word:      cb.currentInsert.Word,
+		Term:      cb.currentInsert.Term,
 		Etymology: len(cb.inserts),
-		WordDefs:  make(map[string][]WordDefEntry),
 	}
 }
 
 func (cb *CardBuilder) saveDefinition() {
-	if len(cb.currentDef.WordDef.Def) > 0 {
-		defs := cb.currentInsert.WordDefs[cb.currentPartOfSpeech]
-		cb.currentInsert.WordDefs[cb.currentPartOfSpeech] = append(defs, cb.currentDef)
+	if len(cb.currentDef.Def.Value) > 0 {
+		l := len(cb.currentInsert.DefPairs)
+		if l > 0 && cb.currentInsert.DefPairs[l-1].PartOfSpeech == cb.currentPartOfSpeech {
+			pair := &cb.currentInsert.DefPairs[l-1]
+			pair.DefEntries = append(pair.DefEntries, cb.currentDef)
+		} else {
+			cb.currentInsert.DefPairs = append(cb.currentInsert.DefPairs, WordDefPair{
+				PartOfSpeech: cb.currentPartOfSpeech,
+				DefEntries:   []WordDefEntry{cb.currentDef},
+			})
+		}
 		cb.currentDef = WordDefEntry{}
 	}
 }
