@@ -7,7 +7,6 @@ import (
 	"strings"
 
 	"github.com/macdub/go-colorlog"
-	"golang.org/x/exp/slices"
 )
 
 const (
@@ -375,7 +374,7 @@ func parseTemplateProp(reader *strings.Reader) (WikitextTemplateProp, error) {
 			var isProcessed = false
 			var addStr string
 
-			addStr, isProcessed, err = parseWikitextTextBlock(r, reader)
+			addStr, isProcessed, err = parseWikitextTextBlock(r, reader, "")
 			if err != nil {
 				break
 			}
@@ -436,11 +435,15 @@ func parseWikitextLink(reader *strings.Reader) (link WikitextLink, err error) {
 	linkNameBuilder := strings.Builder{}
 
 	var r rune
+	var c int
 	var isReadingLinkText = true
 	var isReadingLinkName = false
+	var gotToEnd = false
 	var isInvalidState bool
+	var readByteCount int
 
-	r, _, err = reader.ReadRune()
+	r, c, err = reader.ReadRune()
+	readByteCount += c
 	if err != nil {
 		return
 	}
@@ -451,7 +454,8 @@ func parseWikitextLink(reader *strings.Reader) (link WikitextLink, err error) {
 	}
 
 	for {
-		r, _, err = reader.ReadRune()
+		r, c, err = reader.ReadRune()
+		readByteCount += c
 		if err != nil {
 			break
 		}
@@ -460,12 +464,15 @@ func parseWikitextLink(reader *strings.Reader) (link WikitextLink, err error) {
 			nextR, _ := peek(reader, 1)
 			if nextR == "]" {
 				reader.Seek(1, io.SeekCurrent)
+				gotToEnd = true
 				break
 			} else {
 				if isReadingLinkText {
 					linkTextBuilder.WriteRune(r)
 				} else if isReadingLinkName {
 					linkNameBuilder.WriteRune(r)
+				} else {
+					break
 				}
 			}
 		} else if r == '|' && isReadingLinkText {
@@ -489,11 +496,24 @@ func parseWikitextLink(reader *strings.Reader) (link WikitextLink, err error) {
 		link.name = link.text
 	}
 
-	if err != nil || isInvalidState {
+	if err != nil || isInvalidState || !gotToEnd {
+		if err == io.EOF || !gotToEnd {
+			// not a link, seek to the initial position
+			reader.Seek(int64(-readByteCount), io.SeekCurrent)
+			return link, notWikitextLink{}
+		}
+
 		return link, fmt.Errorf("parseWikitextLink: unexpected '%v' (%w)", string(r), err)
 	}
 
 	return
+}
+
+type notWikitextLink struct {
+}
+
+func (n notWikitextLink) Error() string {
+	return "not wikitextlink"
 }
 
 type WikitextTextElement struct {
@@ -512,28 +532,56 @@ func (e *WikitextMarkupElement) ElementType() int {
 	return WikitextElementTypeMarkup
 }
 
-func parseWikitextTextBlock(r rune, reader *strings.Reader) (s string, isHandled bool, err error) {
+func parseWikitextTextBlock(r rune, reader *strings.Reader, exclude string) (s string, isHandled bool, err error) {
 	bstr, _ := peek(reader, 5)
 	if r == '[' && strings.HasPrefix(bstr, "[") {
+		if exclude == "[[" {
+			return
+		}
 		// important: the link text will be lost, here only the link name is kept
 		var l WikitextLink
 		l, err = parseWikitextLink(reader)
+		if errors.Is(err, notWikitextLink{}) {
+			err = nil
+			return
+		}
+
 		s = l.name
 		isHandled = true
 		if err != nil {
 			return
 		}
+
 	} else if r == '<' && strings.HasPrefix(bstr, "math>") {
+		if exclude == "<math>" {
+			return
+		}
 		reader.Seek(5, io.SeekCurrent)
-		s, err = readUntil(reader, []byte("</math>"))
+		s, err = readUntil(reader, "</math>")
 		isHandled = true
+
+	} else if r == '<' && strings.HasPrefix(bstr, "br>") {
+		if exclude == "<br>" {
+			return
+		}
+		reader.Seek(3, io.SeekCurrent)
+		s = "\n"
+		isHandled = true
+
 	} else if r == '\'' && strings.HasPrefix(bstr, "''") {
+		if exclude == "'''" {
+			return
+		}
 		reader.Seek(2, io.SeekCurrent)
-		s, err = readUntil(reader, []byte("'''"))
+		s, err = readUntil(reader, "'''")
 		isHandled = true
+
 	} else if r == '\'' && strings.HasPrefix(bstr, "'") {
+		if exclude == "''" {
+			return
+		}
 		reader.Seek(1, io.SeekCurrent)
-		s, err = readUntil(reader, []byte("''"))
+		s, err = readUntil(reader, "''")
 		isHandled = true
 	}
 
@@ -612,7 +660,7 @@ func parseWikitext(str string) (Wikitext, error) {
 			} else {
 				var addStr string
 				var isHandled bool
-				addStr, isHandled, err = parseWikitextTextBlock(r, reader)
+				addStr, isHandled, err = parseWikitextTextBlock(r, reader, "")
 				if isHandled {
 					readingText = true
 					textBuilder.WriteString(addStr)
@@ -692,36 +740,53 @@ func readLine(reader *strings.Reader) (string, error) {
 	return b.String(), nil
 }
 
-func readUntil(reader *strings.Reader, stop []byte) (string, error) {
+func readUntil(reader *strings.Reader, stop string) (string, error) {
 	b := strings.Builder{}
+	var err error
 	for {
-		bt, err := reader.ReadByte()
+		var bt rune
+		bt, _, err = reader.ReadRune()
 		if err != nil {
 			break
 
 		} else if bt == '\n' {
 			break // handle wrong formatting
 
-		} else if bt == stop[0] {
-			if len(stop) == 1 {
-				b.WriteByte(bt)
-				break
+		} else {
+			var parsedStr string
+			var isHandled bool
+			parsedStr, isHandled, err = parseWikitextTextBlock(bt, reader, stop)
+			if isHandled {
+				b.WriteString(parsedStr)
+			} else {
+
+				if strings.HasPrefix(stop, string(bt)) {
+					if len(stop) == 1 {
+						b.WriteRune(bt)
+						break
+					}
+
+					var lastPart string
+					lastPart, err = peek(reader, len(stop)-len(string(bt)))
+					if lastPart == stop[len(string(bt)):] {
+						reader.Seek(int64(len(lastPart)), io.SeekCurrent)
+						break
+					}
+
+					b.WriteString(lastPart)
+					if err != nil {
+						break
+					}
+				} else {
+					b.WriteRune(bt)
+				}
 			}
 
-			var lastPart string
-			lastPart, err = peek(reader, len(stop)-1)
-			if slices.Equal([]byte(lastPart), stop[1:]) {
-				reader.Seek(int64(len(lastPart)), io.SeekCurrent)
-				break
-			}
-			b.WriteString(lastPart)
 			if err != nil {
 				break
 			}
-		} else {
-			b.WriteByte(bt)
 		}
 	}
 
-	return b.String(), nil
+	return b.String(), err
 }

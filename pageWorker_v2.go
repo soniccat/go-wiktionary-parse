@@ -195,9 +195,37 @@ func processWikitext(word string, wikitext Wikitext) []WordEntry {
 				if len(re.props) > 0 && re.props[0].isStringValue() {
 					cb.AddDefinition("antonyms of "+re.props[0].stringValue(), []string{})
 				}
-			case "nonstandard spelling of":
+			case "nonstandard spelling of",
+				"alternative spelling of",
+				"standard spelling of",
+				"alternative form of",
+				"misspelling of",
+				"misconstruction of",
+				"censored spelling of",
+				"pronunciation spelling of",
+				"deliberate misspelling of",
+				"filter-avoidance spelling of":
 				if len(re.props) > 1 && re.props[1].isStringValue() {
-					cb.AddDefinition("nonstandard spelling of "+re.props[1].stringValue(), []string{})
+					str := re.name + " " + re.props[1].stringValue()
+
+					extraStrs := []string{}
+					p2 := re.PropStringPropByIndex(2)
+					if p2 != nil && p2.isStringValue() && len(p2.stringValue()) > 0 {
+						extraStrs = append(extraStrs, p2.stringValue())
+					}
+					p3 := re.PropStringPropByIndex(3)
+					if p3 != nil && p3.isStringValue() && len(p3.stringValue()) > 0 {
+						extraStrs = append(extraStrs, p3.stringValue())
+					}
+					pt := re.PropByName("t")
+					if pt != nil && pt.isStringValue() && len(pt.stringValue()) > 0 {
+						extraStrs = append(extraStrs, pt.stringValue())
+					}
+					if len(extraStrs) > 0 {
+						str += " (" + strings.Join(extraStrs, ", ") + ")"
+					}
+
+					textElements = append(textElements, str)
 				}
 			case "l":
 				if (areSynonyms || areAntonyms) && len(re.props) > 1 && re.props[1].isStringValue() {

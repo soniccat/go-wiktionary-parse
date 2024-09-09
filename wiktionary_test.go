@@ -117,6 +117,15 @@ func TestParsingTemplateProp9(t *testing.T) {
 	assert.Equal(t, "The redshift of light leaking outward from the photon sphere is \\sqrt{3} - 1 = 0.732. All light rays approaching a black hole closer than \\sqrt{3} times the radius of the photon sphere spiral inwards and are captured (see Figure 13.5).", e.innerStringValue())
 }
 
+func TestParsingTemplateProp10(t *testing.T) {
+	str := "passage=''Heinrich Olbers described the paradox that '''bears''' his name in 1823.''"
+	e, err := parseTemplateProp(strings.NewReader(str))
+
+	assert.Nil(t, err)
+	assert.Equal(t, "passage", e.name)
+	assert.Equal(t, "Heinrich Olbers described the paradox that bears his name in 1823.", e.innerStringValue())
+}
+
 func TestParsingTemplate1(t *testing.T) {
 	str := "{{abc}}"
 	e, err := parseTemplateElement(strings.NewReader(str))
