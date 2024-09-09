@@ -533,7 +533,7 @@ func (e *WikitextMarkupElement) ElementType() int {
 }
 
 func parseWikitextTextBlock(r rune, reader *strings.Reader, exclude string) (s string, isHandled bool, err error) {
-	bstr, _ := peek(reader, 5)
+	bstr, _ := peek(reader, 7)
 	if r == '[' && strings.HasPrefix(bstr, "[") {
 		if exclude == "[[" {
 			return
@@ -551,7 +551,8 @@ func parseWikitextTextBlock(r rune, reader *strings.Reader, exclude string) (s s
 		if err != nil {
 			return
 		}
-
+	} else if len(exclude) > 0 && exclude == string(r)+bstr[0:len(exclude)-1] {
+		return
 	} else if r == '<' && strings.HasPrefix(bstr, "math>") {
 		if exclude == "<math>" {
 			return
@@ -566,6 +567,14 @@ func parseWikitextTextBlock(r rune, reader *strings.Reader, exclude string) (s s
 		}
 		reader.Seek(3, io.SeekCurrent)
 		s = "\n"
+		isHandled = true
+
+	} else if r == '\'' && strings.HasPrefix(bstr, "''''") {
+		if exclude == "'''''" {
+			return
+		}
+		reader.Seek(4, io.SeekCurrent)
+		s, err = readUntil(reader, "'''''")
 		isHandled = true
 
 	} else if r == '\'' && strings.HasPrefix(bstr, "''") {

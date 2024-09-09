@@ -126,6 +126,15 @@ func TestParsingTemplateProp10(t *testing.T) {
 	assert.Equal(t, "Heinrich Olbers described the paradox that bears his name in 1823.", e.innerStringValue())
 }
 
+func TestParsingTemplateProp11(t *testing.T) {
+	str := "passage=I vote we go down and explore. No one will come up this time o' day. We needn't '''keep ''cavé'''''."
+	e, err := parseTemplateProp(strings.NewReader(str))
+
+	assert.Nil(t, err)
+	assert.Equal(t, "passage", e.name)
+	assert.Equal(t, "I vote we go down and explore. No one will come up this time o' day. We needn't keep cavé.", e.innerStringValue())
+}
+
 func TestParsingTemplate1(t *testing.T) {
 	str := "{{abc}}"
 	e, err := parseTemplateElement(strings.NewReader(str))
@@ -349,4 +358,41 @@ func TestParsingWikitext9(t *testing.T) {
 	assert.Equal(t, 9, len(text.elements))
 	te := text.elements[8].(*WikitextTextElement)
 	assert.Equal(t, `The alkaloid (2S,3R,11bS)-3-ethyl-2-[[(1R)-2,3,4,9-tetrahydro-1H-pyrido[3,4-b]indol-1-yl]methyl]-2,3,4,6,7,11b-hexahydro-1H-benzo[a]quinolizine`, te.value)
+}
+
+func TestParsingWikitext10(t *testing.T) {
+	str := `==English==
+
+===Adjective===
+{{en-adj}}
+
+# {{alternative form of|en|Afrophobic}}
+#* {{quote-book|en|passage=Those reactions, whether genuine or effected, were far less about Black Muslims and far more about black people in their perpetual role as the emotional babysitter of the '''''Afriphobic''''' white community in the United States.|page=159|author=Louis A. DeCaro, Jr.|title=Malcolm and the Cross: The Nation of Islam, Malcolm X, and Christianity|publisher=New York University Press|year=1998|url=https://www.google.co.uk/books/edition/Malcolm_and_the_Cross/sSYTCgAAQBAJ}}
+`
+	text, err := parseWikitext(str)
+	assert.Equal(t, 12, len(text.elements))
+	assert.Nil(t, err)
+}
+
+func TestParsingWikitext11(t *testing.T) {
+	str := `==English==
+
+===Etymology===
+Used at {{w|Eton College}}, [[Berkshire]], [[England]]. See {{m|en|cave|t=look out, beware}}.
+
+===Pronunciation===
+* {{enPR|kēp kāʹvē}}, {{IPA|en|/kiːp ˈkeɪvi/}}
+
+===Verb===
+{{en-verb|keep<,,kept> cave}}
+
+# {{lb|en|Britain|public school slang}} To [[maintain]] [[vigilance]].
+#: {{synonyms|en|keep a lookout|keep watch}}
+#* {{RQ:Kipling Stalky|page=73|passage=I vote we go down and explore. No one will come up this time o' day. We needn't '''keep ''cavé'''''.}}
+#* {{quote-book|en|author=Cosmo Hamilton|chapter=Why Cupid Came to Earl’s Court|url=http://archive.org/details/cu31924013622950|title=Short Plays for Small Stages|year=1911|page=9|passage=I'll '''keep cave''' for ten minutes.}}
+#* {{quote-book|en|author=Ethel Turner|title=Seven Little Australians|url=https://archive.org/details/sevenlittleaustr00turniala|year=1912|page=154|passage=Pip was mounting guard at the shed, and had undertaken to get Judy safely away, and Bunty had been stationed on the back verandah to '''keep ''cave''''' and whistle three times if there was any danger.}}
+`
+	text, err := parseWikitext(str)
+	assert.Equal(t, 37, len(text.elements))
+	assert.Nil(t, err)
 }
