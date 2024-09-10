@@ -396,3 +396,10 @@ Used at {{w|Eton College}}, [[Berkshire]], [[England]]. See {{m|en|cave|t=look o
 	assert.Equal(t, 37, len(text.elements))
 	assert.Nil(t, err)
 }
+
+func TestParsingWikitext12(t *testing.T) {
+	str := `#* <!--original work is...?-->'''1905''', Emily Wilder Leavitt, ''Palmer Groups: John Melvin of Charlestown and Concord, Mass. and His Descendants ; Gathered and Arranged for Mr. Lowell Mason Palmer of New York'', page 24:`
+	text, err := parseWikitext(str)
+	assert.Equal(t, 37, len(text.elements))
+	assert.Nil(t, err)
+}

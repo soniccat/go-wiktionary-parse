@@ -551,8 +551,8 @@ func parseWikitextTextBlock(r rune, reader *strings.Reader, exclude string) (s s
 		if err != nil {
 			return
 		}
-	} else if len(exclude) > 0 && exclude == string(r)+bstr[0:len(exclude)-1] {
-		return
+		// } else if len(exclude) > 0 && exclude == string(r)+bstr[0:len(exclude)-1] {
+		// 	return
 	} else if r == '<' && strings.HasPrefix(bstr, "math>") {
 		if exclude == "<math>" {
 			return
@@ -569,20 +569,21 @@ func parseWikitextTextBlock(r rune, reader *strings.Reader, exclude string) (s s
 		s = "\n"
 		isHandled = true
 
-	} else if r == '\'' && strings.HasPrefix(bstr, "''''") {
+		/*} else if r == '\'' && strings.HasPrefix(bstr, "''''") {
 		if exclude == "'''''" {
 			return
 		}
 		reader.Seek(4, io.SeekCurrent)
 		s, err = readUntil(reader, "'''''")
 		isHandled = true
-
+		*/
 	} else if r == '\'' && strings.HasPrefix(bstr, "''") {
 		if exclude == "'''" {
 			return
 		}
 		reader.Seek(2, io.SeekCurrent)
-		s, err = readUntil(reader, "'''")
+		s = ""
+		//s, err = readUntil(reader, "'''")
 		isHandled = true
 
 	} else if r == '\'' && strings.HasPrefix(bstr, "'") {
@@ -590,7 +591,8 @@ func parseWikitextTextBlock(r rune, reader *strings.Reader, exclude string) (s s
 			return
 		}
 		reader.Seek(1, io.SeekCurrent)
-		s, err = readUntil(reader, "''")
+		s = ""
+		// s, err = readUntil(reader, "''")
 		isHandled = true
 	}
 

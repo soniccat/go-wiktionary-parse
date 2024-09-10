@@ -3132,7 +3132,7 @@ l: now transitive outside certain set patterns such as 'bear with'; formerly als
 	e: I would never move to Texas &mdash; I can't bear heat.
 	e: This reasoning will not bear much analysis.
 	e: Please bear with me as I try to find the book you need.
-	e: I cannot, cannot bear; ’tis past , ’tis done; / Perish this impious , this detested son; {{...}}
+	e: I cannot, cannot bear; ’tis past , ’tis done; / Perish this impious , this detested son; ...
 	e: Events that might cause suffering in others may be borne without complaint by someone who believes that the disease is part of his or her family identity and hence inevitable. Even diseases for which no heritable basis is known may be borne easily by a person because others in the family have been similarly afflicted.
 	e: There's this fear deep inside of me / Like there's something I cannot see / And it's coming after me / It's hard to bear
 	s: brook
@@ -3167,7 +3167,7 @@ l: intransitive, figuratively,
 d: Of a weapon, to be aimed at an enemy or other target.
 l: intransitive, military, usually with on or upon, 
 	e: The cannons were wheeled around to bear upon the advancing troops.
-	e: Constitutionss gun crews crossed the deck to the already loaded larboard guns as Bainbridge wore the ship around on a larboard tack and recrossed his path in a rare double raking action to bring her guns to bear again on Javass damaged stern.
+	e: Constitutionss gun crews crossed the deck to the already loaded larboard guns as Bainbridge wore the ship around on a larboard tack and recrossed his path in a rare double raking action to bring her guns to bear again on Java's damaged stern.
 d: To produce, yield, give birth to.
 d: To give birth to (someone or something) .
 l: transitive, ditransitive, 
