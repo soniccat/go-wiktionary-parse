@@ -606,6 +606,7 @@ func parseWikitext(str string) (Wikitext, error) {
 	textBuilder := strings.Builder{}
 
 	isNewLine := true
+	hasMarkupInLine := false
 	readingMarkup := false
 	readingText := false
 
@@ -638,8 +639,13 @@ func parseWikitext(str string) (Wikitext, error) {
 		isNewLine = false
 		if !isProcessed && canRead {
 			r, _, err = reader.ReadRune()
-			isMarkup = r == '*' || r == '#' || r == ':'
+			if !hasMarkupInLine {
+				isMarkup = r == '*' || r == '#' || r == ':'
+			}
 			isNewLine = r == '\n'
+			if isNewLine {
+				hasMarkupInLine = false
+			}
 		}
 
 		// save read text in an element if needed
@@ -657,6 +663,7 @@ func parseWikitext(str string) (Wikitext, error) {
 			markupBuilder.Reset()
 			parsedElement1 = Ptr(markupElement)
 			readingMarkup = false
+			hasMarkupInLine = !isNewLine
 		}
 
 		// append read character in a buffer

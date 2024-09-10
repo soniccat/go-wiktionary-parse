@@ -246,7 +246,10 @@ func processWikitext(word string, wikitext Wikitext) []WordEntry {
 
 		case *WikitextTextElement:
 			if inPartOfSpeech {
-				textElements = append(textElements, re.value)
+				needSkip := len(textElements) == 0 && re.value == ":"
+				if !needSkip {
+					textElements = append(textElements, re.value)
+				}
 			}
 
 		case *WikitextNewlineElement:

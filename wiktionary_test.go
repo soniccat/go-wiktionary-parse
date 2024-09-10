@@ -400,6 +400,56 @@ Used at {{w|Eton College}}, [[Berkshire]], [[England]]. See {{m|en|cave|t=look o
 func TestParsingWikitext12(t *testing.T) {
 	str := `#* <!--original work is...?-->'''1905''', Emily Wilder Leavitt, ''Palmer Groups: John Melvin of Charlestown and Concord, Mass. and His Descendants ; Gathered and Arranged for Mr. Lowell Mason Palmer of New York'', page 24:`
 	text, err := parseWikitext(str)
-	assert.Equal(t, 37, len(text.elements))
+	assert.Equal(t, 2, len(text.elements))
+	assert.Nil(t, err)
+}
+
+func TestParsingWikitext13(t *testing.T) {
+	str := `
+==English==
+
+===Etymology 1===
+
+====Pronunciation====
+* {{enPR|bâr}}
+
+====Noun====
+{{en-noun|-}}
+
+# {{alternative spelling of|en|bere||barley}}.
+#* '''1800''', Tuke, ''Agric.'', 119:
+#*: There are several plots of those species of barley called big, which is six-rowed barley; or '''bear''', which is four-rowed, cultivated.
+#* {{quote-text|en|year=1818|location=Marshall|title=Reports Agric.|section=I. 191
+|passage=Bigg or bear, with four grains on the ear, was the kind of barley.}}
+`
+	text, err := parseWikitext(str)
+
+	inserts := processWikitext("w", text)
+
+	assert.Equal(t, 1, len(inserts))
+	assert.Nil(t, err)
+}
+
+func TestParsingWikitext14(t *testing.T) {
+	str := `
+==English==
+
+===Etymology 1===
+
+====Pronunciation====
+* {{enPR|bâr}}
+
+====Noun====
+{{en-noun|-}}
+
+
+# {{lb|en|sports|and|games}}:
+## {{lb|en|transitive|tennis}} To [[win]] a [[game]] (against one's [[opponent]]) as [[receiver]].
+`
+	text, err := parseWikitext(str)
+
+	inserts := processWikitext("w", text)
+
+	assert.Equal(t, 1, len(inserts))
 	assert.Nil(t, err)
 }

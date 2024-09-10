@@ -6,7 +6,6 @@ Transcriptions:
 verb
 d: To recall from one's memory; to have an image in one's memory.
 	e: In the lightness of my heart I sang catches of songs as my horse gayly bore me along the well-remembered road.
-	e: 2016, [https //web.archive.org/web/20171023035740/https //learningenglish.voanews.com/a/lets-learn-english-lesson-7-what-are-you-doing/3240468.html VOA Learning English] (public domain)
 	e: Remember me? I live in your building.
 	e: To heal, we must remember. It's hard sometimes to remember, but that's how we heal. It's important to do that as a nation.
 d: To memorize; to put something into memory.
@@ -441,9 +440,8 @@ l: transitive,
 	e: The recession broke some small businesses.
 d: To fail in business; to go broke, to become bankrupt.
 l: intransitive, obsolete, 
-	e: 1791-92, , ‘A Collection of Letters’, Juvenilia
 	e: ‘I knew he was in some such low way—He broke did not he?’
-d: Of prices on the stock exchange to fall suddenly.
+d: Of prices on the stock exchange: to fall suddenly.
 l: finance, intransitive, 
 	e: With a few exceptions, stock prices tend to follow the overall market averages. When you have a market decline, therefore, many stocks share the same overall chart pattern. Prices break and go sideways for a period of time.
 d: To violate; to fail to adhere to.
@@ -506,7 +504,6 @@ l: transitive, ergative,
 	e: “If something breaks during the day, work hours up until the evening, we’ll cut in — if we’re in the middle of, let’s say, a magazine program or a podcast on tape or a re-air of the game,” Radovich said.
 d: To become audible suddenly.
 l: intransitive, of a sound, 
-	e: , , The Battle-Day of Germantown, reprinted in Washington and His Generals "1776", page 45&nbsp;[http //google.com/books?id=EM-qNjWrI9YC&pg=PA45&dq=%22sound+of+musquetry%22]
 	e: Like the crash of thunderbolts[...], the sound of musquetry broke over the lawn, [...].
 d: To change a steady state abruptly.
 l: transitive, 
@@ -522,7 +519,7 @@ l: copulative, informal,
 	e: The arrest was standard, when suddenly the suspect broke ugly.
 d: To become deeper at puberty.
 l: intransitive, of a male voice, 
-d: To alter in type due to emotion or strain in men, generally to go up, in women, sometimes to go down; to crack.
+d: To alter in type due to emotion or strain: in men, generally to go up, in women, sometimes to go down; to crack.
 l: intransitive, of a voice, 
 	e: His voice breaks when he gets emotional.
 d: To de-emulsify.
@@ -3152,7 +3149,6 @@ l: transitive,
 d: To support, keep up, or maintain.
 d: To afford, to be something to someone, to supply with something. <!-- Seeking modern English examples. -->
 l: transitive, 
-d: 1732–4, Alexander Pope, An Essay on Man, Longmans, Green & Co, 1879, [https //books.google.de/books?id=4lACAAAAQAAJ&dq=His%20faithful%20dog%20shall%20bear%20him%20company%20pope&hl=de&pg=PA10 v=onepage&q&f=false p. 10]
 	e: admitted to that equal sky, / His faithful dog shall bear him company.
 d: To carry on, or maintain; to have. <!-- Seeking modern English examples. -->
 l: transitive, 
@@ -3167,7 +3163,7 @@ l: intransitive, figuratively,
 d: Of a weapon, to be aimed at an enemy or other target.
 l: intransitive, military, usually with on or upon, 
 	e: The cannons were wheeled around to bear upon the advancing troops.
-	e: Constitutionss gun crews crossed the deck to the already loaded larboard guns as Bainbridge wore the ship around on a larboard tack and recrossed his path in a rare double raking action to bring her guns to bear again on Java's damaged stern.
+	e: Constitution's gun crews crossed the deck to the already loaded larboard guns as Bainbridge wore the ship around on a larboard tack and recrossed his path in a rare double raking action to bring her guns to bear again on Java's damaged stern.
 d: To produce, yield, give birth to.
 d: To give birth to (someone or something) .
 l: transitive, ditransitive, 
@@ -3189,12 +3185,10 @@ Transcriptions:
 /bɪə/, /bɪɚ/, 
 noun
 d: alternative spelling of bere (barley) .
-	e: 1800, Tuke, Agric., 119
 	e: There are several plots of those species of barley called big, which is six-rowed barley; or bear, which is four-rowed, cultivated.
 	e: Bigg or bear, with four grains on the ear, was the kind of barley.
 	e: Two stacks of beare, of xx boules,
 	e: ... one wheat stack, one half-stack of corn, and a little hay, all standing in the barnyard; four stacks of bear in the barn, about three bolls of bear lying on the barn floor, two stacks of corn in the barn, ...
-	e: 1802-1816, Papers on Sutherland Estate Management, published in 1972, Scottish History Society, Publications
 	e: Your Horses are Getting Pease Straw, and looking very well. The 2 Stacks of Bear formerly mentioned as Put in by Mr Bookless is not fully dressed as yet so that I cannot say at present what Quantity they may Produce .
 Term: w
 Transcriptions:
@@ -3204,7 +3198,6 @@ d: alternative spelling of bere (pillowcase) .
 	e: And, according to this, one of my Neighbours made a Bag, like a Pillow-bear, of  the ordinary six-penny yard Cloth, and boiled his Hops in it half an Hour; then he took them out, and put in another Bag of the like Quantity of fresh Hops, ...
 	e: ij payer of schete, ij pelows wt the berys,
 	e: 1641.—14 yards of femble cloth, 12s. ; 8 yards of linen, 6s. 8d. ; 20 yards of harden, 10s. ; 5 linen sheets, 1l. ; 7 linen pillow bears, 8s. ; 2 femble sheets and a line hard sheet, 10s. ; 3 linen towels, 4s. ; 6 lin curtains and a vallance, 12s. ; ...
-	e: <!--original work is...?-->1905, Emily Wilder Leavitt, Palmer Groups: John Melvin of Charlestown and Concord, Mass. and His Descendants ; Gathered and Arranged for Mr. Lowell Mason Palmer of New York, page 24
 	e: I give to my Grand Child Lidea Carpenter the Coverlid that her mother spun and my pillow bear and a pint Cup &amp; my great Pott that belongs to the Pott and Trammels.
 	e: ... a man's eyes played him false, sitting him before tables proper with damask and pewter, leading him to fall into beds gracious with small and large feather beds for softness and pillowed luxuriously under pretty checked linen pillow bears.
 `
