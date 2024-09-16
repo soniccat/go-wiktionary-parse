@@ -2,6 +2,8 @@ package main
 
 import (
 	"strings"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 type WordEntry struct {
@@ -25,8 +27,16 @@ type WordDefEntry struct {
 }
 
 type WordDef struct {
-	Value  string   `bson:"def,omitempty"`
+	Value  string   `bson:"value,omitempty"`
 	Labels []string `bson:"labels,omitempty"`
+}
+
+type WordExample struct {
+	Text          string             `bson:"example"`
+	WordId        primitive.ObjectID `bson:"wordId"`
+	DefPairIndex  int                `bson:"defPairIndex"`
+	DefEntryIndex int                `bson:"defEntryIndex"`
+	ExampleIndex  int                `bson:"exampleIndex"`
 }
 
 func pageWorkerV2(

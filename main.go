@@ -19,6 +19,7 @@ import (
 
 	"github.com/macdub/go-colorlog"
 	_ "github.com/mattn/go-sqlite3"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -143,6 +144,7 @@ func main() {
 	mongoContext := context.Background()
 	//var mongoClient *mongo.Client
 	var mongoCollection *mongo.Collection
+	var mongoExamplesCollection *mongo.Collection
 	if *mongoURI != "" {
 		opts := options.Client().ApplyURI(*mongoURI)
 		// if enableCredentials {
@@ -157,6 +159,7 @@ func main() {
 			panic(err)
 		}
 		mongoCollection = c.Database("wiktionary").Collection("words2")
+		mongoExamplesCollection = c.Database("wiktionary").Collection("words2examples")
 		//mongoClient = c
 	}
 
@@ -248,12 +251,38 @@ func main() {
 		go func(safeI int) {
 			defer wg.Done()
 			entries := pageWorkerV2(chunks[safeI])
+
+			var insertResult *mongo.InsertManyResult
 			if mongoCollection != nil {
 				documents := make([]interface{}, len(entries))
 				for i := range entries {
 					documents[i] = entries[i]
 				}
-				r, err := mongoCollection.InsertMany(context.Background(), documents)
+
+				var err error
+				insertResult, err = mongoCollection.InsertMany(context.Background(), documents)
+				logger.Debug("%v %v", insertResult, err)
+			}
+
+			if mongoExamplesCollection != nil && insertResult != nil {
+				var documents []interface{}
+				for i := range entries {
+					for defPairIndex := range entries[i].DefPairs {
+						for entryIndex := range entries[i].DefPairs[defPairIndex].DefEntries {
+							for exampleIndex, e := range entries[i].DefPairs[defPairIndex].DefEntries[entryIndex].Examples {
+								documents = append(documents, WordExample{
+									Text:          e,
+									WordId:        insertResult.InsertedIDs[i].(primitive.ObjectID),
+									DefPairIndex:  defPairIndex,
+									DefEntryIndex: entryIndex,
+									ExampleIndex:  exampleIndex,
+								})
+							}
+						}
+					}
+				}
+
+				r, err := mongoExamplesCollection.InsertMany(context.Background(), documents)
 				logger.Debug("%v %v", r, err)
 			}
 
