@@ -424,7 +424,7 @@ func TestParsingWikitext13(t *testing.T) {
 `
 	text, err := parseWikitext(str)
 
-	inserts := processWikitext("w", text)
+	inserts := processWikitext("w", text, nil)
 
 	assert.Equal(t, 1, len(inserts))
 	assert.Nil(t, err)
@@ -448,7 +448,7 @@ func TestParsingWikitext14(t *testing.T) {
 `
 	text, err := parseWikitext(str)
 
-	inserts := processWikitext("w", text)
+	inserts := processWikitext("w", text, nil)
 
 	assert.Equal(t, 1, len(inserts))
 	assert.Nil(t, err)

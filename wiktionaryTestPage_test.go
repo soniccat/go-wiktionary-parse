@@ -3,6 +3,10 @@ package main
 var TestWikiPage13_parsed = `Term: w
 Transcriptions:
 /ɹɪˈmɛmbɚ/, /ɹəˈmɛmbɚ/, /ˈmɛmbɚ/, /ˈɹɪmbɚ/, /ˈɹɛmbɚ/, /ɹɪˈmɛmbə/, 
+Audios:
+en-us-remember.ogg a:US text: t:
+En-uk-to_remember.ogg a:UK text: t:
+
 verb
 d: To recall from one's memory; to have an image in one's memory.
 	e: In the lightness of my heart I sang catches of songs as my horse gayly bore me along the well-remembered road.
@@ -401,6 +405,10 @@ Displaced native {{cog|enm|ȝemuneȝen||to remember}}, from {{cog|ang|ġemynegia
 var TestWikiPage12_parsed = `Term: w
 Transcriptions:
 brāk, /bɹeɪk/, [bɹ(ʷ)eɪ̯k], brēk, /bɹiːk/, 
+Audios:
+en-us-break.ogg a:US text: t:
+LL-Q1860_(eng)-Vealhurl-break.wav a:Southern England text: t:
+
 verb
 d: To separate into two or more pieces, to fracture or crack, by a process that cannot easily be reversed for reassembly.
 l: transitive, intransitive, 
@@ -698,6 +706,10 @@ l: obsolete, slang,
 Term: w
 Transcriptions:
 brāk, /bɹeɪk/, [bɹ(ʷ)eɪ̯k], brēk, /bɹiːk/, 
+Audios:
+en-us-break.ogg a:US text: t:
+LL-Q1860_(eng)-Vealhurl-break.wav a:Southern England text: t:
+
 noun
 d: A section of extended repetition of the percussion break to a song, created by a hip-hop DJ as rhythmic dance music.
 l: music, 
@@ -2998,6 +3010,9 @@ var TestWikiPage10 = `
 var TestWikiPage11_parsed = `Term: w
 Transcriptions:
 bâr, /bɛə(ɹ)/, /bɛː(ɹ)/, /bɛɚ/, /beː/, [beː~bɛː], /ˈbiːə(r)/, /bɛː(r)/, /beə/, [beə~bɪə], /bɑɹ/, 
+Audios:
+en-us-bear.ogg a:GA text: t:
+
 noun
 d: A large, generally omnivorous mammal (a few species are purely carnivorous or herbivorous), related to the dog and raccoon, having shaggy hair, a very small tail, and flat feet; a member of the family .
 d: The meat of this animal.
@@ -3052,6 +3067,8 @@ l: finance, investments,
 	e: The great bear market starting in 1929 scared a whole generation of investors.
 Term: w
 Transcriptions:
+
+Audios:
 
 verb
 d: To carry or convey, literally or figuratively.
@@ -3183,6 +3200,8 @@ l: transitive, obsolete,
 Term: w
 Transcriptions:
 /bɪə/, /bɪɚ/, 
+Audios:
+
 noun
 d: alternative spelling of bere (barley) .
 	e: There are several plots of those species of barley called big, which is six-rowed barley; or bear, which is four-rowed, cultivated.
@@ -3192,6 +3211,8 @@ d: alternative spelling of bere (barley) .
 	e: Your Horses are Getting Pease Straw, and looking very well. The 2 Stacks of Bear formerly mentioned as Put in by Mr Bookless is not fully dressed as yet so that I cannot say at present what Quantity they may Produce .
 Term: w
 Transcriptions:
+
+Audios:
 
 noun
 d: alternative spelling of bere (pillowcase) .
@@ -3204,6 +3225,9 @@ d: alternative spelling of bere (pillowcase) .
 
 var TestWikiPage10_parsed = `Term: w
 Transcriptions:
+
+Audios:
+En-au-take_off.ogg a:AU text: t:
 
 verb
 d: To remove.

@@ -114,6 +114,30 @@ func (e *WikitextTemplateElement) PropByName(name string) *WikitextTemplateProp 
 	return nil
 }
 
+func (e *WikitextTemplateElement) StringValueInPropByName(name string) *string {
+	prop := e.PropByName(name)
+	if prop == nil {
+		return nil
+	}
+
+	if prop.isInnerStringValue() {
+		return Ptr(prop.innerStringValue())
+	}
+
+	return nil
+}
+
+func (e *WikitextTemplateElement) StringValueInPropByNames(names ...string) *string {
+	for _, name := range names {
+		str := e.StringValueInPropByName(name)
+		if str != nil {
+			return str
+		}
+	}
+
+	return nil
+}
+
 // to get these |1= |2= |3=, anI starts with 0 which means "|1="
 func (e *WikitextTemplateElement) PropStringPropByIndex(anI int) *WikitextTemplateProp {
 	i := 0
@@ -724,6 +748,14 @@ func parseWikitext(str string) (Wikitext, error) {
 
 func Ptr[T any](x T) *T {
 	return &x
+}
+
+func GetString(x *string) string {
+	if x == nil {
+		return ""
+	}
+
+	return *x
 }
 
 func peek(reader *strings.Reader, l int) (string, error) {

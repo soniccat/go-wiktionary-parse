@@ -15,6 +15,13 @@ func InsertsToString(inserts []WordEntry) string {
 			strBuilder.WriteString(t + ", ")
 		}
 		strBuilder.WriteString("\n")
+		strBuilder.WriteString("Audios:\n")
+		for _, t := range insert.Audios {
+			strBuilder.WriteString(
+				fmt.Sprintf("%s a:%s text:%s t:%s\n", t.FileName, GetString(t.Accent), GetString(t.Text), GetString(t.Transcription)),
+			)
+		}
+		strBuilder.WriteString("\n")
 
 		for _, v := range insert.DefPairs {
 			strBuilder.WriteString(v.PartOfSpeech + "\n")

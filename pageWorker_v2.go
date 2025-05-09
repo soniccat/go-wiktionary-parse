@@ -1,6 +1,8 @@
 package main
 
 import (
+	"errors"
+	"os"
 	"strings"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -9,9 +11,18 @@ import (
 type WordEntry struct {
 	// Order          int           //`bson:"order"`
 	Term           string        `bson:"term,omitempty"`
+	TermLowercased string        `bson:"term_lowercased,omitempty"`
 	Transcriptions []string      `bson:"transcriptions,omitempty"`
+	Audios         []WordAudio   `bson:"audios,omitempty"`
 	Etymology      int           `bson:"etymology,omitempty"`
 	DefPairs       []WordDefPair `bson:"defs,omitempty"`
+}
+
+type WordAudio struct {
+	FileName      string  `bson:"fileName"`
+	Accent        *string `bson:"accent,omitempty"`
+	Transcription *string `bson:"transcription,omitempty"`
+	Text          *string `bson:"text,omitempty"`
 }
 
 type WordDefPair struct {
@@ -55,13 +66,13 @@ func pageWorkerV2(
 			continue
 		}
 
-		inserts = append(inserts, processWikitext(word, w)...)
+		inserts = append(inserts, processWikitext(word, w, Ptr("/Users/alexeyglushkov/Downloads/audios"))...)
 	}
 
 	return inserts
 }
 
-func processWikitext(word string, wikitext Wikitext) []WordEntry {
+func processWikitext(word string, wikitext Wikitext, audioPath *string) []WordEntry {
 	cb := CardBuilder{}
 	cb.SetWord(word)
 
@@ -114,6 +125,32 @@ func processWikitext(word string, wikitext Wikitext) []WordEntry {
 						cb.AddTranscription(v.stringValue())
 					}
 				}
+			case "audio":
+				if isExample || isDefinition {
+					// TODO: isn't supported now
+					continue
+				}
+
+				fileNameProp := re.PropStringPropByIndex(1)
+				if fileNameProp == nil || !fileNameProp.isStringValue() {
+					continue
+				}
+				fileName := strings.ReplaceAll(fileNameProp.stringValue(), " ", "_")
+
+				if audioPath != nil {
+					if _, err := os.Stat(*audioPath + "/" + fileName); errors.Is(err, os.ErrNotExist) {
+						continue
+					}
+				}
+
+				wordAudio := WordAudio{
+					FileName:      fileName,
+					Accent:        re.StringValueInPropByName("a"),
+					Transcription: re.StringValueInPropByName("IPA"),
+					Text:          re.StringValueInPropByNames("t", "text"),
+				}
+
+				cb.AddWordAudio(wordAudio)
 			case "en-verb":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("verb")
@@ -284,6 +321,7 @@ func processWikitext(word string, wikitext Wikitext) []WordEntry {
 type CardBuilder struct {
 	isEtymologyStarted   bool
 	globalTranscriptions []string
+	globalAudios         []WordAudio
 	currentInsert        WordEntry
 	currentPartOfSpeech  string
 	currentDef           WordDefEntry
@@ -292,6 +330,7 @@ type CardBuilder struct {
 
 func (cb *CardBuilder) SetWord(w string) {
 	cb.currentInsert.Term = w
+	cb.currentInsert.TermLowercased = strings.ToLower(cb.currentInsert.Term)
 }
 
 func (cb *CardBuilder) AddTranscription(t string) {
@@ -299,6 +338,14 @@ func (cb *CardBuilder) AddTranscription(t string) {
 		cb.currentInsert.Transcriptions = append(cb.currentInsert.Transcriptions, t)
 	} else {
 		cb.globalTranscriptions = append(cb.globalTranscriptions, t)
+	}
+}
+
+func (cb *CardBuilder) AddWordAudio(t WordAudio) {
+	if cb.isEtymologyStarted {
+		cb.currentInsert.Audios = append(cb.currentInsert.Audios, t)
+	} else {
+		cb.globalAudios = append(cb.globalAudios, t)
 	}
 }
 
@@ -343,12 +390,17 @@ func (cb *CardBuilder) save() {
 			cb.currentInsert.Transcriptions = append(cb.currentInsert.Transcriptions, cb.globalTranscriptions...)
 		}
 
+		if len(cb.currentInsert.Audios) == 0 {
+			cb.currentInsert.Audios = append(cb.currentInsert.Audios, cb.globalAudios...)
+		}
+
 		cb.inserts = append(cb.inserts, cb.currentInsert)
 	}
 
 	cb.currentInsert = WordEntry{
-		Term:      cb.currentInsert.Term,
-		Etymology: len(cb.inserts),
+		Term:           cb.currentInsert.Term,
+		TermLowercased: strings.ToLower(cb.currentInsert.Term),
+		Etymology:      len(cb.inserts),
 	}
 }
 

@@ -217,7 +217,7 @@ func main() {
 	// for i := range data.Pages {
 	// 	if data.Pages[i].Title == "take off" {
 	// 		var wg2 sync.WaitGroup
-	// 		pageWorkerV2(1, &wg2, data.Pages[i:i+1], dbh, mongoCollection)
+	// 		pageWorkerV2(data.Pages[i : i+1])
 	// 		wg2.Wait()
 	// 		break
 	// 	}
