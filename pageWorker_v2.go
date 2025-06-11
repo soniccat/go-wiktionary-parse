@@ -66,15 +66,44 @@ func pageWorkerV2(
 			continue
 		}
 
-		inserts = append(inserts, processWikitext(word, w, Ptr("/Users/alexeyglushkov/Downloads/audios"))...)
+		inserts = append(
+			inserts,
+			processWikitext(
+				word,
+				w,
+				Ptr("/Users/alexeyglushkov/Downloads/audios"),
+				Ptr("/Users/alexeyglushkov/com.abbyy.mobile.lingvo.market/files/Sound/SoundEn.extracted"),
+			)...)
 	}
 
 	return inserts
 }
 
-func processWikitext(word string, wikitext Wikitext, audioPath *string) []WordEntry {
+func processWikitext(
+	word string,
+	wikitext Wikitext,
+	audioPath *string,
+	extraAudioPath *string,
+) []WordEntry {
 	cb := CardBuilder{}
 	cb.SetWord(word)
+
+	if extraAudioPath != nil {
+		if _, err := os.Stat(*extraAudioPath + "/" + word); err != nil {
+			wordAudio := WordAudio{
+				FileName: "externalAudio/" + word,
+				Accent:   Ptr("UK"),
+			}
+			cb.AddExternalAudio(wordAudio)
+		}
+		if _, err := os.Stat(*extraAudioPath + "/us_" + word); err != nil {
+			wordAudio := WordAudio{
+				FileName: "externalAudio/us_" + word,
+				Accent:   Ptr("US"),
+			}
+			cb.AddExternalAudio(wordAudio)
+		}
+	}
 
 	inPartOfSpeech := false
 	languageSectionLevel := -1
@@ -136,6 +165,7 @@ func processWikitext(word string, wikitext Wikitext, audioPath *string) []WordEn
 					continue
 				}
 				fileName := strings.ReplaceAll(fileNameProp.stringValue(), " ", "_")
+				fileName = strings.ToLower(fileName)
 
 				if audioPath != nil {
 					if _, err := os.Stat(*audioPath + "/" + fileName); errors.Is(err, os.ErrNotExist) {
@@ -144,7 +174,7 @@ func processWikitext(word string, wikitext Wikitext, audioPath *string) []WordEn
 				}
 
 				wordAudio := WordAudio{
-					FileName:      fileName,
+					FileName:      "audio/" + fileName,
 					Accent:        re.StringValueInPropByName("a"),
 					Transcription: re.StringValueInPropByName("IPA"),
 					Text:          re.StringValueInPropByNames("t", "text"),
@@ -322,6 +352,7 @@ type CardBuilder struct {
 	isEtymologyStarted   bool
 	globalTranscriptions []string
 	globalAudios         []WordAudio
+	externalAudios       []WordAudio
 	currentInsert        WordEntry
 	currentPartOfSpeech  string
 	currentDef           WordDefEntry
@@ -347,6 +378,10 @@ func (cb *CardBuilder) AddWordAudio(t WordAudio) {
 	} else {
 		cb.globalAudios = append(cb.globalAudios, t)
 	}
+}
+
+func (cb *CardBuilder) AddExternalAudio(t WordAudio) {
+	cb.externalAudios = append(cb.externalAudios, t)
 }
 
 func (cb *CardBuilder) StartEtymology() {
@@ -393,6 +428,8 @@ func (cb *CardBuilder) save() {
 		if len(cb.currentInsert.Audios) == 0 {
 			cb.currentInsert.Audios = append(cb.currentInsert.Audios, cb.globalAudios...)
 		}
+
+		cb.currentInsert.Audios = append(cb.currentInsert.Audios, cb.externalAudios...)
 
 		cb.inserts = append(cb.inserts, cb.currentInsert)
 	}
