@@ -1,11 +1,50 @@
 package main
 
+var TestWikiPage14_parsed = `Term: w
+Transcriptions:
+
+Audios:
+
+proper noun
+d: surname.
+d: community near Field Hill within Yoho National Park, British Columbia, Canada, named after Cyrus West Field.
+d: community in, West Nipissing Northeastern, Ontario, Canada.
+d: unincorporated community, Bell County, Kentucky, USA.
+d: neighbourhood, Nokomis, Minneapolis, Minnesota, USA.
+d: locality in south-east, South Australia.
+d: hamlet, Leigh, East Staffordshire, Staffordshire, England.
+`
+
+var TestWikiPage14 = `{{also|field}}
+==English==
+{{swp|Field (surname)}}
+{{swp|Field#Places|Field (places)}}
+
+===Alternative forms===
+* {{sense|surname}} {{alter|en|Feild}}
+
+===Proper noun===
+{{en-proper noun}}
+
+# {{surname|en}}.
+# {{place|en|community|near {{w|Field Hill}} within {{w|Yoho National Park}},|p/British Columbia|c/Canada}}, named after {{w|Cyrus West Field}}.
+# {{place|en|community|in|mun/West Nipissing|Northeastern|p/Ontario|c/Canada}}.
+# {{place|en|unincorporated community|co/Bell County|s/Kentucky|c/USA}}.
+# {{place|en|neighbourhood|comm/Nokomis|city/Minneapolis|s/Minnesota|s/USA}}.
+# {{place|en|locality|in south-east|s/South Australia}}.
+# {{place|en|hamlet|par/Leigh|dist/East Staffordshire|co/Staffordshire|cc/England}} {{q|[[OS]] grid ref SK0233}}.
+
+===Anagrams===
+* {{anagrams|en|a=defil|Fidel|felid|filed|flied}}
+
+{{cln|en|surnames from common nouns}}`
+
 var TestWikiPage13_parsed = `Term: w
 Transcriptions:
 /ɹɪˈmɛmbɚ/, /ɹəˈmɛmbɚ/, /ˈmɛmbɚ/, /ˈɹɪmbɚ/, /ˈɹɛmbɚ/, /ɹɪˈmɛmbə/, 
 Audios:
-en-us-remember.ogg a:US text: t:
-En-uk-to_remember.ogg a:UK text: t:
+audio/en-us-remember.ogg a:US text: t:
+audio/en-uk-to_remember.ogg a:UK text: t:
 
 verb
 d: To recall from one's memory; to have an image in one's memory.
@@ -406,8 +445,8 @@ var TestWikiPage12_parsed = `Term: w
 Transcriptions:
 brāk, /bɹeɪk/, [bɹ(ʷ)eɪ̯k], brēk, /bɹiːk/, 
 Audios:
-en-us-break.ogg a:US text: t:
-LL-Q1860_(eng)-Vealhurl-break.wav a:Southern England text: t:
+audio/en-us-break.ogg a:US text: t:
+audio/ll-q1860_(eng)-vealhurl-break.wav a:Southern England text: t:
 
 verb
 d: To separate into two or more pieces, to fracture or crack, by a process that cannot easily be reversed for reassembly.
@@ -697,7 +736,7 @@ l: music,
 	e: 34. Of the Registers of the Voice - All singers have observed that there are certain parts of the Vocal Scale where a break, as it is called, seldom fails to occur.
 	e: The point of division between the two vocal registers is most frequently referred to as the register’s break.
 	e: Boys should continue in their high voice, across the break to the lower range, and end up with a voice that doesn’t have a break (Leck, 2009).
-d: An area along a river that features steep banks, bluffs, or gorges (e.g., , US).
+d: An area along a river that features steep banks, bluffs, or gorges (e.g., Upper Missouri River Breaks National Monument, US).
 l: geography, mostly, in the plural, 
 d: An error.
 l: obsolete, slang, 
@@ -707,8 +746,8 @@ Term: w
 Transcriptions:
 brāk, /bɹeɪk/, [bɹ(ʷ)eɪ̯k], brēk, /bɹiːk/, 
 Audios:
-en-us-break.ogg a:US text: t:
-LL-Q1860_(eng)-Vealhurl-break.wav a:Southern England text: t:
+audio/en-us-break.ogg a:US text: t:
+audio/ll-q1860_(eng)-vealhurl-break.wav a:Southern England text: t:
 
 noun
 d: A section of extended repetition of the percussion break to a song, created by a hip-hop DJ as rhythmic dance music.
@@ -3011,10 +3050,10 @@ var TestWikiPage11_parsed = `Term: w
 Transcriptions:
 bâr, /bɛə(ɹ)/, /bɛː(ɹ)/, /bɛɚ/, /beː/, [beː~bɛː], /ˈbiːə(r)/, /bɛː(r)/, /beə/, [beə~bɪə], /bɑɹ/, 
 Audios:
-en-us-bear.ogg a:GA text: t:
+audio/en-us-bear.ogg a:GA text: t:
 
 noun
-d: A large, generally omnivorous mammal (a few species are purely carnivorous or herbivorous), related to the dog and raccoon, having shaggy hair, a very small tail, and flat feet; a member of the family .
+d: A large, generally omnivorous mammal (a few species are purely carnivorous or herbivorous), related to the dog and raccoon, having shaggy hair, a very small tail, and flat feet; a member of the family.
 d: The meat of this animal.
 l: culinary, uncountable, 
 	e: We had barbecued bear for dinner.
@@ -3024,7 +3063,7 @@ l: figuratively,
 d: An investor who sells commodities, securities, or futures in anticipation of a fall in prices.
 l: finance, 
 	e: This accompt has been made to appear a bull accompt, i.e. that the bulls cannot take their stock. The fact is the reverse; it is a bear accompt, but the bears, unable to deliver their stock, have conjointly banged the market, and pocketed the tickets, to defeat the rise and loss that would have ensued to them by their buying on a rising price on the accompt day ...
-d: A state policeman .
+d: A state policeman.
 l: CB radio, slang, US, 
 	e: By the time we got into Tulsa Town
 We had eighty-five trucks in all
@@ -3182,7 +3221,7 @@ l: intransitive, military, usually with on or upon,
 	e: The cannons were wheeled around to bear upon the advancing troops.
 	e: Constitution's gun crews crossed the deck to the already loaded larboard guns as Bainbridge wore the ship around on a larboard tack and recrossed his path in a rare double raking action to bring her guns to bear again on Java's damaged stern.
 d: To produce, yield, give birth to.
-d: To give birth to (someone or something) .
+d: To give birth to (someone or something).
 l: transitive, ditransitive, 
 	e: In Troy she becomes Paris’ wife, bearing him several children, all of whom die in infancy.
 d: To produce or yield something, such as fruit or crops.
@@ -3203,7 +3242,7 @@ Transcriptions:
 Audios:
 
 noun
-d: alternative spelling of bere (barley) .
+d: alternative spelling of bere (barley).
 	e: There are several plots of those species of barley called big, which is six-rowed barley; or bear, which is four-rowed, cultivated.
 	e: Bigg or bear, with four grains on the ear, was the kind of barley.
 	e: Two stacks of beare, of xx boules,
@@ -3215,7 +3254,7 @@ Transcriptions:
 Audios:
 
 noun
-d: alternative spelling of bere (pillowcase) .
+d: alternative spelling of bere (pillowcase).
 	e: And, according to this, one of my Neighbours made a Bag, like a Pillow-bear, of  the ordinary six-penny yard Cloth, and boiled his Hops in it half an Hour; then he took them out, and put in another Bag of the like Quantity of fresh Hops, ...
 	e: ij payer of schete, ij pelows wt the berys,
 	e: 1641.—14 yards of femble cloth, 12s. ; 8 yards of linen, 6s. 8d. ; 20 yards of harden, 10s. ; 5 linen sheets, 1l. ; 7 linen pillow bears, 8s. ; 2 femble sheets and a line hard sheet, 10s. ; 3 linen towels, 4s. ; 6 lin curtains and a vallance, 12s. ; ...
@@ -3227,7 +3266,7 @@ var TestWikiPage10_parsed = `Term: w
 Transcriptions:
 
 Audios:
-En-au-take_off.ogg a:AU text: t:
+audio/en-au-take_off.ogg a:AU text: t:
 
 verb
 d: To remove.

@@ -89,18 +89,19 @@ func processWikitext(
 	cb.SetWord(word)
 
 	if extraAudioPath != nil {
-		_, err := os.Stat(*extraAudioPath + "/" + word + ".wav")
+		fn := strings.ToLower(word) + ".wav"
+		_, err := os.Stat(*extraAudioPath + "/" + fn)
 		if err == nil {
 			wordAudio := WordAudio{
-				FileName: "externalAudio/" + word + ".wav",
+				FileName: "externalAudio/" + fn,
 				Accent:   Ptr("UK"),
 			}
 			cb.AddExternalAudio(wordAudio)
 		}
-		_, err = os.Stat(*extraAudioPath + "/us_" + word + ".wav")
+		_, err = os.Stat(*extraAudioPath + "/us_" + fn)
 		if err == nil {
 			wordAudio := WordAudio{
-				FileName: "externalAudio/us_" + word + ".wav",
+				FileName: "externalAudio/us_" + fn,
 				Accent:   Ptr("US"),
 			}
 			cb.AddExternalAudio(wordAudio)
@@ -163,7 +164,7 @@ func processWikitext(
 				}
 
 				fileNameProp := re.PropStringPropByIndex(1)
-				if fileNameProp == nil || !fileNameProp.isStringValue() {
+				if fileNameProp == nil {
 					continue
 				}
 				fileName := strings.ReplaceAll(fileNameProp.stringValue(), " ", "_")
@@ -251,12 +252,12 @@ func processWikitext(
 					} else {
 						if re.name == "quote-book" && textProp == nil {
 							seventhProp := re.PropStringPropByIndex(6)
-							if seventhProp != nil && seventhProp.isStringValue() {
+							if seventhProp != nil {
 								ex = seventhProp.stringValue()
 							}
 						} else if re.name == "quote-journal" && textProp == nil {
 							eigthProp := re.PropStringPropByIndex(7)
-							if eigthProp != nil && eigthProp.isStringValue() {
+							if eigthProp != nil {
 								ex = eigthProp.stringValue()
 							}
 						}
@@ -289,11 +290,11 @@ func processWikitext(
 
 					extraStrs := []string{}
 					p2 := re.PropStringPropByIndex(2)
-					if p2 != nil && p2.isStringValue() && len(p2.stringValue()) > 0 {
+					if p2 != nil && len(p2.stringValue()) > 0 {
 						extraStrs = append(extraStrs, p2.stringValue())
 					}
 					p3 := re.PropStringPropByIndex(3)
-					if p3 != nil && p3.isStringValue() && len(p3.stringValue()) > 0 {
+					if p3 != nil && len(p3.stringValue()) > 0 {
 						extraStrs = append(extraStrs, p3.stringValue())
 					}
 					pt := re.PropByName("t")
@@ -314,6 +315,52 @@ func processWikitext(
 						cb.AddAntonym(re.props[1].stringValue())
 					}
 				}
+			case "surname":
+				str := "surname"
+				qualifierProp := re.PropStringPropByIndex(1)
+				if qualifierProp != nil {
+					str += qualifierProp.stringValue() + " " + str
+				}
+				textElements = append(textElements, str)
+			case "place":
+				typeProp := re.PropStringPropByIndex(1)
+				if typeProp == nil {
+					continue
+				}
+
+				str := typeProp.stringValue()
+				typeNamePropI := 2
+				for {
+					typeNameProp := re.PropStringPropByIndex(typeNamePropI)
+					if typeNameProp == nil {
+						break
+					}
+
+					resultTypeNameValue := typeNameProp.stringValue()
+					delimeterI := strings.Index(typeNameProp.stringValue(), "/")
+					if delimeterI != -1 {
+						resultTypeNameValue = typeNameProp.stringValue()[delimeterI+1:]
+						if len(str) != 0 && str[len(str)-1] != ',' {
+							str += ","
+						}
+					}
+
+					str += " "
+					str += resultTypeNameValue
+					typeNamePropI += 1
+				}
+				textElements = append(textElements, str)
+			case "w":
+				nameProp := re.PropStringPropByIndex(1)
+				if nameProp == nil {
+					nameProp = re.PropStringPropByIndex(0)
+				}
+
+				if nameProp == nil {
+					continue
+				}
+
+				textElements = append(textElements, nameProp.stringValue())
 			}
 
 		case *WikitextMarkupElement:
@@ -333,10 +380,10 @@ func processWikitext(
 
 		case *WikitextNewlineElement:
 			if isDefinition && len(textElements) > 0 {
-				d := strings.Join(textElements, " ")
+				d := joinToString(textElements)
 				cb.AddDefinition(d, labels)
 			} else if isExample && len(textElements) > 0 {
-				ex := strings.Join(textElements, " ")
+				ex := joinToString(textElements)
 				cb.AddExample(ex)
 			}
 
@@ -348,6 +395,36 @@ func processWikitext(
 	}
 
 	return cb.Build()
+}
+
+// don't add separator before "."
+func joinToString(elems []string) string {
+	switch len(elems) {
+	case 0:
+		return ""
+	case 1:
+		return elems[0]
+	}
+
+	var n int
+	sep := " "
+	if len(sep) > 0 {
+		n += len(sep) * (len(elems) - 1)
+	}
+	for _, elem := range elems {
+		n += len(elem)
+	}
+
+	var b strings.Builder
+	b.Grow(n)
+	b.WriteString(elems[0])
+	for _, s := range elems[1:] {
+		if !strings.HasPrefix(s, ".") && !strings.HasPrefix(s, ",") {
+			b.WriteString(sep)
+		}
+		b.WriteString(s)
+	}
+	return b.String()
 }
 
 type CardBuilder struct {
