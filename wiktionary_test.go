@@ -453,3 +453,20 @@ func TestParsingWikitext14(t *testing.T) {
 	assert.Equal(t, 1, len(inserts))
 	assert.Nil(t, err)
 }
+
+func TestParsingWikitext15(t *testing.T) {
+	str := `==English==
+
+===Adjective===
+{{en-adj}}
+
+# {{alternative form of|en|Afrophobic}}
+#* {{quote-book|en|passage=[…]Those [&hellip;]reactions, whether <br/> genuine&nbsp;abc}}
+`
+	text, err := parseWikitext(str)
+	assert.Equal(t, 12, len(text.elements))
+
+	templateElement := text.elements[10].(*WikitextTemplateElement)
+	assert.Equal(t, "…Those …reactions, whether \n genuine abc", *templateElement.StringValueInPropByName("passage"))
+	assert.Nil(t, err)
+}

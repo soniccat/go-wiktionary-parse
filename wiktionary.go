@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"strings"
+	"unicode/utf8"
 
 	"github.com/macdub/go-colorlog"
 )
@@ -557,7 +558,7 @@ func (e *WikitextMarkupElement) ElementType() int {
 }
 
 func parseWikitextTextBlock(r rune, reader *strings.Reader, exclude string) (s string, isHandled bool, err error) {
-	bstr, _ := peek(reader, 7)
+	bstr, _ := peek(reader, 10)
 	if r == '[' && strings.HasPrefix(bstr, "[") {
 		if exclude == "[[" {
 			return
@@ -575,8 +576,7 @@ func parseWikitextTextBlock(r rune, reader *strings.Reader, exclude string) (s s
 		if err != nil {
 			return
 		}
-		// } else if len(exclude) > 0 && exclude == string(r)+bstr[0:len(exclude)-1] {
-		// 	return
+
 	} else if r == '<' && strings.HasPrefix(bstr, "math>") {
 		if exclude == "<math>" {
 			return
@@ -593,21 +593,17 @@ func parseWikitextTextBlock(r rune, reader *strings.Reader, exclude string) (s s
 		s = "\n"
 		isHandled = true
 
-		/*} else if r == '\'' && strings.HasPrefix(bstr, "''''") {
-		if exclude == "'''''" {
-			return
-		}
+	} else if r == '<' && strings.HasPrefix(bstr, "br/>") {
 		reader.Seek(4, io.SeekCurrent)
-		s, err = readUntil(reader, "'''''")
+		s = "\n"
 		isHandled = true
-		*/
+
 	} else if r == '\'' && strings.HasPrefix(bstr, "''") {
 		if exclude == "'''" {
 			return
 		}
 		reader.Seek(2, io.SeekCurrent)
 		s = ""
-		//s, err = readUntil(reader, "'''")
 		isHandled = true
 
 	} else if r == '\'' && strings.HasPrefix(bstr, "'") {
@@ -616,7 +612,21 @@ func parseWikitextTextBlock(r rune, reader *strings.Reader, exclude string) (s s
 		}
 		reader.Seek(1, io.SeekCurrent)
 		s = ""
-		// s, err = readUntil(reader, "''")
+		isHandled = true
+
+	} else if r == '&' && strings.HasPrefix(bstr, "nbsp;") {
+		reader.Seek(5, io.SeekCurrent)
+		s = " "
+		isHandled = true
+
+	} else if r == '[' && strings.HasPrefix(bstr, "…]") {
+		reader.Seek(int64(utf8.RuneLen('…'))+1, io.SeekCurrent)
+		s = "…"
+		isHandled = true
+
+	} else if r == '[' && strings.HasPrefix(bstr, "&hellip;]") {
+		reader.Seek(9, io.SeekCurrent)
+		s = "…"
 		isHandled = true
 	}
 

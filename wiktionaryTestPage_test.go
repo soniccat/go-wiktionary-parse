@@ -3184,7 +3184,7 @@ l: transitive,
 d: To have (a name, title, or designation).
 l: transitive, 
 	e: The school still bears the name of its founder.
-	e: […] imitations that bear the same name as the things […]
+	e: … imitations that bear the same name as the things …
 	e: Heinrich Olbers described the paradox that bears his name in 1823.
 d: To possess or enjoy (recognition, renown, a reputation, etc.); to have (a particular price, value, or worth).
 l: transitive, 
