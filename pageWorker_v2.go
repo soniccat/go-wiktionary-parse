@@ -89,16 +89,18 @@ func processWikitext(
 	cb.SetWord(word)
 
 	if extraAudioPath != nil {
-		if _, err := os.Stat(*extraAudioPath + "/" + word); err != nil {
+		_, err := os.Stat(*extraAudioPath + "/" + word + ".wav")
+		if err == nil {
 			wordAudio := WordAudio{
-				FileName: "externalAudio/" + word,
+				FileName: "externalAudio/" + word + ".wav",
 				Accent:   Ptr("UK"),
 			}
 			cb.AddExternalAudio(wordAudio)
 		}
-		if _, err := os.Stat(*extraAudioPath + "/us_" + word); err != nil {
+		_, err = os.Stat(*extraAudioPath + "/us_" + word + ".wav")
+		if err == nil {
 			wordAudio := WordAudio{
-				FileName: "externalAudio/us_" + word,
+				FileName: "externalAudio/us_" + word + ".wav",
 				Accent:   Ptr("US"),
 			}
 			cb.AddExternalAudio(wordAudio)
