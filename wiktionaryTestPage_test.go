@@ -1,5 +1,51 @@
 package main
 
+var TestWikiPage15_parsed = `Term: w
+Transcriptions:
+/ˈbætəɫ/, 
+Audios:
+
+proper noun
+d: habitational surname from places in England that have been sites of a battle.
+d: A place name:
+d: town/and/cpar with a town council in, Rother, East Sussex, England; supposed site of the Battle of Hastings. <ref>[https://maps.walkingclub.org.uk/admin/east-sussex/rother/battle-parish.html Parish map (England)]</ref>
+d: hamlet in Yscir, Powys, Wales.
+d: river in Saskatchewan, Canada
+d: former unincorporated community in Carbon County, Washington, United States.
+l: historical, 
+`
+
+var TestWikiPage15 = `{{also|battle}}
+==English==
+{{wp|Battle, East Sussex}}
+{{swp|Battle, Powys}}
+
+===Etymology===
+Capitalization of {{m|en|battle}}. {{doublet|en|Battaglia}}.
+
+===Pronunciation===
+* {{IPA|en|/ˈbætəɫ/|a=UK}}
+
+===Proper noun===
+{{en-proper noun}}
+
+# {{surname|en|[[habitational]]|from=Middle English}} from places in England that have been sites of a [[battle]].
+# A place name:
+## {{place|en|town/and/cpar|with a town council in|dist/Rother|co/East Sussex|cc/England}}; supposed site of the Battle of Hastings {{q|[[OS]] grid ref TQ7416}}. <ref>[https://maps.walkingclub.org.uk/admin/east-sussex/rother/battle-parish.html Parish map (England)]</ref>
+## {{place|en|hamlet|wcomm/Yscir|co/Powys|cc/Wales}} {{q|OS grid ref SO0131}}.
+## {{place|en|river|p/Saskatchewan|c/Canada}}
+## {{lb|en|historical}} {{place|en|former [[unincorporated]] community|co/Carbon County|s/Washington|c/United States}}.
+
+====Derived terms====
+* {{sense|Saskatchewan}} {{l|en|Battleford}}
+
+===References===
+<references/>
+
+===Anagrams===
+* {{anagrams|en|a=abeltt|batlet|battel|tablet}}
+`
+
 var TestWikiPage14_parsed = `Term: w
 Transcriptions:
 
@@ -9,10 +55,10 @@ proper noun
 d: surname.
 d: community near Field Hill within Yoho National Park, British Columbia, Canada, named after Cyrus West Field.
 d: community in, West Nipissing Northeastern, Ontario, Canada.
-d: unincorporated community, Bell County, Kentucky, USA.
-d: neighbourhood, Nokomis, Minneapolis, Minnesota, USA.
+d: unincorporated community in Bell County, Kentucky, USA.
+d: neighbourhood in Nokomis, Minneapolis, Minnesota, USA.
 d: locality in south-east, South Australia.
-d: hamlet, Leigh, East Staffordshire, Staffordshire, England.
+d: hamlet in Leigh, East Staffordshire, Staffordshire, England.
 `
 
 var TestWikiPage14 = `{{also|field}}

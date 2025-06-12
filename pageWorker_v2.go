@@ -319,7 +319,7 @@ func processWikitext(
 				str := "surname"
 				qualifierProp := re.PropStringPropByIndex(1)
 				if qualifierProp != nil {
-					str += qualifierProp.stringValue() + " " + str
+					str = qualifierProp.stringValue() + " " + str
 				}
 				textElements = append(textElements, str)
 			case "place":
@@ -341,7 +341,11 @@ func processWikitext(
 					if delimeterI != -1 {
 						resultTypeNameValue = typeNameProp.stringValue()[delimeterI+1:]
 						if len(str) != 0 && str[len(str)-1] != ',' {
-							str += ","
+							if typeNamePropI == 2 {
+								str += " in"
+							} else {
+								str += ","
+							}
 						}
 					}
 
@@ -419,7 +423,11 @@ func joinToString(elems []string) string {
 	b.Grow(n)
 	b.WriteString(elems[0])
 	for _, s := range elems[1:] {
-		if !strings.HasPrefix(s, ".") && !strings.HasPrefix(s, ",") {
+		if s != "" &&
+			s[0] != '.' &&
+			s[0] != ',' &&
+			s[0] != ':' &&
+			s[0] != ';' {
 			b.WriteString(sep)
 		}
 		b.WriteString(s)
