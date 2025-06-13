@@ -172,3 +172,25 @@ func TestPageWorkerV2_16(t *testing.T) {
 	assert.Equal(t, TestWikiPage16_parsed, InsertsToString(inserts))
 	assert.True(t, len(inserts) > 0)
 }
+
+func TestPageWorkerV2_17(t *testing.T) {
+	wikitext, err := parseWikitext(TestWikiPage17)
+	assert.Nil(t, err)
+
+	inserts := processWikitext("w", wikitext, nil, nil)
+
+	print(InsertsToString(inserts))
+	assert.Equal(t, TestWikiPage17_parsed, InsertsToString(inserts))
+	assert.True(t, len(inserts) > 0)
+}
+
+func TestPageWorkerV2_18(t *testing.T) {
+	wikitext, err := parseWikitext(TestWikiPage18)
+	assert.Nil(t, err)
+
+	inserts := processWikitext("w", wikitext, nil, nil)
+
+	print(InsertsToString(inserts))
+	assert.Equal(t, TestWikiPage18_parsed, InsertsToString(inserts))
+	assert.True(t, len(inserts) > 0)
+}

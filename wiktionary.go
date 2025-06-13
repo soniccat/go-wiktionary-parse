@@ -584,6 +584,15 @@ func parseWikitextTextBlock(r rune, reader *strings.Reader, exclude string) (s s
 		reader.Seek(5, io.SeekCurrent)
 		s, err = readUntil(reader, "</math>")
 		isHandled = true
+
+	} else if r == '<' && strings.HasPrefix(bstr, "!--") {
+		if exclude == "<!--" {
+			return
+		}
+		reader.Seek(3, io.SeekCurrent)
+		_, err = readUntil(reader, "-->")
+		isHandled = true
+
 	} else if r == '<' && strings.HasPrefix(bstr, "id:") {
 		if exclude == "<id:" {
 			return
@@ -635,6 +644,7 @@ func parseWikitextTextBlock(r rune, reader *strings.Reader, exclude string) (s s
 		reader.Seek(9, io.SeekCurrent)
 		s = "…"
 		isHandled = true
+
 	}
 
 	return

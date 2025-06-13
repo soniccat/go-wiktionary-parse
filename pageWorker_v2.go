@@ -192,7 +192,7 @@ func processWikitext(
 			case "en-noun":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("noun")
-			case "en-adj":
+			case "en-adj", "en-adjective":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("adj")
 			case "en-adv":
@@ -222,10 +222,54 @@ func processWikitext(
 			case "en-pron":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("pron")
-			case "en-proper noun":
+			case "en-proper noun", "en-proper-noun", "en-prop":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("proper noun")
-			case "lb":
+			case "head":
+				nameProp := re.PropStringPropByIndex(1)
+				if nameProp == nil {
+					continue
+				}
+
+				r := ""
+				// https://en.wiktionary.org/wiki/Template:head
+				switch nameProp.stringValue() {
+				case "a", "adj", "adjective", "compadj", "supadj":
+					r = "adj"
+				case "adv", "compadv", "supadv":
+					r = "adv"
+				case "conj", "conjunction":
+					r = "con"
+				case "converb", "conv", "v", "vb", "vai", "vi", "vii", "vt", "vta", "vti":
+					r = "verb"
+				case "det", "determiner":
+					r = "det"
+				case "int", "interj", "interjection":
+					r = "interj"
+				case "n", "noun", "na", "animate noun", "ni", "inanimate noun", "":
+					r = "nount"
+				case "num", "numeral":
+					r = "num"
+				case "part", "participle":
+					r = "part"
+				case "pcl", "particle":
+					r = "particle"
+				case "phr", "phrase":
+					r = "phrase"
+				case "prep", "preposition":
+					r = "prep"
+				case "postp", "postposition":
+					r = "postp"
+				case "pn", "prop", "proper", "propn", "proper noun":
+					r = "proper noun"
+				}
+
+				if r != "" {
+					inPartOfSpeech = true
+					cb.SetPartOfSpeech(r)
+				}
+
+			case "lb", "lbl":
 				for i, v := range re.props {
 					if i > 0 && v.isStringValue() {
 						labels = append(labels, v.stringValue())
@@ -269,28 +313,56 @@ func processWikitext(
 						cb.AddExample(ex)
 					}
 				}
-			case "sense":
+			case "sense", "s":
 				if (areSynonyms || areAntonyms) && len(re.props) > 0 && re.props[0].isStringValue() {
 					cb.AddDefinition(re.props[0].stringValue(), nil)
 				}
-			case "antsense":
+			case "antsense", "as":
 				if len(re.props) > 0 && re.props[0].isStringValue() {
 					cb.AddDefinition("antonyms of "+re.props[0].stringValue(), []string{})
 				}
-			case "nonstandard spelling of",
-				"alternative spelling of",
-				"standard spelling of",
-				"alternative form of",
-				"misspelling of",
+			case "nonstandard spelling of", "nstd sp",
+				"alternative spelling of", "altsp", "alt sp", "alt sp of", "alt spell", "alt spelling of",
+				"standard spelling of", "stand sp",
+				"alternative form of", "altform", "alt form", "alt form of",
+				"misspelling of", "missp",
 				"misconstruction of",
-				"censored spelling of",
-				"pronunciation spelling of",
+				"censored spelling of", "cens sp",
+				"pronunciation spelling of", "pron spelling of", "pron sp of", "pron sp",
 				"deliberate misspelling of",
-				"filter-avoidance spelling of",
-				"synonym of",
-				"syn of":
+				"filter-avoidance spelling of", "fa sp",
+				"synonym of", "syn of":
+
+				alternativeSpellingOf := "alternative spelling of"
+				alternativeFormOf := "alternative form of"
+				pronunciationSpellingOf := "pronunciation spelling of"
+				nameMapper := map[string]string{
+					"altsp":            alternativeSpellingOf,
+					"alt sp":           alternativeSpellingOf,
+					"alt sp of":        alternativeSpellingOf,
+					"alt spell":        alternativeSpellingOf,
+					"alt spelling of":  alternativeSpellingOf,
+					"nstd sp":          "nonstandard spelling of",
+					"stand sp":         "standard spelling of",
+					"altform":          alternativeFormOf,
+					"alt form":         alternativeFormOf,
+					"alt form of":      alternativeFormOf,
+					"missp":            "misspelling of",
+					"cens sp":          "censored spelling of",
+					"pron spelling of": pronunciationSpellingOf,
+					"pron sp of":       pronunciationSpellingOf,
+					"pron sp":          pronunciationSpellingOf,
+					"fa sp":            "filter-avoidance spelling of",
+					"syn of":           "synonym of",
+				}
+
+				resultName := re.name
+				if mappedName, ok := nameMapper[resultName]; ok {
+					resultName = mappedName
+				}
+
 				if len(re.props) > 1 && re.props[1].isStringValue() {
-					str := re.name + " " + re.props[1].stringValue()
+					str := resultName + " " + re.props[1].stringValue()
 
 					extraStrs := []string{}
 					p2 := re.PropStringPropByIndex(2)
@@ -372,6 +444,14 @@ func processWikitext(
 				}
 
 				textElements = append(textElements, nameProp.stringValue())
+			case "non-gloss", "ng", "n-g", "ngd":
+				textProp := re.PropStringPropByIndex(0)
+				if textProp == nil {
+					continue
+				}
+
+				labels = append(labels, "non-gloss")
+				textElements = append(textElements, textProp.stringValue())
 			}
 
 		case *WikitextMarkupElement:

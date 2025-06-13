@@ -1,5 +1,86 @@
 package main
 
+var TestWikiPage18_parsed = `Term: w
+Transcriptions:
+
+Audios:
+
+con
+d: Elaboration of to.
+l: obsolete outside dialect or poetic use, non-gloss, 
+d: Expressing purpose: in order to.
+l: non-gloss, 
+	e: Farewell! Farewell! / Farewell, my fairy fay! / Oh, I'm off to Louisiana / For to see my Susy Anna, / Singing, "Polly-wolly-doodle" all the day!
+	e: “Mr. Woilde, we ‘ave come for tew take yew
+Where felons and criminals dwell:
+We must ask yew tew leave with us quoietlysic
+For this is the Cadogan Hotel.”
+	e: All that I need for to be satisfied is a woman who's nothing like me
+d: As a general infinitive marker.
+l: non-gloss, 
+	e: In the desert you can remember your name, / 'Cause there ain't no one for to give you no pain
+`
+
+var TestWikiPage18 = `{{also|forto}}
+==English==
+
+===Etymology===
+{{l|en|for}} + {{l|en|to}}, compare {{cog|sco|[[for]] [[tae]]}}, {{cog|da|[[for]] [[at]]}}, {{cog|no|-}} {{m|nb|[[for]] [[å]]}}, {{cog|sv|[[för]] [[att]]}}.
+
+===Conjunction===
+{{en-con}}
+
+# {{lb|en|obsolete|_|outside|_|dialect|or|poetic|_|use}} {{n-g|Elaboration of ''[[to]]''}}.
+## {{n-g|Expressing purpose}}: [[in order to]].
+##* {{RQ:King James Version|Luke|7|25|passage=What went ye out '''for to''' see?}}
+##* {{quote-book|en|compilers=Hoyt Parmelee; et al.|chapter=[[w:Polly Wolly Doodle|Polly-Wolly-Doodl[e]]]|title=A Collection of Songs and Ballads as Sung by Alpha Kappa Phi and Germanæ Sodales Societies, of {{w|Hillsdale College}}, Hillsdale, Michigan|location=Hillsdale, Mich.|publisher=Leader Steam Print|year=c. 1843|year_published=1885|page=11|pageurl=https://books.google.com/books?id=GiPiAAAAMAAJ&pg=PA11|oclc=39879270|passage=Farewell! Farewell! / Farewell, my fairy fay! / Oh, I'm off to Louisiana / '''For to''' see my Susy Anna, / Singing, "Polly-wolly-doodle" all the day!}}
+##* {{quote-text|en|year=1937|author=John Betjeman|title=The Arrest of Oscar Wilde at the Cadogan Hotel
+|passage=“Mr. Woilde, we ‘ave come '''for tew''' take yew<br>Where felons and criminals dwell:<br>We must ask yew tew leave with us quoietly{{sic}}<br>For this ''is'' the Cadogan Hotel.”}}
+##* {{quote-song|en|year=2004|author=w:Jackie Greene|title=Honey I Been Thinking About You|album=Sweet Somewhere Bound|passage=All that I need '''for to''' be satisfied is a woman who's nothing like me}}
+## {{n-g|As a general infinitive marker.}}
+##* {{RQ:Dickens Great Expectations|III|I|10|It does me good '''fur to''' look at you, Pip.}}
+##* {{quote-song|en|year=1971|author=w:Dewey Bunnell|title=w:A Horse with No Name|artist={{w|America (band)|America}}|passage=In the desert you can remember your name, / 'Cause there ain't no one '''for to''' give you no pain}}
+`
+
+var TestWikiPage17_parsed = `Term: w
+Transcriptions:
+/ɔːlˈbiː.ɪt/, /ɔlˈbi.ət/, /ɑlˈbi.ɪt/, 
+Audios:
+audio/en-us-albeit.ogg a:GA text: t:
+
+con
+d: Although, despite (it) being.
+	e: The stranger had crossed a sacred line. He had mentioned the men’s mothers. Nothing could get him out of a beating now, even the fact that he was obviously a simpleton. Albeit a simpleton with a good vocabulary.
+	e: There’s an easy, albeit expensive, way to fix the national crisis in forensic crime labs.
+	e: Up front, skipper and open-side Lewis Moody looked almost back to full fitness, while England's set-piece was barely troubled, albeit against a Romania side showing 11 changes from that beaten by Argentina earlier in the week.
+	s: as much as
+	s: though
+	s: Thesaurus:even though
+`
+
+var TestWikiPage17 = `==English==
+
+===Etymology===
+From the {{inh|en|enm|-}} expression {{m|enm|[[al]] [[be]] [[it]] ([[that]])}}, itself shortened from {{m|enm|[[althagh]] [[it]] [[be]] [[that]]|t=although it be that}}, and thus composed from {{com|enm|al|t1=completely, entirely|be|pos2=3rd person singular present subjunctive of {{m|enm|been|t=to be}}|it|nocat=1}}.
+
+===Pronunciation===
+* {{IPA|en|/ɔːlˈbiː.ɪt/|a=RP}}
+* {{IPA|en|/ɔlˈbi.ət/|a=GA}}
+* {{audio|en|en-us-albeit.ogg|a=GA}}
+* {{IPA|en|/ɑlˈbi.ɪt/|a=cot-caught}}
+* {{hyphenation|en|al|be|it}}
+
+===Conjunction===
+{{head|en|conjunction}}
+
+# [[although|Although]], [[despite]] (it) being.
+#: {{synonyms|en|as much as|though|Thesaurus:even though}}
+#* {{RQ:Shakespeare Merchant of Venice|act=II|scene=vi|page=170|passage=VVho are you? tell me for more certainty, / '''Albeit''' Ile ſvveare that I do knovv your tongue.}}
+#* {{quote-book|en|author=w:Eoin Colfer|title=[[w:Artemis Fowl (novel)|Artemis Fowl]]|year=2001|page=92|passage=The stranger had crossed a sacred line. He had mentioned the men’s mothers. Nothing could get him out of a beating now, even the fact that he was obviously a simpleton. '''Albeit''' a simpleton with a good vocabulary.}}
+#* {{quote-journal|en|author=Ellen Marrus|title=|work=w:Houston Chronicle|date=17 June 2007|url=|passage=There’s an easy, '''albeit''' expensive, way to fix the national crisis in forensic crime labs.}}
+#* {{quote-web|en|author=w:Ben Dirs|title=Rugby World Cup 2011: [[w:England national football team|England]] 67&nbsp;– 3 [[w:Romania national football team|Romania]]|work=w:BBC Sport|url=http://news.bbc.co.uk/sport2/hi/rugby_union/14812577.stm|date=24 September 2011|passage=Up front, skipper and open-side {{w|Lewis Moody}} looked almost back to full fitness, while England's set-piece was barely troubled, '''albeit''' against a Romania side showing 11 changes from that beaten by Argentina earlier in the week.}}
+`
+
 var TestWikiPage16_parsed = `Term: w
 Transcriptions:
 pē'nŭt", /ˈpiːnʌt/, /ˈpiˌnʌt/, 
@@ -8,7 +89,7 @@ audio/en-us-peanut.ogg a:GA text: t:
 
 noun
 d: A legume resembling a nut, the fruit of the plant, native to South America.
-d: syn of countneck.
+d: synonym of countneck.
 l: US, 
 d: See peanuts.
 l: in the plural, 
@@ -167,6 +248,18 @@ d: to commemorate, to have a remembrance ceremony
 l: transitive, 
 	s: recall
 	s: reminisce
+Term: w
+Transcriptions:
+
+Audios:
+
+verb
+d: alternative form of re-member
+l: rare, 
+	e: knit 'this scattered corn into one mutual sheaf, / these broken limbs again into one body' - in other words, how to resurrect the dismembered god, to remember Osiris. Yet the only body made whole in these expert, lowering poems is the body of this death.
+	e: According to these mysteries, the rites of fashioning or remembering Osiris came to be interpreted as remembering Egypt. Egypt was the body of Osiris, dismembered and scattered across the land.
+	e: She remembered Osiris by putting his pieces back together and mating with him one last time, conceiving Horus, who eventually avenged his father's death.
+	e: To dismember is to tear apart; / To re-member is to put back together. / The old must be dismembered / So that which was prior to it / May be remembered. / Therefore, to re-mind is / To dismember and then re-member.
 `
 
 var TestWikiPage13 = `
@@ -811,7 +904,7 @@ l: horse racing,
 	e: Perhaps it stumbles to its knees at the break, effectively losing the race at the outset.
 d: A large four-wheeled carriage, having a straight body and calash top, with the driver's seat in front and the footman's behind.
 l: dated, 
-d: <!--Ch1908 has both spellings-->
+d: alternative form of brake (cart or carriage without a body, for breaking in horses)
 d: A sharp bit or snaffle.
 l: equitation, 
 	e: Pampered jades ... which need nor break nor bit.
@@ -851,6 +944,16 @@ l: music, slang,
 d: To brake.
 l: rare, mainly historical or a misspelling, 
 	e: Breaking heavily, now on a 1 in 39 gradient, the train makes as if to cross the Tamar at once, only to swing sharply to the right, ....
+Term: w
+Transcriptions:
+brāk, /bɹeɪk/, [bɹ(ʷ)eɪ̯k], brēk, /bɹiːk/, 
+Audios:
+audio/en-us-break.ogg a:US text: t:
+audio/ll-q1860_(eng)-vealhurl-break.wav a:Southern England text: t:
+
+interj
+d: break! (boxing)
+	s: pause
 `
 
 var TestWikiPage12 = `
@@ -3294,10 +3397,10 @@ l: transitive,
 	e: An unusually high percentage of the hundreds of gay men who participated in the experimental trials for this vaccine (1978-1980) developed AIDS. Since these trials occurred at about the same time as the first AIDS cases in the same cities ... a possible connection at least bears careful study.
 	e: This storm definitely bears monitoring.
 d: To support, keep up, or maintain.
-d: To afford, to be something to someone, to supply with something. <!-- Seeking modern English examples. -->
+d: To afford, to be something to someone, to supply with something.
 l: transitive, 
 	e: admitted to that equal sky, / His faithful dog shall bear him company.
-d: To carry on, or maintain; to have. <!-- Seeking modern English examples. -->
+d: To carry on, or maintain; to have.
 l: transitive, 
 	e: ... and he finds the Pleasure, and Credit of bearing a Part in the Conversation, and of having his Reasons sometimes approved and hearken'd to.
 d: To press or impinge upon.
