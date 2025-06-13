@@ -1,5 +1,130 @@
 package main
 
+var TestWikiPage20_parsed = `Term: w
+Transcriptions:
+/v/, /viː/, 
+Audios:
+audio/en-us-v.ogg a:US text: t:
+
+noun
+d: a shape resembling the letter
+	e: The impact was so strong, it bent the bar into a v.
+Term: w
+Transcriptions:
+
+Audios:
+
+prep
+d: abbreviation of versus
+l: UK, Ireland and Commonwealth except Canada, 
+	s: v.
+	s: vs.
+Term: w
+Transcriptions:
+
+Audios:
+
+adv
+d: abbreviation of very
+l: informal, text messaging, 
+	e: You were acting v rude to his boyfriend on New Year's.
+	e: I'm v tired. I slept v badly, awake from 3–6 a.m., so I've slept all afternoon.
+	e: I said it wasn't a crush, I just thought he was v attractive.
+	e: Since becoming social media official, Cara Delevingne and Ashley Benson have been sashaying around town together and being v cute
+	e: Sometimes a trip to the spa is not in the cards, even if your gel manicure has seen waaaay better days. These polish remover tools help cut costs and keep your natural nails looking v nice.
+`
+
+var TestWikiPage20 = `{{C|mul|Five}}
+
+==English==
+
+===Etymology 1===
+From {{der|en|enm|-}} lower case letter {{m|enm|v}} (also written {{m|enm|u}}), from {{der|en|ang|-}} lower case {{m|ang|u}} and respelling of {{der|en|ang|f}} between vowels and voiced consonants.
+* [[File:Rune-Feoh.png|10px|Anglo-Saxon Futhorc letter {{m|mul||ᚠ|tr=f|feoh}}]] {{der|en|ang|-}} lower case {{m|ang|f}} from 7th century replacement by Latin lower case {{m|la|f}} of the Anglo-Saxon Futhorc letter {{m|mul|ᚠ|tr=f||feoh}}, derived from Etruscan letter {{m|mul|𐌅|tr=v}}.
+* [[File:Rune-Ur.png|10px|Anglo-Saxon Futhorc letter {{m|mul||ᚢ|tr=u|ur}}]] {{der|en|ang|-}} lower case {{m|ang|u}} from 7th century replacement by Latin lower case {{m|la|v}} of the Anglo-Saxon Futhorc letter {{m|mul|ᚢ|tr=u||ur}}, derived from Raetic letter {{m|mul||u}}.
+
+Before the 1700s, the pointed form {{m|en|v}} was written at the beginning of a word, while a rounded form {{m|en|u}} was used elsewhere, regardless of sound. So whereas {{m|en|valor}} and {{m|en|excuse}} appeared as in modern printing, {{m|en|have}} and {{m|en|upon}} were printed {{m|en||haue}} and {{m|en||vpon}}. Eventually, in the 1700s, to differentiate between the consonant and vowel sounds, the {{m|en|v}} form was used to represent the consonant, and {{m|en|u}} the vowel sound. {{m|en|v}} then preceded {{m|en|u}} in the alphabet, but the order has since reversed.
+
+====Pronunciation====
+* {{sense|phoneme}} {{IPA|en|/v/}}
+* {{sense|letter name}} {{IPA|en|/viː/}} (spelled {{m|en|vee}})
+** {{audio|en|en-us-v.ogg|a=US}}
+** {{rhymes|en|iː|s=1}}
+
+====Letter====
+{{en-letter}}
+
+# {{Latn-def|en|letter|22|vee}}
+
+=====See also=====
+{{list:Latin script letters/en}}
+
+====Noun====
+{{en-noun|s|v's}}
+
+# a shape resembling the letter {{m|en|v}}
+#: {{ux|en|The impact was so strong, it bent the bar into a '''v'''.}}
+
+===Etymology 2===
+{{abbrev|en|versus}}.
+
+====Preposition====
+{{en-prep}}
+
+# {{lb|en|UK|Ireland|and|Commonwealth|_|except Canada}} {{abbreviation of|en|versus}}
+#: {{syn|en|v.|vs.}}
+#: {{uxi|en|England '''v''' Scotland}}
+#* {{quote-journal|en|date=3 March 2023|author=Eleanor Flegg|title=The comfort '''v''' style dilemma: Thought you couldn’t combine the two? Think again — our experts explain exactly how|journal=w:Irish Independent|volume=132|issue=53|location=Dublin|section=“Property” section|page=4|pageurl=https://www.newspapers.com/newspage/1167524333/|issn=0021-1222|oclc=500345272|nocolon=1}}
+
+=====Usage notes=====
+* In legal contexts, usage is typically restricted to {{w|Case citations|case citations}}, and the pronunciation may be as {{l|en| versus}}, {{l|en|vee}}, {{l|en|against}}, or {{l|en|and}}, depending on the region and nature of the case.
+
+===Etymology 3===
+{{abbrev|en|very}}.
+
+====Adverb====
+{{head|en|adverb}}
+
+# {{lb|en|informal|text messaging}} {{abbreviation of|en|very}}
+#: {{ux|en|You were acting '''v''' rude to his boyfriend on New Year's.}}
+#* {{quote-book|en|passage=I'm '''v''' tired. I slept '''v''' badly, awake from 3–6 a.m., so I've slept all afternoon.|title=Life After Darkness: A Doctor's Journey Through Severe Depression|author=Cathy Wield|page=109|publisher=Radcliffe Publishing|year=2006|location=Seattle, WA|url=https://books.google.com/books?id=EVbTWWmv4AUC&pg=PA109|isbn=9781857757293}}
+#* {{quote-book|en|title=Deep and Meaningful Diaries from Planet Janet|passage=I said it wasn't a crush, I just thought he was '''v''' attractive.|page=253|author=Dyan Sheldon|year=2007|publisher=Candlewick Press|location=Somerville, MA|isbn=978-0763632168}}
+#* {{quote-journal|en|passage=Since becoming social media official, Cara Delevingne and Ashley Benson have been sashaying around town together and being '''v''' cute|journal=Pedestrian|url=https://www.pedestrian.tv/entertainment/ashley-benson-cara-delevingne-tatt/|date=July 23, 2019|accessdate=August 12, 2019|archiveurl=https://web.archive.org/web/20190723050529/https://www.pedestrian.tv/entertainment/ashley-benson-cara-delevingne-tatt/|archivedate=July 23, 2019|author=Matt Galea|title=Punters Reckon Ashley Benson's New Tatt Is A Tribute To Girlfriend Cara Delevingne}}
+#* {{quote-journal|en|date=2024-10-08|author=Lauren Gruber; Megan Uy|title=We Found Sooo Many Viral TikTok Items on Sale for October Prime Day|journal=w:[[Cosmopolitan (magazine)|Cosmopolitan]]|url=https://www.cosmopolitan.com/style-beauty/fashion/g36623568/viral-tiktok-items-amazon-sale/|passage=Sometimes a trip to the spa is not in the cards, even if your gel manicure has seen ''waaaay'' better days. These polish remover tools help cut costs and keep your natural nails looking '''v''' nice.}}
+
+===Etymology 4===
+Abbreviations.
+
+'''{{PAGENAME}}'''
+# {{lb|en|stenoscript}} {{abbreviation of|en|of}}
+# {{lb|en|stenoscript}} {{abbreviation of|en|very}}
+# {{lb|en|stenoscript}} the suffix or final syllable '''''{{m|en|-tive}}''''' or '''''{{m|en|-ive}}'''''
+# {{senseid|en|venturi}} {{lb|en|automotive|dated}} {{abbreviation of|en|venturi<id:throat of a carburetor>}}
+#: {{alti|en|V<id:venturi>}}
+#: {{syn|en|bbl<id:venturi>}}
+#: {{coi|en|4'''v'''}}; &emsp; {{coi|en|2'''v'''}}
+#: {{coi|en|289-4'''v'''}}; &emsp; {{coi|en|289-2'''v'''}}
+`
+
+var TestWikiPage19_parsed = `Term: w
+Transcriptions:
+
+Audios:
+
+verb
+d: To overtake a slower group of players ahead of one's own group, rather than waiting for them to finish the hole before proceeding.
+l: golf, 
+`
+
+var TestWikiPage19 = `{{also|play-through|playthrough}}
+==English==
+
+===Verb===
+{{en-verb|*}}
+
+# {{lb|en|golf}} To [[overtake]] a slower group of players ahead of one's own group, rather than waiting for them to finish the [[hole]] before proceeding.
+`
+
 var TestWikiPage18_parsed = `Term: w
 Transcriptions:
 

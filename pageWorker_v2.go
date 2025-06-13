@@ -195,36 +195,37 @@ func processWikitext(
 			case "en-adj", "en-adjective":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("adj")
-			case "en-adv":
+			case "en-adv", "en-adverb":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("adv")
-			case "en-con":
+			case "en-con", "en-conjunction":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("con")
-			case "en-det":
+			case "en-det", "en-determiner":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("det")
-			case "en-interj":
+			case "en-interj", "en-interjection":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("interj")
 			case "en-num":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("num")
-			case "en-part":
+			case "en-part", "en-participle":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("part")
 			case "en-postp":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("postp")
-			case "en-prep":
+			case "en-preposition", "en-prep":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("prep")
-			case "en-pron":
+			case "en-pron", "en-pronoun":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("pron")
 			case "en-proper noun", "en-proper-noun", "en-prop":
 				inPartOfSpeech = true
 				cb.SetPartOfSpeech("proper noun")
+
 			case "head":
 				nameProp := re.PropStringPropByIndex(1)
 				if nameProp == nil {
@@ -236,7 +237,7 @@ func processWikitext(
 				switch nameProp.stringValue() {
 				case "a", "adj", "adjective", "compadj", "supadj":
 					r = "adj"
-				case "adv", "compadv", "supadv":
+				case "adv", "compadv", "supadv", "adverb", "comparative adverb", "superlative adverb":
 					r = "adv"
 				case "conj", "conjunction":
 					r = "con"
@@ -260,6 +261,8 @@ func processWikitext(
 					r = "prep"
 				case "postp", "postposition":
 					r = "postp"
+				case "pron", "pronoun":
+					r = "pron"
 				case "pn", "prop", "proper", "propn", "proper noun":
 					r = "proper noun"
 				}
@@ -331,11 +334,13 @@ func processWikitext(
 				"pronunciation spelling of", "pron spelling of", "pron sp of", "pron sp",
 				"deliberate misspelling of",
 				"filter-avoidance spelling of", "fa sp",
-				"synonym of", "syn of":
+				"synonym of", "syn of",
+				"abbreviation of", "abbr of", "abbrev of":
 
 				alternativeSpellingOf := "alternative spelling of"
 				alternativeFormOf := "alternative form of"
 				pronunciationSpellingOf := "pronunciation spelling of"
+				abbreviationOf := "abbreviation of"
 				nameMapper := map[string]string{
 					"altsp":            alternativeSpellingOf,
 					"alt sp":           alternativeSpellingOf,
@@ -354,6 +359,8 @@ func processWikitext(
 					"pron sp":          pronunciationSpellingOf,
 					"fa sp":            "filter-avoidance spelling of",
 					"syn of":           "synonym of",
+					"abbr of":          abbreviationOf,
+					"abbrev of":        abbreviationOf,
 				}
 
 				resultName := re.name
