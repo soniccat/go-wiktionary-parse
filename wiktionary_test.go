@@ -464,9 +464,26 @@ func TestParsingWikitext15(t *testing.T) {
 #* {{quote-book|en|passage=[…]Those [&hellip;]reactions, whether <br/> genuine&nbsp;abc}}
 `
 	text, err := parseWikitext(str)
+	assert.Nil(t, err)
 	assert.Equal(t, 12, len(text.elements))
 
 	templateElement := text.elements[10].(*WikitextTemplateElement)
 	assert.Equal(t, "…Those …reactions, whether \n genuine abc", *templateElement.StringValueInPropByName("passage"))
+}
+
+func TestParsingWikitext16(t *testing.T) {
+	str := `# {{senseid|en|certain size range of Q2279087}} {{lb|en|US}} {{syn of|en|countneck<id:certain size range of Q2279087>|gloss=very small hard clam}}.`
+	text, err := parseWikitext(str)
 	assert.Nil(t, err)
+	assert.Equal(t, 5, len(text.elements))
+	templateElement := text.elements[3].(*WikitextTemplateElement)
+	assert.Equal(t, "syn of", templateElement.name)
+	assert.Equal(t, "countneck", templateElement.PropStringPropByIndex(1).stringValue())
+}
+
+func TestParsingWikitext17(t *testing.T) {
+	str := `# {{lb|en|in the plural}} ''See'' {{l|en|peanuts||very small amount}}.`
+	text, err := parseWikitext(str)
+	assert.Nil(t, err)
+	assert.Equal(t, 5, len(text.elements))
 }

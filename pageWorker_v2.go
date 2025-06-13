@@ -4,6 +4,8 @@ import (
 	"errors"
 	"os"
 	"strings"
+	"unicode"
+	"unicode/utf8"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -284,7 +286,9 @@ func processWikitext(
 				"censored spelling of",
 				"pronunciation spelling of",
 				"deliberate misspelling of",
-				"filter-avoidance spelling of":
+				"filter-avoidance spelling of",
+				"synonym of",
+				"syn of":
 				if len(re.props) > 1 && re.props[1].isStringValue() {
 					str := re.name + " " + re.props[1].stringValue()
 
@@ -308,11 +312,14 @@ func processWikitext(
 					textElements = append(textElements, str)
 				}
 			case "l":
-				if (areSynonyms || areAntonyms) && len(re.props) > 1 && re.props[1].isStringValue() {
+				nameProp := re.PropStringPropByIndex(1)
+				if (areSynonyms || areAntonyms || isDefinition) && nameProp != nil {
 					if areSynonyms {
-						cb.AddSynonym(re.props[1].stringValue())
+						cb.AddSynonym(nameProp.stringValue())
 					} else if areAntonyms {
-						cb.AddAntonym(re.props[1].stringValue())
+						cb.AddAntonym(nameProp.stringValue())
+					} else if isDefinition {
+						textElements = append(textElements, nameProp.stringValue())
 					}
 				}
 			case "surname":
@@ -423,13 +430,13 @@ func joinToString(elems []string) string {
 	b.Grow(n)
 	b.WriteString(elems[0])
 	for _, s := range elems[1:] {
-		if s != "" &&
-			s[0] != '.' &&
-			s[0] != ',' &&
-			s[0] != ':' &&
-			s[0] != ';' {
-			b.WriteString(sep)
+		if s != "" {
+			firstRune, _ := utf8.DecodeRuneInString(s)
+			if firstRune != utf8.RuneError && !unicode.IsPunct(firstRune) {
+				b.WriteString(sep)
+			}
 		}
+
 		b.WriteString(s)
 	}
 	return b.String()

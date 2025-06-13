@@ -1,5 +1,50 @@
 package main
 
+var TestWikiPage16_parsed = `Term: w
+Transcriptions:
+pē'nŭt", /ˈpiːnʌt/, /ˈpiˌnʌt/, 
+Audios:
+audio/en-us-peanut.ogg a:GA text: t:
+
+noun
+d: A legume resembling a nut, the fruit of the plant, native to South America.
+d: syn of countneck.
+l: US, 
+d: See peanuts.
+l: in the plural, 
+	s: goober
+	s: goober pea
+	s: monkey nut
+	s: pinder
+`
+
+var TestWikiPage16 = `{{also|pea nut|pea-nut|Peanut}}
+==English==
+[[Image:ARS peanuts.jpg|thumb|Peanuts]]
+
+===Alternative forms===
+* {{alt|en|pea nut|pea-nut||obsolete}}
+
+===Etymology===
+From {{compound|en|pea|nut}}, perhaps a [[folk etymology]] of {{m|en|pinda}}, {{m|en|pinder}} ''(still found in Southern US dialects)''.
+
+===Pronunciation===
+* {{enPR|pē'nŭt"|a=RP}}, {{IPA|en|/ˈpiːnʌt/}}
+* {{IPA|en|/ˈpiˌnʌt/|a=GA}}
+* {{audio|en|En-us-peanut.ogg|a=GA}}
+* {{hyphenation|en|pea|nut}}
+
+===Noun===
+{{en-noun}}
+
+# {{senseid|en|Q37383}} A [[legume]] resembling a [[nut]], the fruit of the plant {{taxfmt|Arachis hypogaea|species}}, native to [[South America]].
+# {{senseid|en|certain size range of Q2279087}} {{lb|en|US}} {{syn of|en|countneck<id:certain size range of Q2279087>|gloss=very small hard clam}}.
+# {{lb|en|in the plural}} ''See'' {{l|en|peanuts||very small amount}}.
+
+====Synonyms====
+* {{l|en|goober}} {{q|Southern US slang}}, {{l|en|goober pea}} {{q|dated Southern US}}, {{l|en|monkey nut}} {{q|UK}}, {{l|en|pinder}} {{q|Southern US}}
+`
+
 var TestWikiPage15_parsed = `Term: w
 Transcriptions:
 /ˈbætəɫ/, 
